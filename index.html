@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard de Faturamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0f1117; --bg-card:#16181f; --bg-card2:#1c1f28; --bg-hover:#22262f;
+  --border:rgba(255,255,255,0.07); --border-bright:rgba(255,255,255,0.14);
+  --text:#f0f0f2; --text-muted:#7a7e8e; --text-dim:#4a4e5c;
+  --blue:#4a9eff; --blue-bg:rgba(74,158,255,0.1); --blue-bd:rgba(74,158,255,0.25);
+  --green:#4ade80; --green-bg:rgba(74,222,128,0.08); --green-bd:rgba(74,222,128,0.2);
+  --amber:#fbbf24; --amber-bg:rgba(251,191,36,0.08); --amber-bd:rgba(251,191,36,0.2);
+  --red:#f87171; --red-bg:rgba(248,113,113,0.08); --red-bd:rgba(248,113,113,0.2);
+  --purple:#a78bfa; --purple-bg:rgba(167,139,250,0.08); --purple-bd:rgba(167,139,250,0.2);
+  --cyan:#22d3ee; --cyan-bg:rgba(34,211,238,0.08); --cyan-bd:rgba(34,211,238,0.2);
+  --r:10px; --rl:14px;
+  --font:'DM Sans',sans-serif; --mono:'DM Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13px;line-height:1.6;min-height:100vh}
+.layout{display:grid;grid-template-columns:224px 1fr;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{background:var(--bg-card);border-right:1px solid var(--border);padding:24px 0;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sb-brand{padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:6px}
+.sb-icon{width:34px;height:34px;border-radius:9px;background:var(--blue-bg);border:1px solid var(--blue-bd);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.sb-icon svg{width:16px;height:16px;color:var(--blue)}
+.sb-name{font-size:13px;font-weight:500;letter-spacing:-.01em}
+.sb-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
+.nav-sec{padding:10px 12px 2px}
+.nav-lbl{font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;padding:0 8px;margin-bottom:3px}
+.ni{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:var(--r);cursor:pointer;color:var(--text-muted);font-size:12.5px;transition:all .15s;border:1px solid transparent;margin-bottom:1px;user-select:none}
+.ni:hover{background:var(--bg-hover);color:var(--text)}
+.ni.on{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd);font-weight:500}
+.ni svg{width:14px;height:14px;flex-shrink:0}
+.ni-static{opacity:.5;cursor:default;pointer-events:none}
+.sb-bottom{margin-top:auto;padding:14px 12px 0;border-top:1px solid var(--border)}
+.status-pill{display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:var(--r);background:var(--green-bg);border:1px solid var(--green-bd);font-size:11px;color:var(--green)}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* MAIN */
+.main{display:flex;flex-direction:column;min-height:100vh}
+.topbar{padding:16px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg-card);position:sticky;top:0;z-index:10;gap:12px}
+.tb-left{display:flex;flex-direction:column;gap:2px}
+.tb-title{font-size:15px;font-weight:500;letter-spacing:-.02em}
+.tb-sub{font-size:11px;color:var(--text-muted)}
+.tb-right{display:flex;gap:7px;flex-wrap:wrap}
+.chip{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid;white-space:nowrap}
+.chip-red{background:var(--red-bg);color:var(--red);border-color:var(--red-bd)}
+.chip-amber{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-bd)}
+.chip-green{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
+.content{padding:22px 28px;flex:1}
+
+/* KPIs */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:14px 16px;transition:border-color .15s}
+.kpi:hover{border-color:var(--border-bright)}
+.kpi-lbl{font-size:10px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.kpi-lbl svg{width:11px;height:11px}
+.kpi-val{font-size:22px;font-weight:500;letter-spacing:-.03em;line-height:1;font-family:var(--mono)}
+.kpi-sub{font-size:11px;color:var(--text-dim);margin-top:4px}
+.kv-blue{color:var(--blue)} .kv-green{color:var(--green)} .kv-amber{color:var(--amber)} .kv-red{color:var(--red)}
+
+/* PAGES */
+.page{display:none;animation:fadeIn .22s ease}
+.page.on{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+/* CARDS */
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px}
+.card-title{font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title svg{width:11px;height:11px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+
+/* SCHEDULE */
+.sched-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:14px}
+.sched-head{display:grid;grid-template-columns:72px repeat(5,1fr);background:var(--bg-card2);border-bottom:1px solid var(--border)}
+.sh{padding:9px 10px;font-size:10.5px;font-weight:500;color:var(--text-muted);text-align:center;border-right:1px solid var(--border)}
+.sh:last-child{border-right:none}
+.srow{display:grid;grid-template-columns:72px repeat(5,1fr);border-bottom:1px solid var(--border);transition:background .1s}
+.srow:last-child{border-bottom:none}
+.srow:hover{background:rgba(255,255,255,.015)}
+.srow.cut{background:rgba(248,113,113,.03)}
+.tc{padding:9px 6px;font-size:10px;font-weight:500;color:var(--text-dim);text-align:center;border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--mono);line-height:1.4}
+.cut .tc{color:var(--red)}
+.dc{padding:7px 9px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
+.dc:last-child{border-right:none}
+.pill{border-radius:5px;padding:3px 7px;font-size:10.5px;line-height:1.4}
+.p-bit{background:var(--blue-bg);color:#7bb8ff;border:1px solid var(--blue-bd)}
+.p-plat{background:var(--green-bg);color:#86efac;border:1px solid var(--green-bd)}
+.p-sank{background:var(--cyan-bg);color:var(--cyan);border:1px solid var(--cyan-bd)}
+.p-tom{background:var(--amber-bg);color:#fcd34d;border:1px solid var(--amber-bd)}
+.p-cut{background:var(--red-bg);color:var(--red);border:1px dashed rgba(248,113,113,.4)}
+.p-env{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-bd)}
+.p-int{background:rgba(255,255,255,.03);color:var(--text-dim);border:1px solid var(--border)}
+.bx{display:inline-block;font-size:9px;font-weight:500;padding:1px 5px;border-radius:10px;margin-left:3px;vertical-align:middle}
+.b1{background:rgba(167,139,250,.15);color:var(--purple)}
+.b2{background:rgba(74,222,128,.12);color:var(--green)}
+
+/* LEGEND */
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted)}
+.ld{width:9px;height:9px;border-radius:3px;flex-shrink:0}
+
+/* TIMELINE */
+.tl-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:20px 22px;margin-bottom:14px}
+.tl-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.tl-analyst{display:flex;align-items:center;gap:10px}
+.tl-info-name{font-size:13px;font-weight:500}
+.tl-info-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
+.tl-leg-row{display:flex;gap:12px;flex-wrap:wrap}
+.tl-leg{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text-muted)}
+.tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.scale-row{display:flex;padding-left:88px;margin-bottom:6px}
+.scale-h{flex:1;font-size:9.5px;font-family:var(--mono);color:var(--text-dim);text-align:center;position:relative}
+.scale-h::before{content:'';position:absolute;top:-3px;left:50%;width:1px;height:3px;background:var(--border)}
+.tl-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.tl-row:last-child{margin-bottom:0}
+.tl-day{width:88px;font-size:11px;color:var(--text-muted);text-align:right;flex-shrink:0;line-height:1.3}
+.tl-track{flex:1;height:34px;background:var(--bg-card2);border-radius:6px;position:relative;overflow:visible}
+.tl-inner{position:absolute;inset:0;border-radius:6px;overflow:hidden}
+.tb{position:absolute;top:3px;bottom:3px;border-radius:4px;display:flex;align-items:center;padding:0 7px;font-size:10px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:filter .15s;cursor:default}
+.tb:hover{filter:brightness(1.2);z-index:1}
+.tb-blue{background:rgba(74,158,255,.22);color:#7bb8ff;border:1px solid var(--blue-bd)}
+.tb-green{background:rgba(74,222,128,.18);color:#86efac;border:1px solid var(--green-bd)}
+.tb-amber{background:rgba(251,191,36,.18);color:#fcd34d;border:1px solid var(--amber-bd)}
+.tb-cyan{background:rgba(34,211,238,.18);color:var(--cyan);border:1px solid var(--cyan-bd)}
+.tb-purple{background:rgba(167,139,250,.18);color:var(--purple);border:1px solid var(--purple-bd)}
+.tb-red{background:rgba(248,113,113,.18);color:var(--red);border:1px dashed var(--red-bd)}
+.tb-gray{background:rgba(255,255,255,.04);color:var(--text-dim);border:1px solid var(--border)}
+.cut-line{position:absolute;top:-4px;bottom:-4px;width:2px;background:rgba(248,113,113,.55);z-index:3;pointer-events:none}
+.cut-line::after{content:'16h30';position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--red);font-family:var(--mono);white-space:nowrap}
+
+/* MATRIX */
+.mx-section-hdr{display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.mx-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:22px}
+.mx-table{width:100%;border-collapse:collapse}
+.mx-table th{padding:9px 14px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;background:var(--bg-card2);border-bottom:1px solid var(--border);border-right:1px solid var(--border);text-align:left;white-space:nowrap}
+.mx-table th:last-child{border-right:none}
+.mx-table td{padding:10px 14px;font-size:12px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:top;color:var(--text-muted)}
+.mx-table td:last-child{border-right:none}
+.mx-table tr:last-child td{border-bottom:none}
+.mx-table tr:hover td{background:rgba(255,255,255,.012)}
+.mx-sec{background:var(--bg-card2)}
+.mx-sec td{padding:6px 14px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;border-right:1px solid var(--border)}
+.mx-sec td:last-child{border-right:none}
+.pt{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px;border:1px solid;white-space:nowrap}
+.pt-bit{background:var(--blue-bg);color:#7bb8ff;border-color:var(--blue-bd)}
+.pt-plat{background:var(--green-bg);color:#86efac;border-color:var(--green-bd)}
+.pt-sank{background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)}
+.pt-tom{background:var(--amber-bg);color:#fcd34d;border-color:var(--amber-bd)}
+.pt-all{background:var(--red-bg);color:var(--red);border-color:var(--red-bd)}
+.op{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px}
+.op-out{background:rgba(74,158,255,.12);color:#7bb8ff}
+.op-in{background:rgba(74,222,128,.1);color:#86efac}
+.op-both{background:rgba(251,191,36,.1);color:#fcd34d}
+.op-can{background:rgba(248,113,113,.1);color:var(--red)}
+.flow-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:2px}
+.flow-desc{font-size:11px;color:var(--text-muted);line-height:1.5}
+.an-cell{display:flex;flex-direction:column;gap:4px}
+.an{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 8px;border-radius:6px;width:fit-content;border:1px solid}
+.an-1{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-bd)}
+.an-2{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
+.an-both{background:rgba(255,255,255,.05);color:var(--text-muted);border-color:var(--border)}
+.ttag{font-size:10.5px;font-family:var(--mono);color:var(--text-dim)}
+.ttag-red{font-size:10.5px;font-family:var(--mono);color:var(--red)}
+
+/* ANALYST CARD */
+.analyst-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px}
+.av-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.av{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
+.av1{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-bd)}
+.av2{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.av-name{font-size:14px;font-weight:500}
+.av-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 14px}
+.tag{font-size:10px;padding:3px 8px;border-radius:20px;border:1px solid}
+.t-blue{background:var(--blue-bg);color:#7bb8ff;border-color:var(--blue-bd)}
+.t-green{background:var(--green-bg);color:#86efac;border-color:var(--green-bd)}
+.t-amber{background:var(--amber-bg);color:#fcd34d;border-color:var(--amber-bd)}
+.t-cyan{background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:14px;border-top:1px solid var(--border)}
+.mk{background:var(--bg-card2);border-radius:8px;padding:9px 12px}
+.mk-l{font-size:10px;color:var(--text-muted);margin-bottom:3px}
+.mk-v{font-size:18px;font-weight:500;font-family:var(--mono);letter-spacing:-.02em}
+
+/* RULES */
+.rule-list{display:flex;flex-direction:column}
+.rule-item{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border)}
+.rule-item:last-child{border-bottom:none;padding-bottom:0}
+.rdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.rd-g{background:var(--green)} .rd-a{background:var(--amber)} .rd-b{background:var(--blue)}
+.rule-txt{font-size:12px;color:var(--text-muted);line-height:1.6}
+.rule-txt strong{font-weight:500;color:var(--text)}
+
+/* BARS */
+.bar-item{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.bar-item:last-child{margin-bottom:0}
+.bl{width:68px;font-size:11px;color:var(--text-muted);text-align:right;flex-shrink:0}
+.bt{flex:1;height:14px;background:var(--bg-card2);border-radius:4px;overflow:hidden}
+.bf{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:7px;font-size:10px;font-weight:500;font-family:var(--mono)}
+.bv{font-size:11px;color:var(--text-dim);width:64px;font-family:var(--mono)}
+.bf-b{background:rgba(74,158,255,.28);color:#7bb8ff}
+.bf-g{background:rgba(74,222,128,.22);color:#86efac}
+.bf-a{background:rgba(251,191,36,.22);color:#fcd34d}
+.bf-c{background:rgba(34,211,238,.2);color:var(--cyan)}
+
+/* SLA TABLE */
+.sla-tbl{width:100%;border-collapse:collapse}
+.sla-tbl th{text-align:left;padding:8px 12px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);background:var(--bg-card2)}
+.sla-tbl td{padding:10px 12px;font-size:12px;border-bottom:1px solid var(--border);color:var(--text-muted)}
+.sla-tbl tr:last-child td{border-bottom:none}
+.sla-tbl tr:hover td{background:rgba(255,255,255,.012)}
+.sla-tbl td:nth-child(3){color:var(--text);font-family:var(--mono);font-size:11px}
+.sdotcell{display:flex;align-items:center;gap:8px}
+.sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* SCENARIOS */
+.scenario{padding:11px 13px;border-radius:var(--r);border:1px solid;margin-bottom:7px}
+.scenario:last-child{margin-bottom:0}
+.sc-hd{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.sc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sc-ttl{font-size:12px;font-weight:500}
+.sc-desc{font-size:11px;color:var(--text-muted);line-height:1.5;padding-left:16px}
+.sc-g{border-color:var(--green-bd);background:var(--green-bg)} .sc-g .sc-ttl{color:var(--green)}
+.sc-a{border-color:var(--amber-bd);background:var(--amber-bg)} .sc-a .sc-ttl{color:var(--amber)}
+.sc-r{border-color:var(--red-bd);background:var(--red-bg)} .sc-r .sc-ttl{color:var(--red)}
+
+/* RESPONSIVE */
+@media(max-width:960px){.layout{grid-template-columns:1fr}.sidebar{display:none}.kpi-row{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.content{padding:16px}.topbar{padding:13px 16px}}
+@media(max-width:640px){.kpi-row{grid-template-columns:1fr 1fr}.tb-right{display:none}.sched-head,.srow{grid-template-columns:54px repeat(5,1fr)}.dc{padding:5px 6px}.pill{font-size:9.5px;padding:2px 5px}}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
+    <div class="sb-name">Faturamento</div>
+    <div class="sb-sub">Setor de emissão · 2 analistas</div>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-lbl">Visões</div>
+    <div class="ni on" onclick="gp('cronograma',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M2 6h12M6 2v12"/></svg>Cronograma</div>
+    <div class="ni" onclick="gp('timeline',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M2 4h5M2 12h8"/><circle cx="11" cy="8" r="1.5"/></svg>Linha do Tempo</div>
+    <div class="ni" onclick="gp('matriz',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M2 7h12M7 2v12"/></svg>Matriz de Atividades</div>
+    <div class="ni" onclick="gp('equipe',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="5" r="2.5"/><circle cx="11" cy="5" r="2"/><path d="M1 13c0-2.5 2-4 5-4s5 1.5 5 4"/><path d="M11 9c1.5 0 3 .8 3 3"/></svg>Equipe</div>
+    <div class="ni" onclick="gp('volume',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13V8l3-3 3 3 3-4 3 2"/><path d="M2 13h12"/></svg>Volume</div>
+    <div class="ni" onclick="gp('sla',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3.5l2.5 1.5"/></svg>SLA</div>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-lbl">Plataformas</div>
+    <div class="ni ni-static"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="4" cy="4" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="4" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><path d="M6 4h4M4 6v4M12 6v4M6 12h4"/></svg>Bitrix</div>
+    <div class="ni ni-static"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8a6 6 0 0 1 12 0"/><path d="M4 11a4 4 0 0 1 8 0"/><circle cx="8" cy="13" r="1"/></svg>Plataforma (Finza/Ideal)</div>
+    <div class="ni ni-static"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="9" rx="1"/><path d="M5 4V3a1 1 0 0 1 2 0v1M9 4V3a1 1 0 0 1 2 0v1"/></svg>Sankhya</div>
+    <div class="ni ni-static"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v8H3z"/><path d="M6 6h4M6 8.5h2M5 11v2M8 11v2M11 11v2"/></svg>TomTicket</div>
+  </div>
+  <div class="sb-bottom">
+    <div class="status-pill"><div class="pulse"></div>Fluxo contínuo ativo</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="topbar">
+    <div class="tb-left">
+      <div class="tb-title" id="pg-title">Cronograma semanal</div>
+      <div class="tb-sub">Segunda a sexta · emissão imediata · SLA 24h úteis</div>
+    </div>
+    <div class="tb-right">
+      <span class="chip chip-red">Corte 16h30</span>
+      <span class="chip chip-amber">100–150 docs/dia</span>
+      <span class="chip chip-green">SLA 24h úteis</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- KPIs sempre visíveis -->
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="4.5"/><path d="M4 6l1.5 1.5L8 4"/></svg>Modelo</div><div class="kpi-val kv-green">Contínuo</div><div class="kpi-sub">verificar + emitir na hora</div></div>
+      <div class="kpi"><div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="10" height="8" rx="1"/><path d="M4 3V2M8 3V2M1 6h10"/></svg>Volume diário</div><div class="kpi-val kv-amber">100–150</div><div class="kpi-sub">documentos por dia</div></div>
+      <div class="kpi"><div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 3.5V6l2 1.5"/></svg>Corte</div><div class="kpi-val kv-red">16h30</div><div class="kpi-sub">transportadora coleta</div></div>
+      <div class="kpi"><div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10V5l4-3 4 3v5"/></svg>SLA</div><div class="kpi-val kv-blue">24h</div><div class="kpi-sub">horas úteis por documento</div></div>
+    </div>
+
+    <!-- ════════ PAGE: CRONOGRAMA ════════ -->
+    <div id="page-cronograma" class="page on">
+      <div class="sched-wrap">
+        <div class="sched-head">
+          <div class="sh"></div>
+          <div class="sh">Segunda</div><div class="sh">Terça</div><div class="sh">Quarta</div><div class="sh">Quinta</div><div class="sh">Sexta</div>
+        </div>
+        <div class="srow">
+          <div class="tc">08h00<br>09h30</div>
+          <div class="dc"><div class="pill p-bit">Bitrix · Garantia <span class="bx b1">A1</span></div><div class="pill p-plat">Plataforma · Venda/Locação <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · Dev. Suprimentos <span class="bx b1">A1</span></div><div class="pill p-plat">Plataforma · Venda/Locação <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · Log. Reversa <span class="bx b1">A1</span></div><div class="pill p-plat">Plataforma · Venda/Locação <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · Garantia <span class="bx b1">A1</span></div><div class="pill p-plat">Plataforma · Venda/Locação <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · Fat. Serviços <span class="bx b1">A1</span></div><div class="pill p-plat">Plataforma · Venda/Locação <span class="bx b2">A2</span></div></div>
+        </div>
+        <div class="srow">
+          <div class="tc">09h30<br>11h30</div>
+          <div class="dc"><div class="pill p-bit">Bitrix · Suporte TLJ <span class="bx b1">A1</span></div><div class="pill p-tom">TomTicket · Cartas/Correção <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · Garantia + Reversa <span class="bx b1">A1</span></div><div class="pill p-tom">TomTicket · Transferências <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · Suporte TLJ <span class="bx b1">A1</span></div><div class="pill p-tom">TomTicket · DIFAL + Variados <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · Dev. Suprimentos <span class="bx b1">A1</span></div><div class="pill p-tom">TomTicket · Cartas + Transf. <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · Todos os fluxos <span class="bx b1">A1</span></div><div class="pill p-tom">TomTicket · Variados <span class="bx b2">A2</span></div></div>
+        </div>
+        <div class="srow">
+          <div class="tc" style="color:var(--text-dim)">11h30<br>13h00</div>
+          <div class="dc"><div class="pill p-int">Almoço</div></div><div class="dc"><div class="pill p-int">Almoço</div></div>
+          <div class="dc"><div class="pill p-int">Almoço</div></div><div class="dc"><div class="pill p-int">Almoço</div></div>
+          <div class="dc"><div class="pill p-int">Almoço</div></div>
+        </div>
+        <div class="srow">
+          <div class="tc">13h00<br>15h30</div>
+          <div class="dc"><div class="pill p-bit">Bitrix · continuação <span class="bx b1">A1</span></div><div class="pill p-sank">Sankhya · Suprimentos <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · continuação <span class="bx b1">A1</span></div><div class="pill p-tom">TomTicket · Variados <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · continuação <span class="bx b1">A1</span></div><div class="pill p-sank">Sankhya · Suprimentos <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · continuação <span class="bx b1">A1</span></div><div class="pill p-plat">Plataforma · pendentes <span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-bit">Bitrix · continuação <span class="bx b1">A1</span></div><div class="pill p-tom">TomTicket · pendentes semana <span class="bx b2">A2</span></div></div>
+        </div>
+        <div class="srow cut">
+          <div class="tc">15h30<br>16h30</div>
+          <div class="dc"><div class="pill p-cut">⚑ Corte · varredura final <span class="bx b1">A1</span><span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-cut">⚑ Corte · varredura final <span class="bx b1">A1</span><span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-cut">⚑ Corte · varredura final <span class="bx b1">A1</span><span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-cut">⚑ Corte · varredura final <span class="bx b1">A1</span><span class="bx b2">A2</span></div></div>
+          <div class="dc"><div class="pill p-cut">⚑ Corte + Alinhamento semanal</div></div>
+        </div>
+        <div class="srow">
+          <div class="tc">16h30<br>18h00</div>
+          <div class="dc"><div class="pill p-env">Envio manual + TomTicket não urgente</div></div>
+          <div class="dc"><div class="pill p-env">Envio manual + TomTicket não urgente</div></div>
+          <div class="dc"><div class="pill p-env">Envio manual + TomTicket não urgente</div></div>
+          <div class="dc"><div class="pill p-env">Envio manual + TomTicket não urgente</div></div>
+          <div class="dc"><div class="pill p-env">Envio manual nas plataformas</div></div>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="leg"><div class="ld" style="background:rgba(74,158,255,.4)"></div>Bitrix</div>
+        <div class="leg"><div class="ld" style="background:rgba(74,222,128,.35)"></div>Plataforma (Finza/Ideal)</div>
+        <div class="leg"><div class="ld" style="background:rgba(34,211,238,.3)"></div>Sankhya</div>
+        <div class="leg"><div class="ld" style="background:rgba(251,191,36,.35)"></div>TomTicket</div>
+        <div class="leg"><div class="ld" style="background:rgba(248,113,113,.3);border:1px dashed rgba(248,113,113,.5)"></div>Janela de corte</div>
+        <div class="leg"><div class="ld" style="background:rgba(167,139,250,.3)"></div>Envio / organizacional</div>
+      </div>
+    </div>
+
+    <!-- ════════ PAGE: LINHA DO TEMPO ════════ -->
+    <div id="page-timeline" class="page">
+      <!-- Analista 1 -->
+      <div class="tl-card">
+        <div class="tl-head">
+          <div class="tl-analyst">
+            <div class="av av1">A1</div>
+            <div><div class="tl-info-name">Analista 1 — Linha do Tempo Diária</div><div class="tl-info-sub">Bitrix · 50–75 docs/dia · ritmo ~9 docs/h</div></div>
+          </div>
+          <div class="tl-leg-row">
+            <div class="tl-leg"><div class="tl-dot" style="background:var(--blue)"></div>Bitrix</div>
+            <div class="tl-leg"><div class="tl-dot" style="background:var(--red)"></div>Corte 16h30</div>
+            <div class="tl-leg"><div class="tl-dot" style="background:var(--purple)"></div>Envio</div>
+          </div>
+        </div>
+        <!-- Escala 08h–18h = 10h = 100% | 1h = 10% -->
+        <div class="scale-row">
+          <div class="scale-h">08h</div><div class="scale-h">09h</div><div class="scale-h">10h</div>
+          <div class="scale-h">11h</div><div class="scale-h">12h</div><div class="scale-h">13h</div>
+          <div class="scale-h">14h</div><div class="scale-h">15h</div><div class="scale-h">16h</div>
+          <div class="scale-h">17h</div><div class="scale-h">18h</div>
+        </div>
+        <div class="tl-row"><div class="tl-day">Segunda</div><div class="tl-track"><div class="tl-inner">
+          <div class="tb tb-blue"  style="left:0%;width:15%" title="08h–09h30">Garantia</div>
+          <div class="tb tb-blue"  style="left:15%;width:20%" title="09h30–11h30">Suporte TLJ</div>
+          <div class="tb tb-gray"  style="left:35%;width:15%" title="11h30–13h">Almoço</div>
+          <div class="tb tb-blue"  style="left:50%;width:25%" title="13h–15h30">Bitrix · continuação</div>
+          <div class="tb tb-red"   style="left:75%;width:10%" title="15h30–16h30">⚑ Corte</div>
+          <div class="tb tb-purple"style="left:85%;width:15%" title="16h30–18h">Envio</div>
+        </div><div class="cut-line" style="left:85%"></div></div></div>
+
+        <div class="tl-row"><div class="tl-day">Terça</div><div class="tl-track"><div class="tl-inner">
+          <div class="tb tb-blue"  style="left:0%;width:15%">Dev. Suprimentos</div>
+          <div class="tb tb-blue"  style="left:15%;width:20%">Garantia + Reversa</div>
+          <div class="tb tb-gray"  style="left:35%;width:15%">Almoço</div>
+          <div class="tb tb-blue"  style="left:50%;width:25%">Bitrix · continuação</div>
+          <div class="tb tb-red"   style="left:75%;width:10%">⚑ Corte</div>
+          <div class="tb tb-purple"style="left:85%;width:15%">Envio</div>
+        </div><div class="cut-line" style="left:85%"></div></div></div>
+
+        <div class="tl-row"><div class="tl-day">Quarta</div><div class="tl-track"><div class="tl-inner">
+          <div class="tb tb-blue"  style="left:0%;width:15%">Log. Reversa</div>
+          <div class="tb tb-blue"  style="left:15%;width:20%">Suporte TLJ</div>
+          <div class="tb tb-gray"  style="left:35%;width:15%">Almoço</div>
+          <div class="tb tb-blue"  style="left:50%;width:25%">Bitrix · continuação</div>
+          <div class="tb tb-red"   style="left:75%;width:10%">⚑ Corte</div>
+          <div class="tb tb-purple"style="left:85%;width:15%">Envio</div>
+        </div><div class="cut-line" style="left:85%"></div></div></div>
+
+        <div class="tl-row"><div class="tl-day">Quinta</div><div class="tl-track"><div class="tl-inner">
+          <div class="tb tb-blue"  style="left:0%;width:15%">Garantia</div>
+          <div class="tb tb-blue"  style="left:15%;width:20%">Dev. Suprimentos</div>
+          <div class="tb tb-gray"  style="left:35%;width:15%">Almoço</div>
+          <div class="tb tb-blue"  style="left:50%;width:25%">Bitrix · continuação</div>
+          <div class="tb tb-red"   style="left:75%;width:10%">⚑ Corte</div>
+          <div class="tb tb-purple"style="left:85%;width:15%">Envio</div>
+        </div><div class="cut-line" style="left:85%"></div></div></div>
+
+        <div class="tl-row"><div class="tl-day">Sexta</div><div class="tl-track"><div class="tl-inner">
+          <div class="tb tb-blue"  style="left:0%;width:15%">Fat. Serviços</div>
+          <div class="tb tb-blue"  style="left:15%;width:20%">Todos os fluxos</div>
+          <div class="tb tb-gray"  style="left:35%;width:15%">Almoço</div>
+          <div class="tb tb-blue"  style="left:50%;width:25%">Bitrix · continuação</div>
+          <div class="tb tb-red"   style="left:75%;width:10%">⚑ Alinhamento</div>
+          <div class="tb tb-purple"style="left:85%;width:15%">Envio</div>
+        </div><div class="cut-line" style="left:85%"></div></div></div>
+      </div>
+
+      <!-- Analista 2 -->
+      <div class="tl-card">
+        <div class="tl-head">
+          <div class="tl-analyst">
+            <div class="av av2">A2</div>
+            <div><div class="tl-info-name">Analista 2 — Linha do Tempo Diária</div><div class="tl-info-sub">Plataforma + Sankhya + TomTicket · 50–75 docs/dia · ritmo ~9 docs/h</div></div>
+          </div>
+          <div class="tl-leg-row">
+            <div class="tl-leg"><div class="tl-dot" style="background:var(--green)"></div>Plataforma</div>
+            <div class="tl-leg"><div class="tl-dot" style="background:var(--cyan)"></div>Sankhya</div>
+            <div class="tl-leg"><div class="tl-dot" style="background:var(--amber)"></div>TomTicket</div>
+            <div class="tl-leg"><div class="tl-dot" style="background:var(--red)"></div>Corte 16h30</div>
+          </div>
+        </div>
+        <div class="scale-row">
+          <div class="scale-h">08h</div><div class="scale-h">09h</div><div class="scale-h">10h</div>
+          <div class="scale-h">11h</div><div class="scale-h">12h</div><div class="scale-h">13h</div>
+          <div class="scale-h">14h</div><div class="scale-h">15h</div><div class="scale-h">16h</div>
+          <div class="scale-h">17h</div><div class="scale-h">18h</div>
+        </div>
+
+        <div class="tl-row"><div class="tl-day">Segunda</div><div class="tl-track"><div class="tl-inner">
+          <div class="tb tb-green" style="left:0%;width:15%">Venda/Locação</div>
+          <div class="tb tb-amber" style="left:15%;width:20%">TomTicket · Cartas</div>
+          <div class="tb tb-gray"  style="left:35%;width:15%">Almoço</div>
+          <div class="tb tb-cyan"  style="left:50%;width:25%">Sankhya · Suprimentos</div>
+          <div class="tb tb-red"   style="left:75%;width:10%">⚑ Corte</div>
+          <div class="tb tb-purple"style="left:85%;width:15%">Envio + Tom</div>
+        </div><div class="cut-line" style="left:85%"></div></div></div>
+
+        <div class="tl-row"><div class="tl-day">Terça</div><div class="tl-track"><div class="tl-inner">
+          <div class="tb tb-green" style="left:0%;width:15%">Venda/Locação</div>
+          <div class="tb tb-amber" style="left:15%;width:20%">TomTicket · Transf.</div>
+          <div class="tb tb-gray"  style="left:35%;width:15%">Almoço</div>
+          <div class="tb tb-amber" style="left:50%;width:25%">TomTicket · Variados</div>
+          <div class="tb tb-red"   style="left:75%;width:10%">⚑ Corte</div>
+          <div class="tb tb-purple"style="left:85%;width:15%">Envio + Tom</div>
+        </div><div class="cut-line" style="left:85%"></div></div></div>
+
+        <div class="tl-row"><div class="tl-day">Quarta</div><div class="tl-track"><div class="tl-inner">
+          <div class="tb tb-green" style="left:0%;width:15%">Venda/Locação</div>
+          <div class="tb tb-amber" style="left:15%;width:20%">TomTicket · DIFAL</div>
+          <div class="tb tb-gray"  style="left:35%;width:15%">Almoço</div>
+          <div class="tb tb-cyan"  style="left:50%;width:25%">Sankhya · Suprimentos</div>
+          <div class="tb tb-red"   style="left:75%;width:10%">⚑ Corte</div>
+          <div class="tb tb-purple"style="left:85%;width:15%">Envio + Tom</div>
+        </div><div class="cut-line" style="left:85%"></div></div></div>
+
+        <div class="tl-row"><div class="tl-day">Quinta</div><div class="tl-track"><div class="tl-inner">
+          <div class="tb tb-green" style="left:0%;width:15%">Venda/Locação</div>
+          <div class="tb tb-amber" style="left:15%;width:20%">Tom · Cartas + Transf.</div>
+          <div class="tb tb-gray"  style="left:35%;width:15%">Almoço</div>
+          <div class="tb tb-green" style="left:50%;width:25%">Plataforma · pendentes</div>
+          <div class="tb tb-red"   style="left:75%;width:10%">⚑ Corte</div>
+          <div class="tb tb-purple"style="left:85%;width:15%">Envio + Tom</div>
+        </div><div class="cut-line" style="left:85%"></div></div></div>
+
+        <div class="tl-row"><div class="tl-day">Sexta</div><div class="tl-track"><div class="tl-inner">
+          <div class="tb tb-green" style="left:0%;width:15%">Venda/Locação</div>
+          <div class="tb tb-amber" style="left:15%;width:20%">TomTicket · Variados</div>
+          <div class="tb tb-gray"  style="left:35%;width:15%">Almoço</div>
+          <div class="tb tb-amber" style="left:50%;width:25%">TomTicket · pendentes</div>
+          <div class="tb tb-red"   style="left:75%;width:10%">⚑ Alinhamento</div>
+          <div class="tb tb-purple"style="left:85%;width:15%">Envio</div>
+        </div><div class="cut-line" style="left:85%"></div></div></div>
+      </div>
+
+      <div class="legend">
+        <div class="leg"><div class="ld" style="background:rgba(74,158,255,.4)"></div>Bitrix</div>
+        <div class="leg"><div class="ld" style="background:rgba(74,222,128,.4)"></div>Plataforma (Finza/Ideal)</div>
+        <div class="leg"><div class="ld" style="background:rgba(34,211,238,.35)"></div>Sankhya</div>
+        <div class="leg"><div class="ld" style="background:rgba(251,191,36,.4)"></div>TomTicket</div>
+        <div class="leg"><div class="ld" style="background:rgba(167,139,250,.35)"></div>Envio + Tom não urgente</div>
+        <div class="leg"><div class="ld" style="background:rgba(248,113,113,.4);border:1px dashed rgba(248,113,113,.5)"></div>Corte 16h30</div>
+      </div>
+    </div>
+
+    <!-- ════════ PAGE: MATRIZ DE ATIVIDADES ════════ -->
+    <div id="page-matriz" class="page">
+
+      <!-- A1 -->
+      <div class="mx-section-hdr">
+        <div class="av av1">A1</div>
+        <div><div style="font-size:13px;font-weight:500">Analista 1 — Matriz de Atividades</div><div style="font-size:11px;color:var(--text-muted)">Responsável: Bitrix · todos os fluxos operacionais</div></div>
+      </div>
+      <div class="mx-wrap" style="margin-bottom:22px">
+        <table class="mx-table">
+          <thead><tr><th style="width:165px">Fluxo</th><th>Plataforma</th><th>Operação</th><th>Horário</th><th>Responsável</th><th>Documento emitido</th></tr></thead>
+          <tbody>
+            <tr class="mx-sec"><td colspan="6">Manhã · 08h00 – 11h30</td></tr>
+            <tr>
+              <td><div class="flow-name">Garantia</div><div class="flow-desc">Separação de peças</div></td>
+              <td><span class="pt pt-bit">Bitrix</span></td>
+              <td><span class="op op-out">saída</span></td>
+              <td><span class="ttag">08h00 – 09h30</span></td>
+              <td><div class="an-cell"><span class="an an-1">A1 · principal</span></div></td>
+              <td class="flow-desc">NF de remessa de peças para garantia — envio ao cliente ou ao técnico responsável</td>
+            </tr>
+            <tr>
+              <td><div class="flow-name">Suporte TLJ</div><div class="flow-desc">Atendimento técnico</div></td>
+              <td><span class="pt pt-bit">Bitrix</span></td>
+              <td><span class="op op-out">saída</span></td>
+              <td><span class="ttag">09h30 – 11h30</span></td>
+              <td><div class="an-cell"><span class="an an-1">A1 · principal</span></div></td>
+              <td class="flow-desc">NF de prestação de serviços de suporte técnico TLJ ao cliente</td>
+            </tr>
+            <tr class="mx-sec"><td colspan="6">Tarde · 13h00 – 15h30</td></tr>
+            <tr>
+              <td><div class="flow-name">Devolução de Suprimentos</div><div class="flow-desc">Retorno ao estoque</div></td>
+              <td><span class="pt pt-bit">Bitrix</span></td>
+              <td><span class="op op-in">entrada</span></td>
+              <td><span class="ttag">13h00 – 15h30</span></td>
+              <td><div class="an-cell"><span class="an an-1">A1 · principal</span></div></td>
+              <td class="flow-desc">NF de devolução de suprimentos do cliente para o estoque da empresa</td>
+            </tr>
+            <tr>
+              <td><div class="flow-name">Logística Reversa</div><div class="flow-desc">Retorno de equipamentos</div></td>
+              <td><span class="pt pt-bit">Bitrix</span></td>
+              <td><span class="op op-both">saída / entrada</span></td>
+              <td><span class="ttag">13h00 – 15h30</span></td>
+              <td><div class="an-cell"><span class="an an-1">A1 · principal</span></div></td>
+              <td class="flow-desc">NF de retorno: remessa para conserto (saída) ou retorno ao cliente (entrada)</td>
+            </tr>
+            <tr>
+              <td><div class="flow-name">Faturamento de Serviços</div><div class="flow-desc">Serviços avulsos</div></td>
+              <td><span class="pt pt-bit">Bitrix</span></td>
+              <td><span class="op op-out">saída</span></td>
+              <td><span class="ttag">13h00 – 15h30</span></td>
+              <td><div class="an-cell"><span class="an an-1">A1 · principal</span></div></td>
+              <td class="flow-desc">NFS-e de prestação de serviços avulsos faturados via fluxo Bitrix</td>
+            </tr>
+            <tr class="mx-sec"><td colspan="6">Corte · 15h30 – 16h30 (conjunta)</td></tr>
+            <tr>
+              <td><div class="flow-name">Varredura final</div><div class="flow-desc">Pendências do dia</div></td>
+              <td><span class="pt pt-all">Todas</span></td>
+              <td><span class="op" style="background:var(--red-bg);color:var(--red)">urgente</span></td>
+              <td><span class="ttag-red">15h30 – 16h30</span></td>
+              <td><div class="an-cell"><span class="an an-both">A1 + A2</span></div></td>
+              <td class="flow-desc">Revisar todas as plataformas e emitir qualquer pendência antes da coleta da transportadora</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- A2 -->
+      <div class="mx-section-hdr">
+        <div class="av av2">A2</div>
+        <div><div style="font-size:13px;font-weight:500">Analista 2 — Matriz de Atividades</div><div style="font-size:11px;color:var(--text-muted)">Responsável: Plataforma (Finza/Ideal) · Sankhya · TomTicket</div></div>
+      </div>
+      <div class="mx-wrap">
+        <table class="mx-table">
+          <thead><tr><th style="width:165px">Fluxo</th><th>Plataforma</th><th>Operação</th><th>Horário</th><th>Responsável</th><th>Documento emitido</th></tr></thead>
+          <tbody>
+            <tr class="mx-sec"><td colspan="6">Manhã · 08h00 – 11h30</td></tr>
+            <tr>
+              <td><div class="flow-name">Contratos de Venda</div><div class="flow-desc">Finza e Ideal</div></td>
+              <td><span class="pt pt-plat">Plataforma</span></td>
+              <td><span class="op op-out">saída</span></td>
+              <td><span class="ttag">08h00 – 09h30</span></td>
+              <td><div class="an-cell"><span class="an an-2">A2 · principal</span></div></td>
+              <td class="flow-desc">NF de venda de máquinas e equipamentos via contratos Finza e Ideal</td>
+            </tr>
+            <tr>
+              <td><div class="flow-name">Contratos de Locação</div><div class="flow-desc">Finza e Ideal</div></td>
+              <td><span class="pt pt-plat">Plataforma</span></td>
+              <td><span class="op op-out">saída</span></td>
+              <td><span class="ttag">08h00 – 09h30</span></td>
+              <td><div class="an-cell"><span class="an an-2">A2 · principal</span></div></td>
+              <td class="flow-desc">NF de mensalidade de locação de máquinas e equipamentos (contratos recorrentes)</td>
+            </tr>
+            <tr>
+              <td><div class="flow-name">Cartas de Correção</div><div class="flow-desc">CC-e</div></td>
+              <td><span class="pt pt-tom">TomTicket</span></td>
+              <td><span class="op op-out">saída</span></td>
+              <td><span class="ttag">09h30 – 11h30</span></td>
+              <td><div class="an-cell"><span class="an an-2">A2 · principal</span></div></td>
+              <td class="flow-desc">Carta de Correção Eletrônica (CC-e) para NFs com erros não impeditivos de cancelamento</td>
+            </tr>
+            <tr>
+              <td><div class="flow-name">Transferências</div><div class="flow-desc">Entre filiais / CFOP</div></td>
+              <td><span class="pt pt-tom">TomTicket</span></td>
+              <td><span class="op op-both">saída / entrada</span></td>
+              <td><span class="ttag">09h30 – 11h30</span></td>
+              <td><div class="an-cell"><span class="an an-2">A2 · principal</span></div></td>
+              <td class="flow-desc">NF de transferência de mercadoria entre filiais, depósitos ou centros de distribuição</td>
+            </tr>
+            <tr class="mx-sec"><td colspan="6">Tarde · 13h00 – 15h30</td></tr>
+            <tr>
+              <td><div class="flow-name">Suprimentos</div><div class="flow-desc">Faturamento direto</div></td>
+              <td><span class="pt pt-sank">Sankhya</span></td>
+              <td><span class="op op-out">saída</span></td>
+              <td><span class="ttag">13h00 – 15h30</span></td>
+              <td><div class="an-cell"><span class="an an-2">A2 · principal</span></div></td>
+              <td class="flow-desc">NF de venda de suprimentos (toner, cartucho, papel) diretamente pelo Sankhya</td>
+            </tr>
+            <tr>
+              <td><div class="flow-name">Cálculo de DIFAL</div><div class="flow-desc">Operações interestaduais</div></td>
+              <td><span class="pt pt-tom">TomTicket</span></td>
+              <td><span class="op op-both">variado</span></td>
+              <td><span class="ttag">13h00 – 15h30</span></td>
+              <td><div class="an-cell"><span class="an an-2">A2 · principal</span></div></td>
+              <td class="flow-desc">Cálculo de DIFAL para operações interestaduais e emissão de documentos complementares</td>
+            </tr>
+            <tr>
+              <td><div class="flow-name">Cancelamentos</div><div class="flow-desc">Dentro do prazo legal</div></td>
+              <td><span class="pt pt-tom">TomTicket</span></td>
+              <td><span class="op op-can">cancelamento</span></td>
+              <td><span class="ttag">13h00 – 15h30</span></td>
+              <td><div class="an-cell"><span class="an an-2">A2 · principal</span></div></td>
+              <td class="flow-desc">Cancelamento de NF-e dentro do prazo legal (até 24h após autorização via chamado)</td>
+            </tr>
+            <tr>
+              <td><div class="flow-name">Emissões Diversas</div><div class="flow-desc">Demais chamados</div></td>
+              <td><span class="pt pt-tom">TomTicket</span></td>
+              <td><span class="op op-both">variado</span></td>
+              <td><span class="ttag">após 16h30</span></td>
+              <td><div class="an-cell"><span class="an an-2">A2 · principal</span><span class="an an-1" style="margin-top:3px">A1 · apoio</span></div></td>
+              <td class="flow-desc">Notas complementares, ajustes, emissões não urgentes sem impacto no corte do dia</td>
+            </tr>
+            <tr class="mx-sec"><td colspan="6">Corte · 15h30 – 16h30 (conjunta)</td></tr>
+            <tr>
+              <td><div class="flow-name">Varredura final</div><div class="flow-desc">Pendências do dia</div></td>
+              <td><span class="pt pt-all">Todas</span></td>
+              <td><span class="op" style="background:var(--red-bg);color:var(--red)">urgente</span></td>
+              <td><span class="ttag-red">15h30 – 16h30</span></td>
+              <td><div class="an-cell"><span class="an an-both">A1 + A2</span></div></td>
+              <td class="flow-desc">Revisar todas as plataformas e emitir qualquer pendência antes da coleta da transportadora</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ════════ PAGE: EQUIPE ════════ -->
+    <div id="page-equipe" class="page">
+      <div class="two-col">
+        <div class="analyst-card">
+          <div class="card-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="4" r="2.5"/><path d="M1 11c0-2.5 2-4 5-4s5 1.5 5 4"/></svg>Analista 1</div>
+          <div class="av-row"><div class="av av1">A1</div><div><div class="av-name">Foco: Bitrix</div><div class="av-sub">Operações de entrada e saída</div></div></div>
+          <div class="tag-cloud">
+            <span class="tag t-blue">Garantia</span><span class="tag t-blue">Suporte TLJ</span><span class="tag t-blue">Dev. Suprimentos</span><span class="tag t-blue">Log. Reversa</span><span class="tag t-blue">Fat. Serviços</span>
+          </div>
+          <div class="mini-grid">
+            <div class="mk"><div class="mk-l">Docs/dia (est.)</div><div class="mk-v" style="color:var(--purple)">50–75</div></div>
+            <div class="mk"><div class="mk-l">Ritmo necessário</div><div class="mk-v" style="color:var(--purple)">~9/h</div></div>
+          </div>
+        </div>
+        <div class="analyst-card">
+          <div class="card-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="4" r="2.5"/><path d="M1 11c0-2.5 2-4 5-4s5 1.5 5 4"/></svg>Analista 2</div>
+          <div class="av-row"><div class="av av2">A2</div><div><div class="av-name">Plataforma + Sankhya + TomTicket</div><div class="av-sub">Contratos, suprimentos e chamados</div></div></div>
+          <div class="tag-cloud">
+            <span class="tag t-green">Venda (Finza/Ideal)</span><span class="tag t-green">Locação (Finza/Ideal)</span><span class="tag t-cyan">Suprimentos Sankhya</span><span class="tag t-amber">Cartas de correção</span><span class="tag t-amber">DIFAL</span><span class="tag t-amber">Transferências</span><span class="tag t-amber">Cancelamentos</span>
+          </div>
+          <div class="mini-grid">
+            <div class="mk"><div class="mk-l">Docs/dia (est.)</div><div class="mk-v" style="color:var(--green)">50–75</div></div>
+            <div class="mk"><div class="mk-l">Ritmo necessário</div><div class="mk-v" style="color:var(--green)">~9/h</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2v8M2 6h8"/></svg>Regras de colaboração</div>
+        <div class="rule-list">
+          <div class="rule-item"><div class="rdot rd-g"></div><div class="rule-txt"><strong>Apoio em pico:</strong> analista que zerar sua fila migra para apoiar o outro — divisão é orientativa, não rígida.</div></div>
+          <div class="rule-item"><div class="rdot rd-g"></div><div class="rule-txt"><strong>Janela de corte conjunta:</strong> 15h30–16h30 ambos fazem varredura geral em todas as plataformas.</div></div>
+          <div class="rule-item"><div class="rdot rd-a"></div><div class="rule-txt"><strong>TomTicket não urgente:</strong> emissões sem impacto no corte tratadas após 16h30 por qualquer analista.</div></div>
+          <div class="rule-item"><div class="rdot rd-b"></div><div class="rule-txt"><strong>Responsabilidade encerra na emissão:</strong> boleto, XML e envio final não são atribuição do time.</div></div>
+          <div class="rule-item"><div class="rdot rd-b"></div><div class="rule-txt"><strong>Alinhamento semanal:</strong> toda sexta 15h30–16h30 — conferência rápida de pendências e volume.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ PAGE: VOLUME ════════ -->
+    <div id="page-volume" class="page">
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Volume por plataforma (estimativa)</div>
+          <div class="bar-item"><div class="bl">Bitrix</div><div class="bt"><div class="bf bf-b" style="width:45%">45%</div></div><div class="bv">45–68 docs</div></div>
+          <div class="bar-item"><div class="bl">Plataforma</div><div class="bt"><div class="bf bf-g" style="width:25%">25%</div></div><div class="bv">25–38 docs</div></div>
+          <div class="bar-item"><div class="bl">Sankhya</div><div class="bt"><div class="bf bf-c" style="width:15%">15%</div></div><div class="bv">15–23 docs</div></div>
+          <div class="bar-item"><div class="bl">TomTicket</div><div class="bt"><div class="bf bf-a" style="width:15%">15%</div></div><div class="bv">15–23 docs</div></div>
+          <div style="font-size:10px;color:var(--text-dim);margin-top:12px">* Ajuste conforme histórico real do setor.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Cenários de capacidade</div>
+          <div class="scenario sc-g"><div class="sc-hd"><div class="sc-dot" style="background:var(--green)"></div><div class="sc-ttl">Normal · 100 docs/dia</div></div><div class="sc-desc">~8 docs/h por analista. Tudo emitido até ~14h30. Janela de corte folgada.</div></div>
+          <div class="scenario sc-a"><div class="sc-hd"><div class="sc-dot" style="background:var(--amber)"></div><div class="sc-ttl">Pico · 150 docs/dia</div></div><div class="sc-desc">~12 docs/h. Sem pausas — janela de corte crítica. Apoio mútuo essencial.</div></div>
+          <div class="scenario sc-r"><div class="sc-hd"><div class="sc-dot" style="background:var(--red)"></div><div class="sc-ttl">Pico com acúmulo</div></div><div class="sc-desc">Qualquer pausa compromete o corte das 16h30. Nunca acumular para depois.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Cadência horária — referência</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+          <div class="mk"><div class="mk-l">Janela produtiva</div><div class="mk-v" style="color:var(--blue)">~6,5h</div><div style="font-size:10px;color:var(--text-dim);margin-top:3px">por analista/dia</div></div>
+          <div class="mk"><div class="mk-l">Ritmo normal</div><div class="mk-v" style="color:var(--green)">8/h</div><div style="font-size:10px;color:var(--text-dim);margin-top:3px">docs por analista</div></div>
+          <div class="mk"><div class="mk-l">Ritmo em pico</div><div class="mk-v" style="color:var(--amber)">12/h</div><div style="font-size:10px;color:var(--text-dim);margin-top:3px">docs por analista</div></div>
+          <div class="mk"><div class="mk-l">Por analista/dia</div><div class="mk-v" style="color:var(--text)">50–75</div><div style="font-size:10px;color:var(--text-dim);margin-top:3px">documentos</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ PAGE: SLA ════════ -->
+    <div id="page-sla" class="page">
+      <div class="card" style="margin-bottom:12px;padding:0;overflow:hidden">
+        <div class="card-title" style="padding:16px 20px 0"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 3.5V6l2 1.5"/></svg>Tabela de SLA por situação</div>
+        <table class="sla-tbl">
+          <thead><tr><th>Situação</th><th>Entrada até</th><th>Emitir até</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--green)"></div>Chegou até 16h30 hoje</div></td><td>16h30</td><td>16h30 do dia seguinte</td><td style="color:var(--text-muted)">Dentro do SLA de 24h</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--amber)"></div>Chegou após 16h30</div></td><td>fim do dia</td><td>16h30 do 2º dia útil</td><td style="color:var(--text-muted)">Triagem na manhã seguinte</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--blue)"></div>Chegou 2ª às 08h00</div></td><td>08h00 seg</td><td>16h30 terça</td><td style="color:var(--text-muted)">Prioridade no início da semana</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--red)"></div>Chegou 6ª após 16h30</div></td><td>fim de sexta</td><td>16h30 segunda</td><td style="color:var(--red)">Atenção — não há sábado útil</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--text-dim)"></div>Feriado no meio</div></td><td>variável</td><td>+1 dia útil extra</td><td style="color:var(--text-muted)">Ajustar planejamento</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">Princípios operacionais</div>
+        <div class="rule-list">
+          <div class="rule-item"><div class="rdot rd-g"></div><div class="rule-txt"><strong>Verificar e emitir na mesma etapa.</strong> Ao abrir a plataforma, o documento já é emitido — sem separar triagem de emissão.</div></div>
+          <div class="rule-item"><div class="rdot rd-g"></div><div class="rule-txt"><strong>Corte das 15h30 é safety net.</strong> Se o fluxo contínuo foi mantido, essa janela será curta — só para documentos tardios.</div></div>
+          <div class="rule-item"><div class="rdot rd-a"></div><div class="rule-txt"><strong>Envio manual após 16h30.</strong> Após a coleta da transportadora, o time realiza o envio dentro das plataformas.</div></div>
+          <div class="rule-item"><div class="rdot rd-b"></div><div class="rule-txt"><strong>Time não responde por boleto nem XML.</strong> Responsabilidade encerra na emissão do documento.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</main>
+</div><!-- /layout -->
+
+<script>
+const titles={cronograma:'Cronograma semanal',timeline:'Linha do Tempo diária',matriz:'Matriz de Atividades',equipe:'Equipe e distribuição',volume:'Volume e capacidade',sla:'Controle de SLA'};
+function gp(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
+  const pg=document.getElementById('page-'+id);
+  if(pg)pg.classList.add('on');
+  if(el&&!el.classList.contains('ni-static'))el.classList.add('on');
+  const t=document.getElementById('pg-title');
+  if(t)t.textContent=titles[id]||id;
+}
+</script>
+</body>
+</html>
