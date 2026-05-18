@@ -3,61 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard de Faturamento</title>
+<title>Dashboard de Faturamento · Blips</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ── BLIPS BRAND PALETTE ───────────────────────────────────── */
 :root {
-  --bg:#0f1117; --bg-card:#16181f; --bg-card2:#1c1f28; --bg-hover:#22262f;
-  --border:rgba(255,255,255,0.07); --border-bright:rgba(255,255,255,0.14);
-  --text:#f0f0f2; --text-muted:#7a7e8e; --text-dim:#4a4e5c;
-  --blue:#4a9eff; --blue-bg:rgba(74,158,255,0.1); --blue-bd:rgba(74,158,255,0.25);
-  --green:#4ade80; --green-bg:rgba(74,222,128,0.08); --green-bd:rgba(74,222,128,0.2);
-  --amber:#fbbf24; --amber-bg:rgba(251,191,36,0.08); --amber-bd:rgba(251,191,36,0.2);
-  --red:#f87171; --red-bg:rgba(248,113,113,0.08); --red-bd:rgba(248,113,113,0.2);
-  --purple:#a78bfa; --purple-bg:rgba(167,139,250,0.08); --purple-bd:rgba(167,139,250,0.2);
-  --cyan:#22d3ee; --cyan-bg:rgba(34,211,238,0.08); --cyan-bd:rgba(34,211,238,0.2);
+  /* Brand */
+  --brand:#F5C200;       --brand-dark:#C99D00;
+  --brand-bg:rgba(245,194,0,0.10); --brand-bd:rgba(245,194,0,0.30);
+  --brand-glow:rgba(245,194,0,0.06);
+
+  /* Surface */
+  --bg:#111214;
+  --bg-card:#18191d;
+  --bg-card2:#1f2025;
+  --bg-hover:#26272c;
+  --border:rgba(255,255,255,0.07);
+  --border-bright:rgba(255,255,255,0.13);
+
+  /* Text */
+  --text:#f2f2f3;
+  --text-muted:#7c7f8e;
+  --text-dim:#48495a;
+
+  /* Semantic accents */
+  --green:#34d47a;  --green-bg:rgba(52,212,122,0.08);  --green-bd:rgba(52,212,122,0.22);
+  --red:#f26c6c;    --red-bg:rgba(242,108,108,0.08);   --red-bd:rgba(242,108,108,0.22);
+  --blue:#4fa8ff;   --blue-bg:rgba(79,168,255,0.08);   --blue-bd:rgba(79,168,255,0.22);
+  --cyan:#1fcde0;   --cyan-bg:rgba(31,205,224,0.08);   --cyan-bd:rgba(31,205,224,0.22);
+  --purple:#9e86f5; --purple-bg:rgba(158,134,245,0.08);--purple-bd:rgba(158,134,245,0.22);
+
+  /* Re-alias amber → brand for consistent highlights */
+  --amber:var(--brand); --amber-bg:var(--brand-bg); --amber-bd:var(--brand-bd);
+
   --r:10px; --rl:14px;
   --font:'DM Sans',sans-serif; --mono:'DM Mono',monospace;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13px;line-height:1.6;min-height:100vh}
-.layout{display:grid;grid-template-columns:224px 1fr;min-height:100vh}
 
-/* SIDEBAR */
-.sidebar{background:var(--bg-card);border-right:1px solid var(--border);padding:24px 0;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
-.sb-brand{padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:6px}
-.sb-icon{width:34px;height:34px;border-radius:9px;background:var(--blue-bg);border:1px solid var(--blue-bd);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
-.sb-icon svg{width:16px;height:16px;color:var(--blue)}
-.sb-name{font-size:13px;font-weight:500;letter-spacing:-.01em}
-.sb-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
-.nav-sec{padding:10px 12px 2px}
-.nav-lbl{font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;padding:0 8px;margin-bottom:3px}
-.ni{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:var(--r);cursor:pointer;color:var(--text-muted);font-size:12.5px;transition:all .15s;border:1px solid transparent;margin-bottom:1px;user-select:none}
+/* ── RESET & BASE ──────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13px;line-height:1.6;min-height:100vh;overflow-x:hidden}
+
+/* ── CUSTOM SCROLLBAR ──────────────────────────────────────── */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg-card2)}
+::-webkit-scrollbar-thumb{background:rgba(245,194,0,0.35);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:rgba(245,194,0,0.6)}
+*{scrollbar-width:thin;scrollbar-color:rgba(245,194,0,0.35) var(--bg-card2)}
+
+/* ── LAYOUT ────────────────────────────────────────────────── */
+.layout{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+
+/* ── SIDEBAR ───────────────────────────────────────────────── */
+.sidebar{
+  background:var(--bg-card);
+  border-right:1px solid var(--border);
+  padding:0;
+  display:flex;flex-direction:column;
+  position:sticky;top:0;height:100vh;
+  overflow-y:auto;
+}
+.sb-brand{
+  padding:22px 20px 18px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:4px;
+}
+/* Blips logo as SVG inline */
+.sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.sb-logo-circle{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--brand);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.sb-logo-circle svg{width:20px;height:20px}
+.sb-logo-text{font-size:18px;font-weight:500;color:var(--text);letter-spacing:-.02em}
+.sb-logo-text span{color:var(--brand)}
+.sb-sub{font-size:11px;color:var(--text-muted)}
+.nav-sec{padding:8px 12px 2px}
+.nav-lbl{font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.09em;padding:0 8px;margin-bottom:3px}
+.ni{
+  display:flex;align-items:center;gap:9px;
+  padding:7px 10px;border-radius:var(--r);
+  cursor:pointer;color:var(--text-muted);font-size:12.5px;
+  transition:all .15s;border:1px solid transparent;
+  margin-bottom:1px;user-select:none;
+}
 .ni:hover{background:var(--bg-hover);color:var(--text)}
-.ni.on{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd);font-weight:500}
+.ni.on{
+  background:var(--brand-bg);color:var(--brand);
+  border-color:var(--brand-bd);font-weight:500;
+}
 .ni svg{width:14px;height:14px;flex-shrink:0}
-.ni-static{opacity:.5;cursor:default;pointer-events:none}
-.sb-bottom{margin-top:auto;padding:14px 12px 0;border-top:1px solid var(--border)}
-.status-pill{display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:var(--r);background:var(--green-bg);border:1px solid var(--green-bd);font-size:11px;color:var(--green)}
+.ni-static{opacity:.45;cursor:default;pointer-events:none}
+.sb-bottom{margin-top:auto;padding:14px 12px 16px;border-top:1px solid var(--border)}
+.status-pill{
+  display:flex;align-items:center;gap:7px;
+  padding:7px 10px;border-radius:var(--r);
+  background:var(--green-bg);border:1px solid var(--green-bd);
+  font-size:11px;color:var(--green);
+}
 .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
-/* MAIN */
+/* ── TOPBAR ────────────────────────────────────────────────── */
 .main{display:flex;flex-direction:column;min-height:100vh}
-.topbar{padding:16px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg-card);position:sticky;top:0;z-index:10;gap:12px}
+.topbar{
+  padding:14px 28px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg-card);position:sticky;top:0;z-index:10;gap:12px;
+}
 .tb-left{display:flex;flex-direction:column;gap:2px}
 .tb-title{font-size:15px;font-weight:500;letter-spacing:-.02em}
 .tb-sub{font-size:11px;color:var(--text-muted)}
 .tb-right{display:flex;gap:7px;flex-wrap:wrap}
 .chip{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid;white-space:nowrap}
 .chip-red{background:var(--red-bg);color:var(--red);border-color:var(--red-bd)}
-.chip-amber{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-bd)}
+.chip-amber{background:var(--brand-bg);color:var(--brand);border-color:var(--brand-bd)}
 .chip-green{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
-.content{padding:22px 28px;flex:1}
 
-/* KPIs */
+/* ── CONTENT & KPIs ────────────────────────────────────────── */
+.content{padding:22px 28px;flex:1}
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
 .kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:14px 16px;transition:border-color .15s}
 .kpi:hover{border-color:var(--border-bright)}
@@ -65,20 +134,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .kpi-lbl svg{width:11px;height:11px}
 .kpi-val{font-size:22px;font-weight:500;letter-spacing:-.03em;line-height:1;font-family:var(--mono)}
 .kpi-sub{font-size:11px;color:var(--text-dim);margin-top:4px}
-.kv-blue{color:var(--blue)} .kv-green{color:var(--green)} .kv-amber{color:var(--amber)} .kv-red{color:var(--red)}
+.kv-brand{color:var(--brand)} .kv-green{color:var(--green)} .kv-red{color:var(--red)} .kv-blue{color:var(--blue)}
 
-/* PAGES */
+/* ── PAGES ─────────────────────────────────────────────────── */
 .page{display:none;animation:fadeIn .22s ease}
 .page.on{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
-/* CARDS */
+/* ── CARDS ─────────────────────────────────────────────────── */
 .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px}
 .card-title{font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;display:flex;align-items:center;gap:6px}
 .card-title svg{width:11px;height:11px}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 
-/* SCHEDULE */
+/* ── SCHEDULE ──────────────────────────────────────────────── */
 .sched-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:14px}
 .sched-head{display:grid;grid-template-columns:72px repeat(5,1fr);background:var(--bg-card2);border-bottom:1px solid var(--border)}
 .sh{padding:9px 10px;font-size:10.5px;font-weight:500;color:var(--text-muted);text-align:center;border-right:1px solid var(--border)}
@@ -86,29 +155,29 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .srow{display:grid;grid-template-columns:72px repeat(5,1fr);border-bottom:1px solid var(--border);transition:background .1s}
 .srow:last-child{border-bottom:none}
 .srow:hover{background:rgba(255,255,255,.015)}
-.srow.cut{background:rgba(248,113,113,.03)}
+.srow.cut{background:rgba(242,108,108,.03)}
 .tc{padding:9px 6px;font-size:10px;font-weight:500;color:var(--text-dim);text-align:center;border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--mono);line-height:1.4}
 .cut .tc{color:var(--red)}
 .dc{padding:7px 9px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
 .dc:last-child{border-right:none}
 .pill{border-radius:5px;padding:3px 7px;font-size:10.5px;line-height:1.4}
-.p-bit{background:var(--blue-bg);color:#7bb8ff;border:1px solid var(--blue-bd)}
-.p-plat{background:var(--green-bg);color:#86efac;border:1px solid var(--green-bd)}
+.p-bit{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
+.p-plat{background:var(--brand-bg);color:var(--brand);border:1px solid var(--brand-bd)}
 .p-sank{background:var(--cyan-bg);color:var(--cyan);border:1px solid var(--cyan-bd)}
-.p-tom{background:var(--amber-bg);color:#fcd34d;border:1px solid var(--amber-bd)}
-.p-cut{background:var(--red-bg);color:var(--red);border:1px dashed rgba(248,113,113,.4)}
+.p-tom{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.p-cut{background:var(--red-bg);color:var(--red);border:1px dashed rgba(242,108,108,.4)}
 .p-env{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-bd)}
 .p-int{background:rgba(255,255,255,.03);color:var(--text-dim);border:1px solid var(--border)}
 .bx{display:inline-block;font-size:9px;font-weight:500;padding:1px 5px;border-radius:10px;margin-left:3px;vertical-align:middle}
-.b1{background:rgba(167,139,250,.15);color:var(--purple)}
-.b2{background:rgba(74,222,128,.12);color:var(--green)}
+.b1{background:rgba(158,134,245,.15);color:var(--purple)}
+.b2{background:rgba(245,194,0,.15);color:var(--brand)}
 
-/* LEGEND */
+/* ── LEGEND ────────────────────────────────────────────────── */
 .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
 .leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted)}
 .ld{width:9px;height:9px;border-radius:3px;flex-shrink:0}
 
-/* TIMELINE */
+/* ── TIMELINE ──────────────────────────────────────────────── */
 .tl-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:20px 22px;margin-bottom:14px}
 .tl-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
 .tl-analyst{display:flex;align-items:center;gap:10px}
@@ -127,17 +196,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .tl-inner{position:absolute;inset:0;border-radius:6px;overflow:hidden}
 .tb{position:absolute;top:3px;bottom:3px;border-radius:4px;display:flex;align-items:center;padding:0 7px;font-size:10px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:filter .15s;cursor:default}
 .tb:hover{filter:brightness(1.2);z-index:1}
-.tb-blue{background:rgba(74,158,255,.22);color:#7bb8ff;border:1px solid var(--blue-bd)}
-.tb-green{background:rgba(74,222,128,.18);color:#86efac;border:1px solid var(--green-bd)}
-.tb-amber{background:rgba(251,191,36,.18);color:#fcd34d;border:1px solid var(--amber-bd)}
-.tb-cyan{background:rgba(34,211,238,.18);color:var(--cyan);border:1px solid var(--cyan-bd)}
-.tb-purple{background:rgba(167,139,250,.18);color:var(--purple);border:1px solid var(--purple-bd)}
-.tb-red{background:rgba(248,113,113,.18);color:var(--red);border:1px dashed var(--red-bd)}
+.tb-blue{background:rgba(79,168,255,.2);color:var(--blue);border:1px solid var(--blue-bd)}
+.tb-green{background:rgba(52,212,122,.16);color:var(--green);border:1px solid var(--green-bd)}
+.tb-amber{background:rgba(245,194,0,.18);color:var(--brand);border:1px solid var(--brand-bd)}
+.tb-cyan{background:rgba(31,205,224,.16);color:var(--cyan);border:1px solid var(--cyan-bd)}
+.tb-purple{background:rgba(158,134,245,.18);color:var(--purple);border:1px solid var(--purple-bd)}
+.tb-red{background:rgba(242,108,108,.18);color:var(--red);border:1px dashed var(--red-bd)}
 .tb-gray{background:rgba(255,255,255,.04);color:var(--text-dim);border:1px solid var(--border)}
-.cut-line{position:absolute;top:-4px;bottom:-4px;width:2px;background:rgba(248,113,113,.55);z-index:3;pointer-events:none}
+.cut-line{position:absolute;top:-4px;bottom:-4px;width:2px;background:rgba(242,108,108,.55);z-index:3;pointer-events:none}
 .cut-line::after{content:'16h30';position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--red);font-family:var(--mono);white-space:nowrap}
 
-/* MATRIX */
+/* ── MATRIX ────────────────────────────────────────────────── */
 .mx-section-hdr{display:flex;align-items:center;gap:10px;margin:0 0 10px}
 .mx-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:22px}
 .mx-table{width:100%;border-collapse:collapse}
@@ -151,67 +220,67 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .mx-sec td{padding:6px 14px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;border-right:1px solid var(--border)}
 .mx-sec td:last-child{border-right:none}
 .pt{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px;border:1px solid;white-space:nowrap}
-.pt-bit{background:var(--blue-bg);color:#7bb8ff;border-color:var(--blue-bd)}
-.pt-plat{background:var(--green-bg);color:#86efac;border-color:var(--green-bd)}
+.pt-bit{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)}
+.pt-plat{background:var(--brand-bg);color:var(--brand);border-color:var(--brand-bd)}
 .pt-sank{background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)}
-.pt-tom{background:var(--amber-bg);color:#fcd34d;border-color:var(--amber-bd)}
+.pt-tom{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
 .pt-all{background:var(--red-bg);color:var(--red);border-color:var(--red-bd)}
 .op{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px}
-.op-out{background:rgba(74,158,255,.12);color:#7bb8ff}
-.op-in{background:rgba(74,222,128,.1);color:#86efac}
-.op-both{background:rgba(251,191,36,.1);color:#fcd34d}
-.op-can{background:rgba(248,113,113,.1);color:var(--red)}
+.op-out{background:var(--blue-bg);color:var(--blue)}
+.op-in{background:var(--green-bg);color:var(--green)}
+.op-both{background:var(--brand-bg);color:var(--brand)}
+.op-can{background:var(--red-bg);color:var(--red)}
 .flow-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:2px}
 .flow-desc{font-size:11px;color:var(--text-muted);line-height:1.5}
 .an-cell{display:flex;flex-direction:column;gap:4px}
 .an{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 8px;border-radius:6px;width:fit-content;border:1px solid}
 .an-1{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-bd)}
-.an-2{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
+.an-2{background:var(--brand-bg);color:var(--brand);border-color:var(--brand-bd)}
 .an-both{background:rgba(255,255,255,.05);color:var(--text-muted);border-color:var(--border)}
 .ttag{font-size:10.5px;font-family:var(--mono);color:var(--text-dim)}
 .ttag-red{font-size:10.5px;font-family:var(--mono);color:var(--red)}
 
-/* ANALYST CARD */
+/* ── ANALYST CARD ───────────────────────────────────────────── */
 .analyst-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px}
 .av-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .av{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
 .av1{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-bd)}
-.av2{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.av2{background:var(--brand-bg);color:var(--brand);border:1px solid var(--brand-bd)}
 .av-name{font-size:14px;font-weight:500}
 .av-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
 .tag-cloud{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 14px}
 .tag{font-size:10px;padding:3px 8px;border-radius:20px;border:1px solid}
-.t-blue{background:var(--blue-bg);color:#7bb8ff;border-color:var(--blue-bd)}
-.t-green{background:var(--green-bg);color:#86efac;border-color:var(--green-bd)}
-.t-amber{background:var(--amber-bg);color:#fcd34d;border-color:var(--amber-bd)}
+.t-blue{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)}
+.t-green{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
+.t-amber{background:var(--brand-bg);color:var(--brand);border-color:var(--brand-bd)}
 .t-cyan{background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)}
 .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:14px;border-top:1px solid var(--border)}
 .mk{background:var(--bg-card2);border-radius:8px;padding:9px 12px}
 .mk-l{font-size:10px;color:var(--text-muted);margin-bottom:3px}
 .mk-v{font-size:18px;font-weight:500;font-family:var(--mono);letter-spacing:-.02em}
 
-/* RULES */
+/* ── RULES ──────────────────────────────────────────────────── */
 .rule-list{display:flex;flex-direction:column}
 .rule-item{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border)}
 .rule-item:last-child{border-bottom:none;padding-bottom:0}
 .rdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
-.rd-g{background:var(--green)} .rd-a{background:var(--amber)} .rd-b{background:var(--blue)}
+.rd-g{background:var(--green)} .rd-a{background:var(--brand)} .rd-b{background:var(--blue)}
 .rule-txt{font-size:12px;color:var(--text-muted);line-height:1.6}
 .rule-txt strong{font-weight:500;color:var(--text)}
 
-/* BARS */
+/* ── BARS ───────────────────────────────────────────────────── */
 .bar-item{display:flex;align-items:center;gap:10px;margin-bottom:9px}
 .bar-item:last-child{margin-bottom:0}
 .bl{width:68px;font-size:11px;color:var(--text-muted);text-align:right;flex-shrink:0}
 .bt{flex:1;height:14px;background:var(--bg-card2);border-radius:4px;overflow:hidden}
 .bf{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:7px;font-size:10px;font-weight:500;font-family:var(--mono)}
 .bv{font-size:11px;color:var(--text-dim);width:64px;font-family:var(--mono)}
-.bf-b{background:rgba(74,158,255,.28);color:#7bb8ff}
-.bf-g{background:rgba(74,222,128,.22);color:#86efac}
-.bf-a{background:rgba(251,191,36,.22);color:#fcd34d}
-.bf-c{background:rgba(34,211,238,.2);color:var(--cyan)}
+.bf-b{background:rgba(79,168,255,.28);color:var(--blue)}
+.bf-g{background:rgba(52,212,122,.22);color:var(--green)}
+.bf-a{background:rgba(245,194,0,.25);color:var(--brand)}
+.bf-c{background:rgba(31,205,224,.2);color:var(--cyan)}
 
-/* SLA TABLE */
+/* ── SLA TABLE ──────────────────────────────────────────────── */
 .sla-tbl{width:100%;border-collapse:collapse}
 .sla-tbl th{text-align:left;padding:8px 12px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);background:var(--bg-card2)}
 .sla-tbl td{padding:10px 12px;font-size:12px;border-bottom:1px solid var(--border);color:var(--text-muted)}
@@ -221,7 +290,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .sdotcell{display:flex;align-items:center;gap:8px}
 .sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 
-/* SCENARIOS */
+/* ── SCENARIOS ──────────────────────────────────────────────── */
 .scenario{padding:11px 13px;border-radius:var(--r);border:1px solid;margin-bottom:7px}
 .scenario:last-child{margin-bottom:0}
 .sc-hd{display:flex;align-items:center;gap:8px;margin-bottom:3px}
@@ -229,12 +298,113 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .sc-ttl{font-size:12px;font-weight:500}
 .sc-desc{font-size:11px;color:var(--text-muted);line-height:1.5;padding-left:16px}
 .sc-g{border-color:var(--green-bd);background:var(--green-bg)} .sc-g .sc-ttl{color:var(--green)}
-.sc-a{border-color:var(--amber-bd);background:var(--amber-bg)} .sc-a .sc-ttl{color:var(--amber)}
+.sc-a{border-color:var(--brand-bd);background:var(--brand-bg)} .sc-a .sc-ttl{color:var(--brand)}
 .sc-r{border-color:var(--red-bd);background:var(--red-bg)} .sc-r .sc-ttl{color:var(--red)}
 
-/* RESPONSIVE */
-@media(max-width:960px){.layout{grid-template-columns:1fr}.sidebar{display:none}.kpi-row{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.content{padding:16px}.topbar{padding:13px 16px}}
-@media(max-width:640px){.kpi-row{grid-template-columns:1fr 1fr}.tb-right{display:none}.sched-head,.srow{grid-template-columns:54px repeat(5,1fr)}.dc{padding:5px 6px}.pill{font-size:9.5px;padding:2px 5px}}
+/* ── DÚVIDAS ────────────────────────────────────────────────── */
+.dv-search-wrap{margin-bottom:18px;position:relative}
+.dv-search{width:100%;padding:10px 14px 10px 38px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-family:var(--font);font-size:13px;outline:none;transition:border-color .15s}
+.dv-search:focus{border-color:var(--brand-bd);box-shadow:0 0 0 3px var(--brand-glow)}
+.dv-search::placeholder{color:var(--text-dim)}
+.dv-search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-dim);pointer-events:none}
+.dv-search-icon svg{width:14px;height:14px}
+.dv-group-hdr{display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.dv-group-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;padding:4px 12px;border-radius:20px;border:1px solid}
+.dv-gb-brand{background:var(--brand-bg);color:var(--brand);border-color:var(--brand-bd)}
+.dv-gb-blue{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)}
+.dv-gb-green{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
+.dv-gb-amber{background:var(--brand-bg);color:var(--brand);border-color:var(--brand-bd)}
+.dv-gb-cyan{background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)}
+.dv-gb-purple{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-bd)}
+.dv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px;margin-bottom:22px}
+.dv-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;transition:border-color .15s,box-shadow .15s;cursor:default}
+.dv-card:hover{border-color:var(--brand-bd);box-shadow:0 0 0 1px var(--brand-bg)}
+.dv-card-head{padding:13px 16px 10px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border-bottom:1px solid var(--border)}
+.dv-card-title{font-size:13px;font-weight:500;color:var(--text);line-height:1.3}
+.dv-card-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
+.dv-top-badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:20px;border:1px solid;white-space:nowrap;flex-shrink:0;margin-top:1px}
+.dv-card-body{padding:12px 16px}
+.dv-step-list{display:flex;flex-direction:column;gap:0}
+.dv-step{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--border)}
+.dv-step:last-child{border-bottom:none;padding-bottom:0}
+.dv-step-num{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;flex-shrink:0;margin-top:1px;font-family:var(--mono)}
+.dv-sn-brand{background:var(--brand-bg);color:var(--brand);border:1px solid var(--brand-bd)}
+.dv-sn-blue{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
+.dv-sn-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.dv-sn-amber{background:var(--brand-bg);color:var(--brand);border:1px solid var(--brand-bd)}
+.dv-sn-cyan{background:var(--cyan-bg);color:var(--cyan);border:1px solid var(--cyan-bd)}
+.dv-sn-purple{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-bd)}
+.dv-step-txt{font-size:12px;color:var(--text-muted);line-height:1.55}
+.dv-step-txt strong{font-weight:500;color:var(--text)}
+.dv-top-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.top-code{font-size:10px;font-family:var(--mono);background:var(--bg-card2);padding:2px 7px;border-radius:4px;color:var(--text-muted);border:1px solid var(--border)}
+.dv-note{margin-top:10px;padding:8px 10px;background:var(--brand-bg);border:1px solid var(--brand-bd);border-radius:6px;font-size:11px;color:var(--brand);line-height:1.5}
+.dv-note-red{background:var(--red-bg);border-color:var(--red-bd);color:var(--red)}
+.dv-hidden{display:none}
+
+/* ── DIFAL ──────────────────────────────────────────────────── */
+.df-hero{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:20px 24px;margin-bottom:16px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.df-hero-icon{width:48px;height:48px;border-radius:12px;background:var(--brand-bg);border:1px solid var(--brand-bd);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.df-hero-icon svg{width:22px;height:22px;color:var(--brand)}
+.df-hero-title{font-size:15px;font-weight:500;letter-spacing:-.02em;margin-bottom:4px}
+.df-hero-desc{font-size:12px;color:var(--text-muted);line-height:1.6;max-width:680px}
+.df-section{margin-bottom:16px}
+.df-section-title{font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.df-section-title svg{width:11px;height:11px}
+.df-rule-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden}
+.df-rule-row{display:flex;gap:0;border-bottom:1px solid var(--border)}
+.df-rule-row:last-child{border-bottom:none}
+.df-rule-lbl{width:180px;flex-shrink:0;padding:10px 14px;font-size:11px;font-weight:500;color:var(--text-muted);background:var(--bg-card2);border-right:1px solid var(--border);display:flex;align-items:center}
+.df-rule-val{padding:10px 14px;font-size:12px;color:var(--text-muted);line-height:1.55;flex:1}
+.df-rule-val strong{color:var(--text);font-weight:500}
+.df-flow{display:flex;align-items:center;flex-wrap:nowrap;overflow-x:auto;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);margin-bottom:14px;gap:4px}
+.df-step-box{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;line-height:1.4;text-align:center}
+.df-step-box strong{display:block;font-size:12px;font-weight:500;color:var(--text);margin-bottom:2px}
+.df-step-box.highlight{background:var(--brand-bg);border-color:var(--brand-bd);color:var(--brand)}
+.df-step-box.highlight strong{color:var(--brand)}
+.df-step-box.done{background:var(--green-bg);border-color:var(--green-bd);color:var(--green)}
+.df-step-box.done strong{color:var(--green)}
+.df-arrow{color:var(--text-dim);font-size:14px;flex-shrink:0;padding:0 2px}
+.df-table-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:14px}
+.df-table{width:100%;border-collapse:collapse}
+.df-table th{padding:9px 14px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;background:var(--bg-card2);border-bottom:1px solid var(--border);border-right:1px solid var(--border);text-align:left}
+.df-table th:last-child{border-right:none}
+.df-table td{padding:10px 14px;font-size:12px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);color:var(--text-muted);vertical-align:top}
+.df-table td:last-child{border-right:none}
+.df-table tr:last-child td{border-bottom:none}
+.df-table tr:hover td{background:rgba(255,255,255,.012)}
+.df-yn-sim{color:var(--green);font-weight:500}
+.df-yn-nao{color:var(--red);font-weight:500}
+.df-yn-dep{color:var(--brand);font-weight:500}
+.df-formula{background:var(--bg-card);border:1px solid var(--brand-bd);border-radius:var(--rl);padding:18px 22px;margin-bottom:14px}
+.df-formula-title{font-size:10px;font-weight:500;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}
+.df-formula-row{display:flex;align-items:baseline;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.df-formula-row:last-child{margin-bottom:0}
+.df-formula-label{font-size:11px;color:var(--text-muted);width:160px;flex-shrink:0}
+.df-formula-eq{font-family:var(--mono);font-size:12px;color:var(--text);background:var(--bg-card2);padding:4px 10px;border-radius:5px;border:1px solid var(--border);flex:1}
+.df-alert{padding:12px 14px;border-radius:var(--r);font-size:12px;line-height:1.6;display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.df-alert svg{width:14px;height:14px;flex-shrink:0;margin-top:1px}
+.df-alert-amber{background:var(--brand-bg);border:1px solid var(--brand-bd);color:var(--brand)}
+.df-alert-red{background:var(--red-bg);border:1px solid var(--red-bd);color:var(--red)}
+.df-alert-green{background:var(--green-bg);border:1px solid var(--green-bd);color:var(--green)}
+.df-alert-blue{background:var(--blue-bg);border:1px solid var(--blue-bd);color:var(--blue)}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:960px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .kpi-row{grid-template-columns:repeat(2,1fr)}
+  .two-col{grid-template-columns:1fr}
+  .content{padding:16px}
+  .topbar{padding:13px 16px}
+}
+@media(max-width:640px){
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .tb-right{display:none}
+  .sched-head,.srow{grid-template-columns:54px repeat(5,1fr)}
+  .dc{padding:5px 6px}
+  .pill{font-size:9.5px;padding:2px 5px}
+}
 </style>
 </head>
 <body>
@@ -243,9 +413,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sb-brand">
-    <div class="sb-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
-    <div class="sb-name">Faturamento</div>
-    <div class="sb-sub">Setor de emissão · 2 analistas</div>
+    <div class="sb-logo">
+      <div class="sb-logo-circle">
+        <!-- Blips "b" icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 4v16" stroke="#111214" stroke-width="2.8" stroke-linecap="round"/>
+          <circle cx="14" cy="14" r="5.2" stroke="#111214" stroke-width="2.8"/>
+          <circle cx="14" cy="9.5" r="1.1" fill="#111214"/>
+        </svg>
+      </div>
+      <div class="sb-logo-text">blips</div>
+    </div>
+    <div class="sb-sub">Faturamento · Setor de emissão</div>
   </div>
   <div class="nav-sec">
     <div class="nav-lbl">Visões</div>
@@ -255,6 +434,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <div class="ni" onclick="gp('equipe',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="5" r="2.5"/><circle cx="11" cy="5" r="2"/><path d="M1 13c0-2.5 2-4 5-4s5 1.5 5 4"/><path d="M11 9c1.5 0 3 .8 3 3"/></svg>Equipe</div>
     <div class="ni" onclick="gp('volume',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13V8l3-3 3 3 3-4 3 2"/><path d="M2 13h12"/></svg>Volume</div>
     <div class="ni" onclick="gp('sla',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3.5l2.5 1.5"/></svg>SLA</div>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-lbl">Consultas</div>
+    <div class="ni" onclick="gp('duvidas',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M6 6c0-1.1.9-2 2-2s2 .9 2 2c0 1-1 1.5-2 2v1"/><circle cx="8" cy="12.5" r=".75" fill="currentColor" stroke="none"/></svg>Dúvidas / Operações</div>
+    <div class="ni" onclick="gp('difal',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M3 8h10M8 3v10"/></svg>DIFAL</div>
   </div>
   <div class="nav-sec">
     <div class="nav-lbl">Plataformas</div>
@@ -434,7 +618,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
           <div class="tl-leg-row">
             <div class="tl-leg"><div class="tl-dot" style="background:var(--green)"></div>Plataforma</div>
             <div class="tl-leg"><div class="tl-dot" style="background:var(--cyan)"></div>Sankhya</div>
-            <div class="tl-leg"><div class="tl-dot" style="background:var(--amber)"></div>TomTicket</div>
+            <div class="tl-leg"><div class="tl-dot" style="background:var(--brand)"></div>TomTicket</div>
             <div class="tl-leg"><div class="tl-dot" style="background:var(--red)"></div>Corte 16h30</div>
           </div>
         </div>
@@ -709,7 +893,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         <div class="card">
           <div class="card-title">Cenários de capacidade</div>
           <div class="scenario sc-g"><div class="sc-hd"><div class="sc-dot" style="background:var(--green)"></div><div class="sc-ttl">Normal · 100 docs/dia</div></div><div class="sc-desc">~8 docs/h por analista. Tudo emitido até ~14h30. Janela de corte folgada.</div></div>
-          <div class="scenario sc-a"><div class="sc-hd"><div class="sc-dot" style="background:var(--amber)"></div><div class="sc-ttl">Pico · 150 docs/dia</div></div><div class="sc-desc">~12 docs/h. Sem pausas — janela de corte crítica. Apoio mútuo essencial.</div></div>
+          <div class="scenario sc-a"><div class="sc-hd"><div class="sc-dot" style="background:var(--brand)"></div><div class="sc-ttl">Pico · 150 docs/dia</div></div><div class="sc-desc">~12 docs/h. Sem pausas — janela de corte crítica. Apoio mútuo essencial.</div></div>
           <div class="scenario sc-r"><div class="sc-hd"><div class="sc-dot" style="background:var(--red)"></div><div class="sc-ttl">Pico com acúmulo</div></div><div class="sc-desc">Qualquer pausa compromete o corte das 16h30. Nunca acumular para depois.</div></div>
         </div>
       </div>
@@ -718,7 +902,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
           <div class="mk"><div class="mk-l">Janela produtiva</div><div class="mk-v" style="color:var(--blue)">~6,5h</div><div style="font-size:10px;color:var(--text-dim);margin-top:3px">por analista/dia</div></div>
           <div class="mk"><div class="mk-l">Ritmo normal</div><div class="mk-v" style="color:var(--green)">8/h</div><div style="font-size:10px;color:var(--text-dim);margin-top:3px">docs por analista</div></div>
-          <div class="mk"><div class="mk-l">Ritmo em pico</div><div class="mk-v" style="color:var(--amber)">12/h</div><div style="font-size:10px;color:var(--text-dim);margin-top:3px">docs por analista</div></div>
+          <div class="mk"><div class="mk-l">Ritmo em pico</div><div class="mk-v" style="color:var(--brand)">12/h</div><div style="font-size:10px;color:var(--text-dim);margin-top:3px">docs por analista</div></div>
           <div class="mk"><div class="mk-l">Por analista/dia</div><div class="mk-v" style="color:var(--text)">50–75</div><div style="font-size:10px;color:var(--text-dim);margin-top:3px">documentos</div></div>
         </div>
       </div>
@@ -732,7 +916,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
           <thead><tr><th>Situação</th><th>Entrada até</th><th>Emitir até</th><th>Observação</th></tr></thead>
           <tbody>
             <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--green)"></div>Chegou até 16h30 hoje</div></td><td>16h30</td><td>16h30 do dia seguinte</td><td style="color:var(--text-muted)">Dentro do SLA de 24h</td></tr>
-            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--amber)"></div>Chegou após 16h30</div></td><td>fim do dia</td><td>16h30 do 2º dia útil</td><td style="color:var(--text-muted)">Triagem na manhã seguinte</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--brand)"></div>Chegou após 16h30</div></td><td>fim do dia</td><td>16h30 do 2º dia útil</td><td style="color:var(--text-muted)">Triagem na manhã seguinte</td></tr>
             <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--blue)"></div>Chegou 2ª às 08h00</div></td><td>08h00 seg</td><td>16h30 terça</td><td style="color:var(--text-muted)">Prioridade no início da semana</td></tr>
             <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--red)"></div>Chegou 6ª após 16h30</div></td><td>fim de sexta</td><td>16h30 segunda</td><td style="color:var(--red)">Atenção — não há sábado útil</td></tr>
             <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--text-dim)"></div>Feriado no meio</div></td><td>variável</td><td>+1 dia útil extra</td><td style="color:var(--text-muted)">Ajustar planejamento</td></tr>
@@ -751,20 +935,585 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     </div>
 
   </div><!-- /content -->
+
+    <!-- ════════ PAGE: DÚVIDAS ════════ -->
+    <div id="page-duvidas" class="page" style="padding:22px 28px">
+
+      <div class="dv-search-wrap">
+        <div class="dv-search-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="4.5"/><path d="M10.5 10.5l3 3"/></svg></div>
+        <input class="dv-search" id="dv-input" type="text" placeholder="Pesquisar operação, TOP ou fluxo…" oninput="dvSearch(this.value)">
+      </div>
+
+      <!-- SUPRIMENTOS -->
+      <div class="dv-group-hdr" id="grp-suprimentos">
+        <span class="dv-group-badge dv-gb-blue">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="10" height="8" rx="1"/><path d="M4 3V2M8 3V2"/></svg>
+          Suprimentos
+        </span>
+        <span style="font-size:11px;color:var(--text-dim)">Faturamento via Sankhya</span>
+      </div>
+      <div class="dv-grid" id="grid-suprimentos">
+
+        <div class="dv-card" data-search="suprimentos envio imediato pedido top 31 faturamento top 141 devolução top 241">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Envio Imediato</div><div class="dv-card-sub">Suprimentos enviados diretamente ao cliente</div></div>
+            <span class="dv-top-badge" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)">op. saída</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Pedido TOP 31</span><span class="top-code">Fat. TOP 141</span><span class="top-code">Dev. TOP 241</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">1</div><div class="dv-step-txt"><strong>Pedido (TOP 31):</strong> pedido de suprimentos criado no sistema para envio imediato ao cliente, sem máquina vinculada.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">2</div><div class="dv-step-txt"><strong>Faturamento (TOP 141):</strong> emissão da NF-e de saída dos suprimentos. Emita assim que o pedido estiver liberado no Sankhya.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">3</div><div class="dv-step-txt"><strong>Devolução (TOP 241):</strong> caso o cliente devolva os suprimentos, emita NF de entrada de devolução. Verifique se há autorização antes de emitir.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dv-card" data-search="suprimentos envio máquina pedido top 35 faturamento top 141 devolução top 241">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Envio c/ Máquina</div><div class="dv-card-sub">Suprimentos enviados junto com equipamento</div></div>
+            <span class="dv-top-badge" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)">op. saída</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Pedido TOP 35</span><span class="top-code">Fat. TOP 141</span><span class="top-code">Dev. TOP 241</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">1</div><div class="dv-step-txt"><strong>Pedido (TOP 35):</strong> pedido de suprimentos vinculado ao envio de uma máquina. O suprimento acompanha o equipamento na entrega.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">2</div><div class="dv-step-txt"><strong>Faturamento (TOP 141):</strong> NF-e de saída dos suprimentos emitida em conjunto com ou logo após a NF da máquina.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">3</div><div class="dv-step-txt"><strong>Devolução (TOP 241):</strong> NF de entrada de devolução, caso os suprimentos sejam devolvidos separadamente.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dv-card" data-search="suprimentos envio sp pedido top 169 faturamento top 141 devolução top 241">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Envio de SP</div><div class="dv-card-sub">Suprimentos despachados a partir de SP</div></div>
+            <span class="dv-top-badge" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)">op. saída</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Pedido TOP 169</span><span class="top-code">Fat. TOP 141</span><span class="top-code">Dev. TOP 241</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">1</div><div class="dv-step-txt"><strong>Pedido (TOP 169):</strong> pedido de suprimentos cuja origem de estoque é o CD de SP. Utilizado para envios a clientes de outras regiões.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">2</div><div class="dv-step-txt"><strong>Faturamento (TOP 141):</strong> NF-e de saída padrão. Atenção ao CFOP interestadual quando o cliente é de outro estado.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">3</div><div class="dv-step-txt"><strong>Devolução (TOP 241):</strong> NF de entrada de devolução. Conferir se há incidência de DIFAL na operação original.</div></div>
+            </div>
+            <div class="dv-note">⚠ Verificar necessidade de DIFAL nesta operação quando interestadual B2C.</div>
+          </div>
+        </div>
+
+        <div class="dv-card" data-search="suprimentos envio ecom ecommerce pedido top 185 faturamento top 186 devolução top 241">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Envio Ecom</div><div class="dv-card-sub">Suprimentos via canal e-commerce</div></div>
+            <span class="dv-top-badge" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)">op. saída</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Pedido TOP 185</span><span class="top-code">Fat. TOP 186</span><span class="top-code">Dev. TOP 241</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">1</div><div class="dv-step-txt"><strong>Pedido (TOP 185):</strong> pedido originado no canal e-commerce. Requer conferência dos dados de destino e CFOP correto.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">2</div><div class="dv-step-txt"><strong>Faturamento (TOP 186):</strong> NF-e específica para e-commerce. TOP diferente do padrão — atentar ao usar o correto.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-blue">3</div><div class="dv-step-txt"><strong>Devolução (TOP 241):</strong> mesmo TOP padrão de devolução. Pode ter incidência de DIFAL dependendo do estado destino.</div></div>
+            </div>
+            <div class="dv-note">⚠ DIFAL pode incidir. Consulte a aba DIFAL antes de emitir para estados com convênio ICMS 93.</div>
+          </div>
+        </div>
+
+        <div class="dv-card" data-search="suprimentos bonificações bonificação pedido top 205 faturamento top 122 devolução top 177">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Bonificações</div><div class="dv-card-sub">Suprimentos enviados sem cobrança ao cliente</div></div>
+            <span class="dv-top-badge" style="background:var(--green-bg);color:var(--green);border-color:var(--green-bd)">bonificação</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Pedido TOP 205</span><span class="top-code">Fat. TOP 122</span><span class="top-code">Dev. TOP 177</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">1</div><div class="dv-step-txt"><strong>Pedido (TOP 205):</strong> pedido de bonificação — produto sem valor comercial para fins de cobrança, mas requer NF fiscal.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">2</div><div class="dv-step-txt"><strong>Faturamento (TOP 122):</strong> NF-e de remessa de bonificação/brinde. Valor zerado ou simbólico. Necessita aprovação prévia.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">3</div><div class="dv-step-txt"><strong>Devolução (TOP 177):</strong> TOP específico para devoluções de bonificação. Diferente do TOP 241 de suprimentos normais.</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MÁQUINAS FINZA -->
+      <div class="dv-group-hdr" id="grp-finza">
+        <span class="dv-group-badge dv-gb-green">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="3" width="9" height="7" rx="1"/><path d="M4 3V2M8 3V2M5.5 7l1 1L9 5.5"/></svg>
+          Máquinas Finza
+        </span>
+        <span style="font-size:11px;color:var(--text-dim)">Contratos e movimentação de equipamentos Finza</span>
+      </div>
+      <div class="dv-grid" id="grid-finza">
+
+        <div class="dv-card" data-search="máquinas finza remessa pedido top 6001 faturamento top 271 devolução top 291">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Remessa — Máquinas Finza</div><div class="dv-card-sub">Envio de máquina ao cliente (venda/locação)</div></div>
+            <span class="dv-top-badge" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)">op. saída</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Pedido TOP 6001</span><span class="top-code">Fat. TOP 271</span><span class="top-code">Dev. TOP 291</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">1</div><div class="dv-step-txt"><strong>Pedido (TOP 6001):</strong> pedido de remessa de máquina Finza para o cliente. Gerado pela plataforma Blips/Finza após aprovação do contrato.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">2</div><div class="dv-step-txt"><strong>Faturamento (TOP 271):</strong> NF-e de remessa/venda da máquina. Conferir série, CFOP e dados do destinatário antes de emitir.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">3</div><div class="dv-step-txt"><strong>Devolução (TOP 291):</strong> NF de retorno da máquina ao estoque. Emitida quando o cliente devolve o equipamento (rescisão ou troca).</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dv-card" data-search="máquinas finza conserto entrada top 72 retorno top 115">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Conserto — Máquinas Finza</div><div class="dv-card-sub">Máquina que retorna para assistência técnica</div></div>
+            <span class="dv-top-badge" style="background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)">entrada / retorno</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Entrada TOP 72</span><span class="top-code">Retorno TOP 115</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-cyan">1</div><div class="dv-step-txt"><strong>Entrada para conserto (TOP 72):</strong> NF de entrada emitida quando a máquina Finza chega à empresa para reparo. Registro do recebimento.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-cyan">2</div><div class="dv-step-txt"><strong>Retorno ao cliente (TOP 115):</strong> NF de saída emitida quando a máquina reparada retorna ao cliente. Deve referenciar a NF de entrada.</div></div>
+            </div>
+            <div class="dv-note">ℹ Sempre vincular a NF de retorno (TOP 115) à NF de entrada (TOP 72) para rastreabilidade fiscal.</div>
+          </div>
+        </div>
+
+        <div class="dv-card" data-search="máquinas finza troca entrada top 136 retorno top 66">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Troca — Máquinas Finza</div><div class="dv-card-sub">Substituição de equipamento defeituoso</div></div>
+            <span class="dv-top-badge" style="background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)">entrada / retorno</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Entrada TOP 136</span><span class="top-code">Retorno TOP 66</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-cyan">1</div><div class="dv-step-txt"><strong>Entrada da máquina com defeito (TOP 136):</strong> NF de entrada do equipamento a ser trocado. Registra o recebimento do ativo defeituoso.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-cyan">2</div><div class="dv-step-txt"><strong>Retorno/envio do substituto (TOP 66):</strong> NF de saída da máquina substituta ao cliente. Processo de troca concluído.</div></div>
+            </div>
+            <div class="dv-note">ℹ Na troca, emitir primeiro a NF de entrada (TOP 136) e só depois a de retorno (TOP 66).</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- OPERAÇÕES ES / LOCAÇÃO BLIPS -->
+      <div class="dv-group-hdr" id="grp-es">
+        <span class="dv-group-badge dv-gb-cyan">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="4.5"/><path d="M4 6h4M6 4v4"/></svg>
+          Operações ES / Blips Commerce
+        </span>
+        <span style="font-size:11px;color:var(--text-dim)">Locação via plataforma Blips</span>
+      </div>
+      <div class="dv-grid" id="grid-es">
+
+        <div class="dv-card" data-search="operações es locação blips commerce venda a ordem top 310 locação cliente top 40 remessa top 311">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Locação via Blips Commerce</div><div class="dv-card-sub">Venda à ordem + remessa por conta e ordem</div></div>
+            <span class="dv-top-badge" style="background:var(--green-bg);color:var(--green);border-color:var(--green-bd)">op. saída</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">TOP 310</span><span class="top-code">TOP 40</span><span class="top-code">TOP 311</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">1</div><div class="dv-step-txt"><strong>Venda à Ordem — Blips Commerce → Blips (TOP 310):</strong> NF simbólica de venda à ordem gerada entre as entidades Blips. Representa a transferência de titularidade do equipamento.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">2</div><div class="dv-step-txt"><strong>Locação p/ Cliente (TOP 40):</strong> NF de locação emitida para o cliente final. É o documento principal que o cliente recebe.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">3</div><div class="dv-step-txt"><strong>Remessa por Conta e Ordem — Blips Commerce → Cliente (TOP 311):</strong> NF de remessa física do equipamento ao cliente, emitida por conta e ordem do comprador. Completa o fluxo triangular.</div></div>
+            </div>
+            <div class="dv-note">ℹ Fluxo triangular: emitir na sequência TOP 310 → TOP 40 → TOP 311. Não alterar a ordem.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MÁQUINAS IDEAL -->
+      <div class="dv-group-hdr" id="grp-ideal">
+        <span class="dv-group-badge dv-gb-green">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="3" width="9" height="7" rx="1"/><path d="M4 3V2M8 3V2M5.5 7l1 1L9 5.5"/></svg>
+          Máquinas Ideal
+        </span>
+        <span style="font-size:11px;color:var(--text-dim)">Contratos e movimentação de equipamentos Ideal</span>
+      </div>
+      <div class="dv-grid" id="grid-ideal">
+
+        <div class="dv-card" data-search="máquinas ideal remessa pedido top 6000 faturamento top 270 devolução top 43">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Remessa — Máquinas Ideal</div><div class="dv-card-sub">Envio de máquina ao cliente (venda/locação)</div></div>
+            <span class="dv-top-badge" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)">op. saída</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Pedido TOP 6000</span><span class="top-code">Fat. TOP 270</span><span class="top-code">Dev. TOP 43</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">1</div><div class="dv-step-txt"><strong>Pedido (TOP 6000):</strong> pedido de remessa de máquina Ideal para o cliente. Gerado pela plataforma após aprovação do contrato.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">2</div><div class="dv-step-txt"><strong>Faturamento (TOP 270):</strong> NF-e de remessa/venda. Note que é TOP 270, diferente da Finza (TOP 271). Conferir antes de emitir.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-green">3</div><div class="dv-step-txt"><strong>Devolução (TOP 43):</strong> NF de retorno da máquina Ideal. TOP diferente da Finza (291). Atentar para não confundir.</div></div>
+            </div>
+            <div class="dv-note">⚠ TOP de faturamento e devolução são diferentes entre Finza e Ideal. Confirme sempre o contrato antes de emitir.</div>
+          </div>
+        </div>
+
+        <div class="dv-card" data-search="máquinas ideal conserto entrada top 72 retorno top 115">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Conserto — Máquinas Ideal</div><div class="dv-card-sub">Máquina que retorna para assistência técnica</div></div>
+            <span class="dv-top-badge" style="background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)">entrada / retorno</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Entrada TOP 72</span><span class="top-code">Retorno TOP 115</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-cyan">1</div><div class="dv-step-txt"><strong>Entrada para conserto (TOP 72):</strong> mesmo TOP da Finza. NF de entrada quando a máquina chega para reparo.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-cyan">2</div><div class="dv-step-txt"><strong>Retorno ao cliente (TOP 115):</strong> mesmo TOP da Finza. NF de saída do equipamento reparado de volta ao cliente.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dv-card" data-search="máquinas ideal troca entrada top 136 retorno top 66">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Troca — Máquinas Ideal</div><div class="dv-card-sub">Substituição de equipamento defeituoso</div></div>
+            <span class="dv-top-badge" style="background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)">entrada / retorno</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Entrada TOP 136</span><span class="top-code">Retorno TOP 66</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-cyan">1</div><div class="dv-step-txt"><strong>Entrada da máquina defeituosa (TOP 136):</strong> NF de entrada do equipamento Ideal que será substituído.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-cyan">2</div><div class="dv-step-txt"><strong>Retorno do substituto (TOP 66):</strong> NF de saída da máquina nova/recondicionada entregue ao cliente.</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LOCAÇÃO -->
+      <div class="dv-group-hdr" id="grp-locacao">
+        <span class="dv-group-badge dv-gb-purple">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="4.5"/><path d="M6 3.5V6l2 1.5"/></svg>
+          Locação
+        </span>
+        <span style="font-size:11px;color:var(--text-dim)">Contratos de aluguel de equipamentos</span>
+      </div>
+      <div class="dv-grid" id="grid-locacao">
+
+        <div class="dv-card" data-search="locação remessa pedido top 114 faturamento top 40 devolução top 147">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Remessa de Locação</div><div class="dv-card-sub">Envio do equipamento locado ao cliente</div></div>
+            <span class="dv-top-badge" style="background:var(--purple-bg);color:var(--purple);border-color:var(--purple-bd)">locação saída</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Pedido TOP 114</span><span class="top-code">Fat. TOP 40</span><span class="top-code">Dev. TOP 147</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-purple">1</div><div class="dv-step-txt"><strong>Pedido (TOP 114):</strong> pedido de remessa de equipamento em regime de locação. Empresa mantém a propriedade do bem.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-purple">2</div><div class="dv-step-txt"><strong>Faturamento — Locação p/ Cliente (TOP 40):</strong> NF de remessa de locação ao cliente. CFOP específico de locação. Bem não transfere propriedade.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-purple">3</div><div class="dv-step-txt"><strong>Devolução (TOP 147):</strong> NF de retorno do equipamento locado ao término do contrato ou rescisão.</div></div>
+            </div>
+            <div class="dv-note">ℹ Na locação, a empresa mantém a propriedade. O CFOP e natureza de operação são diferentes de venda.</div>
+          </div>
+        </div>
+
+        <div class="dv-card" data-search="locação conserto entrada top 72 retorno top 115">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Conserto — Locação</div><div class="dv-card-sub">Equipamento locado em reparo</div></div>
+            <span class="dv-top-badge" style="background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)">entrada / retorno</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Entrada TOP 72</span><span class="top-code">Retorno TOP 115</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-cyan">1</div><div class="dv-step-txt"><strong>Entrada para conserto (TOP 72):</strong> equipamento locado que retorna para manutenção. Mesmo fluxo das máquinas Finza/Ideal.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-cyan">2</div><div class="dv-step-txt"><strong>Retorno ao cliente (TOP 115):</strong> equipamento reparado devolvido ao cliente. Contrato de locação continua vigente.</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- INTERCOMPANY -->
+      <div class="dv-group-hdr" id="grp-inter">
+        <span class="dv-group-badge dv-gb-amber">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3M10 6H2"/></svg>
+          Intercompany
+        </span>
+        <span style="font-size:11px;color:var(--text-dim)">Operações entre empresas do mesmo grupo</span>
+      </div>
+      <div class="dv-grid" id="grid-inter">
+
+        <div class="dv-card" data-search="intercompany pedido top 5124 5125 5126 faturamento top 260">
+          <div class="dv-card-head">
+            <div><div class="dv-card-title">Faturamento Intercompany</div><div class="dv-card-sub">Transferências entre empresas do grupo</div></div>
+            <span class="dv-top-badge" style="background:var(--amber-bg);color:var(--brand);border-color:var(--brand-bd)">intercompany</span>
+          </div>
+          <div class="dv-card-body">
+            <div class="dv-top-row"><span class="top-code">Pedido TOP 5124</span><span class="top-code">TOP 5125</span><span class="top-code">TOP 5126</span><span class="top-code">Fat. TOP 260</span></div>
+            <div class="dv-step-list">
+              <div class="dv-step"><div class="dv-step-num dv-sn-amber">1</div><div class="dv-step-txt"><strong>Pedidos (TOP 5124 / 5125 / 5126):</strong> cada TOP representa um tipo de produto ou operação intercompany. 5124 = produto A, 5125 = produto B, 5126 = produto C. Confirmar com o solicitante qual se aplica.</div></div>
+              <div class="dv-step"><div class="dv-step-num dv-sn-amber">2</div><div class="dv-step-txt"><strong>Faturamento (TOP 260):</strong> NF-e de transferência/venda entre empresas do grupo. CFOP deve refletir operação interna (dentro do estado) ou interestadual.</div></div>
+            </div>
+            <div class="dv-note dv-note-red">⚠ Operações intercompany não geram cobrança ao cliente final. Validar CNPJ destinatário — deve ser empresa do grupo, não cliente externo.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="dv-no-results" style="display:none;text-align:center;padding:40px 20px;color:var(--text-dim);font-size:13px">
+        Nenhuma operação encontrada para "<span id="dv-search-term"></span>"
+      </div>
+    </div>
+
+    <!-- ════════ PAGE: DIFAL ════════ -->
+    <div id="page-difal" class="page" style="padding:22px 28px">
+
+      <div class="df-hero">
+        <div class="df-hero-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div>
+          <div class="df-hero-title">DIFAL — Diferencial de Alíquota</div>
+          <div class="df-hero-desc">O DIFAL é o imposto cobrado nas operações interestaduais destinadas a consumidor final não contribuinte do ICMS (pessoa física ou empresa que não revende). Ele equaliza a diferença entre a alíquota interna do estado de destino e a alíquota interestadual praticada pelo estado de origem. Desde 2022, a EC 87/2015 exige recolhimento tanto para B2C quanto para B2B com destino a não-contribuinte.</div>
+        </div>
+      </div>
+
+      <!-- Alertas rápidos -->
+      <div class="df-alert df-alert-amber">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
+        <div><strong>Atenção:</strong> DIFAL incide quando a venda é interestadual (SP → outro estado) para consumidor final não contribuinte. Para contribuintes do ICMS (empresas que revendem), aplica-se regra diferente via ICMS normal.</div>
+      </div>
+      <div class="df-alert df-alert-blue" style="margin-bottom:16px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3.5l2.5 1.5"/></svg>
+        <div><strong>Regra desde jan/2022:</strong> com a ADI 5469 e LC 190/2022, o DIFAL é exigido tanto para venda a pessoa física (B2C) quanto para venda a pessoa jurídica não contribuinte (B2B sem IE ativa).</div>
+      </div>
+
+      <!-- QUANDO INCIDE -->
+      <div class="df-section">
+        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2v8M2 6h8"/></svg>Quando o DIFAL é cobrado do cliente</div>
+        <div class="df-table-wrap">
+          <table class="df-table">
+            <thead><tr><th>Situação</th><th>Origem</th><th>Destino</th><th>Destinatário</th><th>DIFAL incide?</th><th>Quem recolhe</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Venda de suprimentos / máquinas a PF</td>
+                <td>SP (ou qualquer UF)</td>
+                <td>Outro estado</td>
+                <td>Pessoa física</td>
+                <td><span class="df-yn-sim">✓ Sim</span></td>
+                <td>Remetente (sua empresa)</td>
+              </tr>
+              <tr>
+                <td>Venda a PJ sem IE (não contribuinte)</td>
+                <td>SP (ou qualquer UF)</td>
+                <td>Outro estado</td>
+                <td>CNPJ sem IE ativa</td>
+                <td><span class="df-yn-sim">✓ Sim</span></td>
+                <td>Remetente (sua empresa)</td>
+              </tr>
+              <tr>
+                <td>Venda a PJ contribuinte do ICMS</td>
+                <td>Qualquer UF</td>
+                <td>Outro estado</td>
+                <td>CNPJ com IE ativa</td>
+                <td><span class="df-yn-nao">✗ Não</span></td>
+                <td>N/A — ICMS normal</td>
+              </tr>
+              <tr>
+                <td>Venda dentro do mesmo estado</td>
+                <td>SP</td>
+                <td>SP</td>
+                <td>Qualquer</td>
+                <td><span class="df-yn-nao">✗ Não</span></td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td>Bonificação interestadual</td>
+                <td>Qualquer UF</td>
+                <td>Outro estado</td>
+                <td>Não contribuinte</td>
+                <td><span class="df-yn-dep">⚠ Depende</span></td>
+                <td>Verificar convênio do estado</td>
+              </tr>
+              <tr>
+                <td>Locação de equipamentos interestadual</td>
+                <td>Qualquer UF</td>
+                <td>Outro estado</td>
+                <td>Não contribuinte</td>
+                <td><span class="df-yn-dep">⚠ Depende</span></td>
+                <td>Verificar se locação é fato gerador no estado</td>
+              </tr>
+              <tr>
+                <td>Simples Nacional (remetente optante)</td>
+                <td>Qualquer UF</td>
+                <td>Outro estado</td>
+                <td>Não contribuinte</td>
+                <td><span class="df-yn-sim">✓ Sim</span></td>
+                <td>Remetente (alíquota reduzida)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FLUXO DE VERIFICAÇÃO -->
+      <div class="df-section">
+        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>Fluxo de verificação antes de emitir</div>
+        <div class="df-flow">
+          <div class="df-step-box"><strong>1. Operação</strong>É interestadual?</div>
+          <div class="df-arrow">→</div>
+          <div class="df-step-box highlight"><strong>2. Destinatário</strong>PF ou PJ s/ IE?</div>
+          <div class="df-arrow">→</div>
+          <div class="df-step-box highlight"><strong>3. Mercadoria</strong>Sujeita a ICMS?</div>
+          <div class="df-arrow">→</div>
+          <div class="df-step-box"><strong>4. Alíquotas</strong>Interna destino vs interestadual</div>
+          <div class="df-arrow">→</div>
+          <div class="df-step-box"><strong>5. Partilha</strong>Origem 40% · Destino 60%</div>
+          <div class="df-arrow">→</div>
+          <div class="df-step-box done"><strong>6. Emitir NF</strong>Com DIFAL destacado</div>
+        </div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:8px;padding-left:4px">Se qualquer resposta do passo 1 ou 2 for "não" → DIFAL não incide. Prosseguir normalmente.</div>
+      </div>
+
+      <!-- FÓRMULAS -->
+      <div class="df-formula">
+        <div class="df-formula-title">Fórmulas de cálculo — DIFAL</div>
+        <div class="df-formula-row">
+          <div class="df-formula-label">Base de cálculo</div>
+          <div class="df-formula-eq">BC = Valor mercadoria + Frete + Seguro + Outras despesas − Descontos</div>
+        </div>
+        <div class="df-formula-row">
+          <div class="df-formula-label">ICMS interestadual</div>
+          <div class="df-formula-eq">ICMS origem = BC × Alíquota interestadual (7% ou 12%)</div>
+        </div>
+        <div class="df-formula-row">
+          <div class="df-formula-label">DIFAL total</div>
+          <div class="df-formula-eq">DIFAL = BC × (Alíq. interna destino − Alíq. interestadual)</div>
+        </div>
+        <div class="df-formula-row">
+          <div class="df-formula-label">Partilha — parte destino</div>
+          <div class="df-formula-eq">UF destino = DIFAL × 60% (2022 em diante = 100% UF destino)</div>
+        </div>
+        <div class="df-formula-row">
+          <div class="df-formula-label">Partilha — parte origem</div>
+          <div class="df-formula-eq">UF origem = DIFAL × 40% (a partir de 2019 = 0% UF origem)</div>
+        </div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:10px">ℹ A partir de 2019 a partilha é 100% para o estado de destino. A partilha progressiva era válida de 2016 a 2018.</div>
+      </div>
+
+      <!-- ALÍQUOTAS INTERESTADUAIS -->
+      <div class="df-section">
+        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/><path d="M1.5 5h9M5 1.5v9"/></svg>Alíquotas interestaduais de ICMS (origem SP)</div>
+        <div class="df-table-wrap">
+          <table class="df-table">
+            <thead><tr><th>Estado de destino</th><th>Alíquota interestadual</th><th>Exemplo alíq. interna</th><th>DIFAL estimado</th></tr></thead>
+            <tbody>
+              <tr><td>Sul e Sudeste (exceto ES)</td><td style="font-family:var(--mono);font-size:12px;color:var(--text)">12%</td><td>18% (SP→MG, PR, RS, SC)</td><td style="color:var(--brand)">6%</td></tr>
+              <tr><td>Norte, Nordeste, CO e ES</td><td style="font-family:var(--mono);font-size:12px;color:var(--text)">7%</td><td>17–20% (varia por estado)</td><td style="color:var(--brand)">10–13%</td></tr>
+              <tr><td>Simples Nacional → qualquer</td><td style="font-family:var(--mono);font-size:12px;color:var(--text)">Alíquota efetiva SN</td><td>Conforme faixa SN</td><td style="color:var(--text-muted)">Calculado sobre alíq. efetiva</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- REGRAS POR OPERAÇÃO -->
+      <div class="df-section">
+        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 4v2.5l2 1"/></svg>Regras por tipo de operação do setor</div>
+        <div class="df-rule-card">
+          <div class="df-rule-row">
+            <div class="df-rule-lbl">Suprimentos (Envio Ecom)</div>
+            <div class="df-rule-val"><strong>Verificar sempre:</strong> venda a PF ou PJ sem IE interestadual via e-commerce. Canal digital tem alta incidência de DIFAL — especialmente para estados do Norte e Nordeste.</div>
+          </div>
+          <div class="df-rule-row">
+            <div class="df-rule-lbl">Suprimentos (Envio de SP)</div>
+            <div class="df-rule-val"><strong>Verificar:</strong> se o destinatário é consumidor final não contribuinte em outro estado. CD de SP geralmente despacha para múltiplos estados — alta probabilidade de incidência.</div>
+          </div>
+          <div class="df-rule-row">
+            <div class="df-rule-lbl">Remessa de Máquinas (Finza/Ideal)</div>
+            <div class="df-rule-val"><strong>Geralmente não incide</strong> se o destinatário é pessoa jurídica com IE ativa (contribuinte do ICMS). Verificar se o cliente possui IE ativa no estado de destino.</div>
+          </div>
+          <div class="df-rule-row">
+            <div class="df-rule-lbl">Locação Interestadual</div>
+            <div class="df-rule-val"><strong>Verificar por estado:</strong> alguns estados não consideram locação como fato gerador do ICMS. Consultar legislação do estado de destino antes de aplicar DIFAL.</div>
+          </div>
+          <div class="df-rule-row">
+            <div class="df-rule-lbl">Intercompany</div>
+            <div class="df-rule-val"><strong>Não incide DIFAL:</strong> operações entre contribuintes do ICMS (ambas as empresas têm IE ativa). Aplica-se ICMS interestadual normal, sem diferencial.</div>
+          </div>
+          <div class="df-rule-row">
+            <div class="df-rule-lbl">Bonificações Interestaduais</div>
+            <div class="df-rule-val"><strong>Verificar convênio:</strong> bonificações podem ter tratamento diferenciado por convênio ICMS. Consultar o fiscal antes de emitir a NF com ou sem DIFAL.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHECKLIST -->
+      <div class="df-section">
+        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6l3 3 5-5"/></svg>Checklist prático — antes de emitir NF com DIFAL</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="df-rule-card">
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Confirmar se a operação é interestadual (UF origem ≠ UF destino)</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Verificar IE do destinatário — sem IE ativa = não contribuinte = DIFAL</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Consultar alíquota interna do estado de destino</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Calcular a diferença (alíq. interna − alíq. interestadual)</div></div>
+          </div>
+          <div class="df-rule-card">
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Verificar se há convênio de redução ou isenção no estado destino</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Inserir o DIFAL no campo correto da NF-e (tag vICMSUFDest)</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Gerar GNRE ou DAR para recolhimento antes ou na emissão da NF</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--amber)">⚠</div><div class="df-rule-val">Dúvida? Acionar o setor fiscal antes de emitir — não emitir com erro</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
 </main>
-</div><!-- /layout -->
+</div>
 
 <script>
-const titles={cronograma:'Cronograma semanal',timeline:'Linha do Tempo diária',matriz:'Matriz de Atividades',equipe:'Equipe e distribuição',volume:'Volume e capacidade',sla:'Controle de SLA'};
-function gp(id,el){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
-  const pg=document.getElementById('page-'+id);
-  if(pg)pg.classList.add('on');
-  if(el&&!el.classList.contains('ni-static'))el.classList.add('on');
-  const t=document.getElementById('pg-title');
-  if(t)t.textContent=titles[id]||id;
+const titles={
+  cronograma:'Cronograma semanal',
+  timeline:'Linha do Tempo diária',
+  matriz:'Matriz de Atividades',
+  equipe:'Equipe e distribuição',
+  volume:'Volume e capacidade',
+  sla:'Controle de SLA',
+  duvidas:'Dúvidas · Guia de Operações',
+  difal:'DIFAL · Guia de Cálculo e Cobrança'
+};
+
+function gp(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
+  const pg = document.getElementById('page-' + id);
+  if (pg) pg.classList.add('on');
+  if (el && !el.classList.contains('ni-static')) el.classList.add('on');
+  const t = document.getElementById('pg-title');
+  if (t) t.textContent = titles[id] || id;
+  // Scroll content area back to top on page change
+  const content = document.querySelector('.content');
+  if (content) content.scrollTop = 0;
+  window.scrollTo(0, 0);
 }
+
+function dvSearch(q) {
+  const term = q.toLowerCase().trim();
+  const cards = document.querySelectorAll('.dv-card');
+  const groups = ['suprimentos','finza','es','ideal','locacao','inter'];
+  let total = 0;
+  cards.forEach(c => {
+    const match = !term || (c.dataset.search && c.dataset.search.includes(term));
+    c.classList.toggle('dv-hidden', !match);
+    if (match) total++;
+  });
+  groups.forEach(g => {
+    const hdr  = document.getElementById('grp-'  + g);
+    const grid = document.getElementById('grid-' + g);
+    if (!hdr || !grid) return;
+    const visible = [...grid.querySelectorAll('.dv-card')].some(c => !c.classList.contains('dv-hidden'));
+    hdr.style.display  = visible ? '' : 'none';
+    grid.style.display = visible ? '' : 'none';
+  });
+  const noRes = document.getElementById('dv-no-results');
+  const st    = document.getElementById('dv-search-term');
+  if (noRes) noRes.style.display = (total === 0 && term) ? 'block' : 'none';
+  if (st)    st.textContent = q;
+}
+
+// Ensure first page is active on load
+document.addEventListener('DOMContentLoaded', () => {
+  const first = document.querySelector('.ni.on');
+  if (first) {
+    const id = first.getAttribute('onclick').match(/gp\('(\w+)'/)?.[1];
+    if (id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+      const pg = document.getElementById('page-' + id);
+      if (pg) pg.classList.add('on');
+    }
+  }
+});
 </script>
 </body>
 </html>
