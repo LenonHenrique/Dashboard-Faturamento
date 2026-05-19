@@ -389,6 +389,46 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .df-alert-green{background:var(--green-bg);border:1px solid var(--green-bd);color:var(--green)}
 .df-alert-blue{background:var(--blue-bg);border:1px solid var(--blue-bd);color:var(--blue)}
 
+/* ── LOCAIS SANKHYA ─────────────────────────────────────────── */
+.lc-hero{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:18px 22px;margin-bottom:16px;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.lc-hero-icon{width:44px;height:44px;border-radius:11px;background:var(--cyan-bg);border:1px solid var(--cyan-bd);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lc-hero-icon svg{width:20px;height:20px;color:var(--cyan)}
+.lc-hero-title{font-size:15px;font-weight:500;letter-spacing:-.02em;margin-bottom:3px}
+.lc-hero-desc{font-size:12px;color:var(--text-muted);line-height:1.6;max-width:680px}
+.lc-empresa{margin-bottom:24px}
+.lc-empresa-hdr{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.lc-empresa-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;border:1px solid}
+.lc-eb-8{background:var(--brand-bg);color:var(--brand);border-color:var(--brand-bd)}
+.lc-eb-9{background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)}
+.lc-local-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;font-family:var(--mono);padding:3px 10px;border-radius:6px;background:var(--bg-card2);color:var(--text-muted);border:1px solid var(--border)}
+.lc-tipo-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.lc-tipo-badge{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;border:1px solid;flex-shrink:0}
+.lc-tb-venda{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)}
+.lc-tb-locacao{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-bd)}
+.lc-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:10px}
+.lc-table{width:100%;border-collapse:collapse}
+.lc-table th{padding:9px 14px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;background:var(--bg-card2);border-bottom:1px solid var(--border);border-right:1px solid var(--border);text-align:left;white-space:nowrap}
+.lc-table th:last-child{border-right:none}
+.lc-table td{padding:10px 14px;font-size:12px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);color:var(--text-muted);vertical-align:middle}
+.lc-table td:last-child{border-right:none}
+.lc-table tr:last-child td{border-bottom:none}
+.lc-table tr:hover td{background:rgba(255,255,255,.012)}
+.lc-loc-num{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text)}
+.lc-loc-alt{font-size:11px;color:var(--text-dim);margin-top:2px}
+.lc-rule-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:10px}
+.lc-rule-row{display:flex;align-items:flex-start;border-bottom:1px solid var(--border)}
+.lc-rule-row:last-child{border-bottom:none}
+.lc-rl{flex-shrink:0;padding:11px 14px;font-size:11px;font-weight:500;color:var(--text-muted);background:var(--bg-card2);border-right:1px solid var(--border);min-width:140px;display:flex;align-items:center}
+.lc-rv{padding:11px 14px;font-size:12px;color:var(--text-muted);line-height:1.55;flex:1}
+.lc-rv strong{color:var(--text);font-weight:500}
+.lc-alert{padding:11px 14px;border-radius:var(--r);font-size:12px;line-height:1.55;display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;border:1px solid}
+.lc-alert svg{width:14px;height:14px;flex-shrink:0;margin-top:1px}
+.lc-al-brand{background:var(--brand-bg);border-color:var(--brand-bd);color:var(--brand)}
+.lc-al-cyan{background:var(--cyan-bg);border-color:var(--cyan-bd);color:var(--cyan)}
+.lc-al-red{background:var(--red-bg);border-color:var(--red-bd);color:var(--red)}
+.lc-al-green{background:var(--green-bg);border-color:var(--green-bd);color:var(--green)}
+.lc-showroom-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;padding:2px 8px;border-radius:4px;background:var(--brand-bg);color:var(--brand);border:1px solid var(--brand-bd);font-family:var(--mono);font-weight:500}
+
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media(max-width:960px){
   .layout{grid-template-columns:1fr}
@@ -438,6 +478,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   <div class="nav-sec">
     <div class="nav-lbl">Consultas</div>
     <div class="ni" onclick="gp('duvidas',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M6 6c0-1.1.9-2 2-2s2 .9 2 2c0 1-1 1.5-2 2v1"/><circle cx="8" cy="12.5" r=".75" fill="currentColor" stroke="none"/></svg>Dúvidas / Operações</div>
+    <div class="ni" onclick="gp('locais',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="9" rx="1"/><path d="M5 4V3a1 1 0 0 1 2 0v1M9 4V3a1 1 0 0 1 2 0v1M5 9h6M5 11.5h4"/></svg>Locais Sankhya</div>
     <div class="ni" onclick="gp('difal',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M3 8h10M8 3v10"/></svg>DIFAL</div>
   </div>
   <div class="nav-sec">
@@ -457,12 +498,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   <div class="topbar">
     <div class="tb-left">
       <div class="tb-title" id="pg-title">Cronograma semanal</div>
-      <div class="tb-sub">Segunda a sexta · emissão imediata · SLA 24h úteis</div>
+      <div class="tb-sub">Segunda a sexta · emissão imediata · SLA 4h úteis</div>
     </div>
     <div class="tb-right">
       <span class="chip chip-red">Corte 16h30</span>
       <span class="chip chip-amber">100–150 docs/dia</span>
-      <span class="chip chip-green">SLA 24h úteis</span>
+      <span class="chip chip-green">SLA 4h úteis</span>
     </div>
   </div>
 
@@ -473,7 +514,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       <div class="kpi"><div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="4.5"/><path d="M4 6l1.5 1.5L8 4"/></svg>Modelo</div><div class="kpi-val kv-green">Contínuo</div><div class="kpi-sub">verificar + emitir na hora</div></div>
       <div class="kpi"><div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="10" height="8" rx="1"/><path d="M4 3V2M8 3V2M1 6h10"/></svg>Volume diário</div><div class="kpi-val kv-amber">100–150</div><div class="kpi-sub">documentos por dia</div></div>
       <div class="kpi"><div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 3.5V6l2 1.5"/></svg>Corte</div><div class="kpi-val kv-red">16h30</div><div class="kpi-sub">transportadora coleta</div></div>
-      <div class="kpi"><div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10V5l4-3 4 3v5"/></svg>SLA</div><div class="kpi-val kv-blue">24h</div><div class="kpi-sub">horas úteis por documento</div></div>
+      <div class="kpi"><div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10V5l4-3 4 3v5"/></svg>SLA</div><div class="kpi-val kv-blue">4h</div><div class="kpi-sub">horas úteis por documento</div></div>
     </div>
 
     <!-- ════════ PAGE: CRONOGRAMA ════════ -->
@@ -910,30 +951,94 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 
     <!-- ════════ PAGE: SLA ════════ -->
     <div id="page-sla" class="page">
+
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:18px 22px;margin-bottom:14px;display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap">
+        <div style="width:44px;height:44px;border-radius:11px;background:var(--red-bg);border:1px solid var(--red-bd);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4.5l3 2"/></svg>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:500;letter-spacing:-.02em;margin-bottom:4px">SLA de <span style="color:var(--red)">4 horas úteis</span> · Corte às <span style="color:var(--red)">16h30</span></div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.6;max-width:700px">Cada solicitação deve ser <strong style="color:var(--text)">emitida dentro de 4 horas úteis</strong> a partir da entrada. Horário útil: <strong style="color:var(--text)">08h00 às 16h30</strong>. O corte das 16h30 é inegociável — todos os documentos precisam estar emitidos para a coleta da transportadora.</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+        <div class="kpi" style="border-color:var(--green-bd)">
+          <div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M4 6l2 2 3-3"/></svg>Janela de emissão</div>
+          <div class="kpi-val kv-green">4h</div>
+          <div class="kpi-sub">horas úteis por documento</div>
+        </div>
+        <div class="kpi" style="border-color:var(--brand-bd)">
+          <div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>Entrada limite — mesmo dia</div>
+          <div class="kpi-val kv-brand">12h30</div>
+          <div class="kpi-sub">chegou até 12h30 → emite até 16h30</div>
+        </div>
+        <div class="kpi" style="border-color:var(--red-bd)">
+          <div class="kpi-lbl"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 3.5V6l2 1.5"/></svg>Corte diário</div>
+          <div class="kpi-val kv-red">16h30</div>
+          <div class="kpi-sub">transportadora coleta</div>
+        </div>
+      </div>
+
       <div class="card" style="margin-bottom:12px;padding:0;overflow:hidden">
-        <div class="card-title" style="padding:16px 20px 0"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 3.5V6l2 1.5"/></svg>Tabela de SLA por situação</div>
+        <div class="card-title" style="padding:14px 20px;border-bottom:1px solid var(--border);margin-bottom:0">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 3.5V6l2 1.5"/></svg>
+          Tabela de SLA · 4 horas úteis · Corte 16h30
+        </div>
         <table class="sla-tbl">
-          <thead><tr><th>Situação</th><th>Entrada até</th><th>Emitir até</th><th>Observação</th></tr></thead>
+          <thead><tr><th>Situação de entrada</th><th>Horário de entrada</th><th>Emitir até</th><th>Status</th><th>Observação</th></tr></thead>
           <tbody>
-            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--green)"></div>Chegou até 16h30 hoje</div></td><td>16h30</td><td>16h30 do dia seguinte</td><td style="color:var(--text-muted)">Dentro do SLA de 24h</td></tr>
-            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--brand)"></div>Chegou após 16h30</div></td><td>fim do dia</td><td>16h30 do 2º dia útil</td><td style="color:var(--text-muted)">Triagem na manhã seguinte</td></tr>
-            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--blue)"></div>Chegou 2ª às 08h00</div></td><td>08h00 seg</td><td>16h30 terça</td><td style="color:var(--text-muted)">Prioridade no início da semana</td></tr>
-            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--red)"></div>Chegou 6ª após 16h30</div></td><td>fim de sexta</td><td>16h30 segunda</td><td style="color:var(--red)">Atenção — não há sábado útil</td></tr>
-            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--text-dim)"></div>Feriado no meio</div></td><td>variável</td><td>+1 dia útil extra</td><td style="color:var(--text-muted)">Ajustar planejamento</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--green)"></div>Mesmo dia — confortável</div></td><td>Até 12h30</td><td>16h30 (mesmo dia)</td><td><span style="color:var(--green);font-weight:500">✓ 4h no mesmo dia</span></td><td style="color:var(--text-muted)">Situação ideal — emissão completa antes do corte</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--brand)"></div>Mesmo dia — atenção</div></td><td>12h31 às 16h30</td><td>Até 12h30 do dia seguinte</td><td><span style="color:var(--brand);font-weight:500">⚠ Transborda p/ dia seguinte</span></td><td style="color:var(--text-muted)">4h úteis iniciam às 08h00 do próximo dia → emitir antes das 12h30</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--red)"></div>Fora do horário útil</div></td><td>Após 16h30</td><td>12h00 do próximo dia útil</td><td><span style="color:var(--red);font-weight:500">⚑ Conta a partir de 08h00</span></td><td style="color:var(--text-muted)">Prazo inicia às 08h00 do próximo dia útil → 4h = 12h00</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--blue)"></div>Segunda-feira — início</div></td><td>08h00 segunda</td><td>12h00 segunda</td><td><span style="color:var(--blue);font-weight:500">✓ 4h no mesmo dia</span></td><td style="color:var(--text-muted)">Prioridade máxima: emitir na manhã de segunda antes do meio-dia</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--red)"></div>Sexta após 12h30</div></td><td>12h31 às 16h30 sexta</td><td>12h00 segunda-feira</td><td><span style="color:var(--red);font-weight:500">⚑ Atenção ao fim de semana</span></td><td style="color:var(--text-muted)">Sábado/domingo não são úteis — prazo reinicia segunda às 08h00</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--red)"></div>Sexta após 16h30</div></td><td>Após 16h30 sexta</td><td>12h00 segunda-feira</td><td><span style="color:var(--red);font-weight:500">⚑ Risco máximo</span></td><td style="color:var(--text-muted)">Registrado segunda 08h00 → emitir até 12h00 segunda</td></tr>
+            <tr><td><div class="sdotcell"><div class="sdot" style="background:var(--text-dim)"></div>Feriado no percurso</div></td><td>Qualquer</td><td>+4h no próximo dia útil</td><td><span style="color:var(--text-dim);font-weight:500">— recalcular</span></td><td style="color:var(--text-muted)">Feriado não conta nas 4h — pular o dia e calcular no próximo útil</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="card">
-        <div class="card-title">Princípios operacionais</div>
-        <div class="rule-list">
-          <div class="rule-item"><div class="rdot rd-g"></div><div class="rule-txt"><strong>Verificar e emitir na mesma etapa.</strong> Ao abrir a plataforma, o documento já é emitido — sem separar triagem de emissão.</div></div>
-          <div class="rule-item"><div class="rdot rd-g"></div><div class="rule-txt"><strong>Corte das 15h30 é safety net.</strong> Se o fluxo contínuo foi mantido, essa janela será curta — só para documentos tardios.</div></div>
-          <div class="rule-item"><div class="rdot rd-a"></div><div class="rule-txt"><strong>Envio manual após 16h30.</strong> Após a coleta da transportadora, o time realiza o envio dentro das plataformas.</div></div>
-          <div class="rule-item"><div class="rdot rd-b"></div><div class="rule-txt"><strong>Time não responde por boleto nem XML.</strong> Responsabilidade encerra na emissão do documento.</div></div>
+
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px;margin-bottom:14px">
+        <div class="card-title" style="margin-bottom:14px">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
+          Linha do tempo · dia útil 08h00 – 16h30
+        </div>
+        <div style="height:36px;background:var(--bg-card2);border-radius:7px;position:relative;overflow:hidden">
+          <div style="position:absolute;left:0;width:53%;height:100%;background:rgba(52,212,122,0.15);border-right:2px solid rgba(52,212,122,0.55);display:flex;align-items:center;padding-left:12px">
+            <span style="font-size:10px;color:var(--green);font-weight:500;white-space:nowrap">Entrada até 12h30 → emite no mesmo dia ✓</span>
+          </div>
+          <div style="position:absolute;left:53%;width:47%;height:100%;background:rgba(245,194,0,0.10);display:flex;align-items:center;padding-left:12px">
+            <span style="font-size:10px;color:var(--brand);font-weight:500;white-space:nowrap">12h30–16h30 → transborda para amanhã ⚠</span>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:5px;font-size:9.5px;font-family:var(--mono);color:var(--text-dim);padding:0 2px">
+          <span>08h00</span><span>09h00</span><span>10h00</span><span>11h00</span><span style="color:var(--brand);font-weight:500">12h30</span><span>14h00</span><span>15h00</span><span style="color:var(--red);font-weight:500">16h30</span>
+        </div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px">
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted)"><div style="width:10px;height:10px;border-radius:3px;background:rgba(52,212,122,0.35)"></div>Entrada segura — emite no mesmo dia</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted)"><div style="width:10px;height:10px;border-radius:3px;background:rgba(245,194,0,0.28)"></div>Zona de atenção — transborda para o dia seguinte</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted)"><div style="width:10px;height:10px;border-radius:3px;background:var(--red-bg);border:1px dashed var(--red-bd)"></div>Após 16h30 — próximo dia útil a partir de 08h00</div>
         </div>
       </div>
-    </div>
 
+      <div class="card">
+        <div class="card-title">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6l3 3 5-5"/></svg>
+          Princípios operacionais — SLA 4h úteis
+        </div>
+        <div class="rule-list">
+          <div class="rule-item"><div class="rdot rd-g"></div><div class="rule-txt"><strong>Verificar e emitir na mesma etapa.</strong> Ao abrir a plataforma o documento já é emitido — nunca separar triagem de emissão para não desperdiçar tempo do SLA de 4h.</div></div>
+          <div class="rule-item"><div class="rdot rd-g"></div><div class="rule-txt"><strong>Chegou até 12h30 → sai no mesmo dia.</strong> Limite crítico: entrada até 12h30 garante exatamente 4h úteis antes do corte de 16h30.</div></div>
+          <div class="rule-item"><div class="rdot rd-g"></div><div class="rule-txt"><strong>Chegou de 12h31 a 16h30 → emitir até 12h30 do dia seguinte.</strong> As 4h úteis reiniciam às 08h00 — prioridade máxima na chegada do dia seguinte.</div></div>
+          <div class="rule-item"><div class="rdot rd-a"></div><div class="rule-txt"><strong>Janela 15h30–16h30 é o safety net do dia.</strong> Reservada para varredura e emissão de urgências que chegaram na tarde e ainda podem sair antes do corte.</div></div>
+          <div class="rule-item"><div class="rdot rd-a"></div><div class="rule-txt"><strong>Após 16h30 nenhum documento novo é emitido no mesmo dia.</strong> Envio manual nas plataformas e TomTicket não urgente seguem após o corte sem impacto no SLA.</div></div>
+          <div class="rule-item"><div class="rdot rd-b"></div><div class="rule-txt"><strong>Feriados deslocam o prazo.</strong> Dias não úteis não contam nas 4h — recalcular sempre pulando feriados e fins de semana.</div></div>
+          <div class="rule-item"><div class="rdot rd-b"></div><div class="rule-txt"><strong>Time não responde por boleto nem XML.</strong> Responsabilidade encerra na emissão do documento dentro do SLA de 4h úteis.</div></div>
+        </div>
+      </div>
+
+    </div>
   </div><!-- /content -->
 
     <!-- ════════ PAGE: DÚVIDAS ════════ -->
@@ -1248,150 +1353,263 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       </div>
     </div>
 
-    <!-- ════════ PAGE: DIFAL ════════ -->
-    <div id="page-difal" class="page" style="padding:22px 28px">
+    <!-- ════════ PAGE: LOCAIS SANKHYA ════════ -->
+    <div id="page-locais" class="page" style="padding:22px 28px">
 
-      <div class="df-hero">
-        <div class="df-hero-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <div class="lc-hero">
+        <div class="lc-hero-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="16" height="12" rx="1.5"/><path d="M6 5V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1M7 11h6M7 14h4"/></svg>
+        </div>
         <div>
-          <div class="df-hero-title">DIFAL — Diferencial de Alíquota</div>
-          <div class="df-hero-desc">O DIFAL é o imposto cobrado nas operações interestaduais destinadas a consumidor final não contribuinte do ICMS (pessoa física ou empresa que não revende). Ele equaliza a diferença entre a alíquota interna do estado de destino e a alíquota interestadual praticada pelo estado de origem. Desde 2022, a EC 87/2015 exige recolhimento tanto para B2C quanto para B2B com destino a não-contribuinte.</div>
+          <div class="lc-hero-title">Locais de Faturamento · Sankhya</div>
+          <div class="lc-hero-desc">Define qual local utilizar ao emitir cada tipo de documento no Sankhya. O local impacta diretamente a série, o CFOP e os dados fiscais da NF-e. Selecione sempre o local correto antes de confirmar o faturamento. A empresa é a <strong style="color:var(--text)">Importação</strong> e o local padrão é o <strong style="color:var(--text)">803412</strong> para ambas as empresas (8 e 9).</div>
         </div>
       </div>
 
-      <!-- Alertas rápidos -->
-      <div class="df-alert df-alert-amber">
+      <div class="lc-alert lc-al-brand">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
-        <div><strong>Atenção:</strong> DIFAL incide quando a venda é interestadual (SP → outro estado) para consumidor final não contribuinte. Para contribuintes do ICMS (empresas que revendem), aplica-se regra diferente via ICMS normal.</div>
-      </div>
-      <div class="df-alert df-alert-blue" style="margin-bottom:16px">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3.5l2.5 1.5"/></svg>
-        <div><strong>Regra desde jan/2022:</strong> com a ADI 5469 e LC 190/2022, o DIFAL é exigido tanto para venda a pessoa física (B2C) quanto para venda a pessoa jurídica não contribuinte (B2B sem IE ativa).</div>
+        <div><strong>Regra do Showroom SP:</strong> se a mercadoria sair fisicamente do showroom de SP, o local deve ser alterado. Máquinas → <span class="lc-showroom-tag">1101108</span> · Suprimentos → <span class="lc-showroom-tag">1101109</span>. Para Manutenção, sempre utilizar o local padrão <span class="lc-showroom-tag">199300</span> independentemente da saída física.</div>
       </div>
 
-      <!-- QUANDO INCIDE -->
-      <div class="df-section">
-        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2v8M2 6h8"/></svg>Quando o DIFAL é cobrado do cliente</div>
-        <div class="df-table-wrap">
-          <table class="df-table">
-            <thead><tr><th>Situação</th><th>Origem</th><th>Destino</th><th>Destinatário</th><th>DIFAL incide?</th><th>Quem recolhe</th></tr></thead>
+      <!-- EMPRESA 8 -->
+      <div class="lc-empresa">
+        <div class="lc-empresa-hdr">
+          <span class="lc-empresa-badge lc-eb-8">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>
+            Empresa 8 · Importação
+          </span>
+          <span class="lc-local-tag">Local padrão: 803412</span>
+        </div>
+
+        <!-- Tipo: Venda -->
+        <div class="lc-tipo-row">
+          <span class="lc-tipo-badge lc-tb-venda">Tipo: Venda</span>
+          <span style="font-size:11px;color:var(--text-muted)">Operações 07 ou 17 — emissão de NF de venda</span>
+        </div>
+        <div class="lc-wrap" style="margin-bottom:14px">
+          <table class="lc-table">
+            <thead>
+              <tr>
+                <th style="width:120px">Produto</th>
+                <th>Local padrão</th>
+                <th>Local alternativo (saída física showroom SP)</th>
+                <th>Quando usar o alternativo</th>
+              </tr>
+            </thead>
             <tbody>
               <tr>
-                <td>Venda de suprimentos / máquinas a PF</td>
-                <td>SP (ou qualquer UF)</td>
-                <td>Outro estado</td>
-                <td>Pessoa física</td>
-                <td><span class="df-yn-sim">✓ Sim</span></td>
-                <td>Remetente (sua empresa)</td>
+                <td><strong style="color:var(--text)">Máquinas</strong></td>
+                <td><div class="lc-loc-num">199100</div></td>
+                <td><div class="lc-loc-num" style="color:var(--brand)">1101108</div></td>
+                <td style="font-size:11px">Quando o equipamento sair fisicamente do showroom de SP para entrega ao cliente</td>
               </tr>
               <tr>
-                <td>Venda a PJ sem IE (não contribuinte)</td>
-                <td>SP (ou qualquer UF)</td>
-                <td>Outro estado</td>
-                <td>CNPJ sem IE ativa</td>
-                <td><span class="df-yn-sim">✓ Sim</span></td>
-                <td>Remetente (sua empresa)</td>
+                <td><strong style="color:var(--text)">Suprimentos</strong></td>
+                <td><div class="lc-loc-num">199200</div></td>
+                <td><div class="lc-loc-num" style="color:var(--brand)">1101109</div></td>
+                <td style="font-size:11px">Quando o suprimento sair fisicamente do showroom de SP para entrega ao cliente</td>
               </tr>
               <tr>
-                <td>Venda a PJ contribuinte do ICMS</td>
-                <td>Qualquer UF</td>
-                <td>Outro estado</td>
-                <td>CNPJ com IE ativa</td>
-                <td><span class="df-yn-nao">✗ Não</span></td>
-                <td>N/A — ICMS normal</td>
-              </tr>
-              <tr>
-                <td>Venda dentro do mesmo estado</td>
-                <td>SP</td>
-                <td>SP</td>
-                <td>Qualquer</td>
-                <td><span class="df-yn-nao">✗ Não</span></td>
-                <td>N/A</td>
-              </tr>
-              <tr>
-                <td>Bonificação interestadual</td>
-                <td>Qualquer UF</td>
-                <td>Outro estado</td>
-                <td>Não contribuinte</td>
-                <td><span class="df-yn-dep">⚠ Depende</span></td>
-                <td>Verificar convênio do estado</td>
-              </tr>
-              <tr>
-                <td>Locação de equipamentos interestadual</td>
-                <td>Qualquer UF</td>
-                <td>Outro estado</td>
-                <td>Não contribuinte</td>
-                <td><span class="df-yn-dep">⚠ Depende</span></td>
-                <td>Verificar se locação é fato gerador no estado</td>
-              </tr>
-              <tr>
-                <td>Simples Nacional (remetente optante)</td>
-                <td>Qualquer UF</td>
-                <td>Outro estado</td>
-                <td>Não contribuinte</td>
-                <td><span class="df-yn-sim">✓ Sim</span></td>
-                <td>Remetente (alíquota reduzida)</td>
+                <td><strong style="color:var(--text)">Manutenção</strong></td>
+                <td><div class="lc-loc-num">199300</div><div class="lc-loc-alt">Sempre este</div></td>
+                <td style="color:var(--text-dim);font-size:11px">— não há alternativo</td>
+                <td style="font-size:11px">Usar sempre 199300 independente da saída física</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- FLUXO DE VERIFICAÇÃO -->
+      <!-- EMPRESA 9 -->
+      <div class="lc-empresa">
+        <div class="lc-empresa-hdr">
+          <span class="lc-empresa-badge lc-eb-9">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/></svg>
+            Empresa 9 · Importação
+          </span>
+          <span class="lc-local-tag">Local padrão: 803412</span>
+        </div>
+
+        <!-- Tipo: Locação -->
+        <div class="lc-tipo-row">
+          <span class="lc-tipo-badge lc-tb-locacao">Tipo: Locação</span>
+          <span style="font-size:11px;color:var(--text-muted)">Emissão de NF de locação de máquinas</span>
+        </div>
+        <div class="lc-wrap" style="margin-bottom:14px">
+          <table class="lc-table">
+            <thead>
+              <tr>
+                <th style="width:120px">Produto</th>
+                <th>Local padrão</th>
+                <th>Local alternativo (saída física showroom SP)</th>
+                <th>Quando usar o alternativo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--text)">Máquinas</strong></td>
+                <td><div class="lc-loc-num">199100</div></td>
+                <td><div class="lc-loc-num" style="color:var(--cyan)">1101108</div></td>
+                <td style="font-size:11px">Quando o equipamento locado sair fisicamente do showroom de SP</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Resumo de locais -->
+      <div class="df-section-title" style="margin-top:8px;margin-bottom:10px">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/><path d="M1.5 5h9M5 1.5v9"/></svg>
+        Resumo rápido de locais
+      </div>
+      <div class="lc-rule-card" style="margin-bottom:14px">
+        <div class="lc-rule-row">
+          <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--brand)">803412</div>
+          <div class="lc-rv">Local padrão de faturamento para <strong>ambas as empresas (8 e 9)</strong>. Empresa: Importação. Usado em todas as operações como referência base.</div>
+        </div>
+        <div class="lc-rule-row">
+          <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--blue)">199100</div>
+          <div class="lc-rv">Local de <strong>Máquinas</strong> — usado em vendas (Empresa 8) e locações (Empresa 9). Substituído por 1101108 quando a saída for pelo showroom SP.</div>
+        </div>
+        <div class="lc-rule-row">
+          <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--blue)">199200</div>
+          <div class="lc-rv">Local de <strong>Suprimentos</strong> — usado em vendas (Empresa 8). Substituído por 1101109 quando a saída for pelo showroom SP.</div>
+        </div>
+        <div class="lc-rule-row">
+          <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--blue)">199300</div>
+          <div class="lc-rv">Local de <strong>Manutenção</strong> — exclusivo para serviços de manutenção. <strong>Não possui alternativo</strong>: sempre usar este, independente da origem física.</div>
+        </div>
+        <div class="lc-rule-row">
+          <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--brand)">1101108</div>
+          <div class="lc-rv">Local alternativo de <strong>Máquinas — Showroom SP</strong>. Usar quando o equipamento sair fisicamente do endereço do showroom de São Paulo.</div>
+        </div>
+        <div class="lc-rule-row">
+          <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--brand)">1101109</div>
+          <div class="lc-rv">Local alternativo de <strong>Suprimentos — Showroom SP</strong>. Usar quando o suprimento sair fisicamente do endereço do showroom de São Paulo.</div>
+        </div>
+      </div>
+
+      <div class="lc-alert lc-al-red">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3M8 10.5v.5"/></svg>
+        <div><strong>Atenção:</strong> usar o local errado pode gerar NF com série, CFOP ou dados fiscais incorretos. Em caso de dúvida sobre qual local utilizar, consulte o responsável fiscal <strong>antes</strong> de emitir o documento.</div>
+      </div>
+
+    </div>
+
+    <!-- ════════ PAGE: DIFAL ════════ -->
+    <div id="page-difal" class="page" style="padding:22px 28px">
+
+      <!-- HERO -->
+      <div class="df-hero">
+        <div class="df-hero-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div>
+          <div class="df-hero-title">DIFAL — Diferencial de Alíquota · Origem MG · Produto Importado</div>
+          <div class="df-hero-desc">O DIFAL equaliza a diferença entre a alíquota interna do estado de destino e a alíquota interestadual praticada por Minas Gerais. Como nossos produtos são de <strong style="color:var(--text)">origem importada</strong>, aplicamos a alíquota de <strong style="color:var(--text)">4%</strong> nas operações interestaduais (Resolução Senado 13/2012 — ICMS importado). Isso eleva o DIFAL em praticamente todos os destinos.</div>
+        </div>
+      </div>
+
+      <!-- ALERTAS CRÍTICOS -->
+      <div class="df-alert df-alert-red">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
+        <div><strong>Produto importado = alíquota interestadual 4%</strong> — A Resolução do Senado 13/2012 estabelece que mercadorias importadas com conteúdo de importação superior a 40% têm alíquota interestadual de 4%, independentemente do estado de destino. Isso substitui as alíquotas tradicionais de 7% e 12%.</div>
+      </div>
+
+      <div class="df-alert df-alert-amber">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
+        <div><strong>Origem MG (Minas Gerais):</strong> todas as nossas emissões interestaduais partem de MG. Para destinos dentro do próprio estado de MG não há DIFAL. Para todos os outros estados, aplica-se a alíquota de 4% como interestadual de referência no cálculo.</div>
+      </div>
+
+      <div class="df-alert df-alert-blue" style="margin-bottom:16px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3.5l2.5 1.5"/></svg>
+        <div><strong>LC 190/2022 em vigor:</strong> desde jan/2022, o DIFAL é exigido para vendas a consumidor final não contribuinte (PF ou PJ sem IE ativa) em outro estado. 100% do diferencial vai para o estado de destino.</div>
+      </div>
+
+      <!-- QUANDO INCIDE -->
       <div class="df-section">
-        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>Fluxo de verificação antes de emitir</div>
+        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2v8M2 6h8"/></svg>Quando o DIFAL é cobrado — contexto Blips (MG · importado)</div>
+        <div class="df-table-wrap">
+          <table class="df-table">
+            <thead>
+              <tr><th>Situação</th><th>Origem</th><th>Destinatário</th><th>Alíq. interestadual</th><th>DIFAL incide?</th><th>Quem recolhe</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Venda de máquina/suprimento a PF</td><td>MG</td><td>Pessoa física outro estado</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td><span class="df-yn-sim">✓ Sim</span></td><td>Remetente (Blips)</td></tr>
+              <tr><td>Venda a PJ sem IE (não contribuinte)</td><td>MG</td><td>CNPJ sem IE ativa</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td><span class="df-yn-sim">✓ Sim</span></td><td>Remetente (Blips)</td></tr>
+              <tr><td>Venda a PJ contribuinte do ICMS</td><td>MG</td><td>CNPJ com IE ativa</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td><span class="df-yn-nao">✗ Não</span></td><td>N/A — ICMS interestadual 4%</td></tr>
+              <tr><td>Venda dentro de MG (intraestadual)</td><td>MG</td><td>Qualquer destinatário MG</td><td style="font-family:var(--mono);color:var(--text-muted)">—</td><td><span class="df-yn-nao">✗ Não</span></td><td>N/A — alíquota interna MG</td></tr>
+              <tr><td>Locação interestadual a não contribuinte</td><td>MG</td><td>PF ou PJ s/ IE outro estado</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td><span class="df-yn-dep">⚠ Verificar</span></td><td>Depende da legislação do estado destino</td></tr>
+              <tr><td>Intercompany (entre empresas do grupo)</td><td>MG</td><td>Empresa do grupo c/ IE</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td><span class="df-yn-nao">✗ Não</span></td><td>N/A — ambas contribuintes</td></tr>
+              <tr><td>Bonificação interestadual</td><td>MG</td><td>Não contribuinte</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td><span class="df-yn-dep">⚠ Verificar</span></td><td>Consultar convênio do estado destino</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FLUXO -->
+      <div class="df-section">
+        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>Fluxo de verificação antes de emitir (produto importado · origem MG)</div>
         <div class="df-flow">
-          <div class="df-step-box"><strong>1. Operação</strong>É interestadual?</div>
+          <div class="df-step-box"><strong>1. UF destino</strong>≠ MG?</div>
           <div class="df-arrow">→</div>
-          <div class="df-step-box highlight"><strong>2. Destinatário</strong>PF ou PJ s/ IE?</div>
+          <div class="df-step-box highlight"><strong>2. Destinatário</strong>PF ou s/ IE?</div>
           <div class="df-arrow">→</div>
-          <div class="df-step-box highlight"><strong>3. Mercadoria</strong>Sujeita a ICMS?</div>
+          <div class="df-step-box highlight"><strong>3. Produto</strong>Importado &gt; 40%?</div>
           <div class="df-arrow">→</div>
-          <div class="df-step-box"><strong>4. Alíquotas</strong>Interna destino vs interestadual</div>
+          <div class="df-step-box"><strong>4. Alíq. inter.</strong>Fixar 4% (RS-13)</div>
           <div class="df-arrow">→</div>
-          <div class="df-step-box"><strong>5. Partilha</strong>Origem 40% · Destino 60%</div>
+          <div class="df-step-box"><strong>5. DIFAL</strong>Alíq. interna destino − 4%</div>
           <div class="df-arrow">→</div>
           <div class="df-step-box done"><strong>6. Emitir NF</strong>Com DIFAL destacado</div>
         </div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:8px;padding-left:4px">Se qualquer resposta do passo 1 ou 2 for "não" → DIFAL não incide. Prosseguir normalmente.</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:8px;padding-left:4px">Se destino = MG → sem DIFAL. Se destinatário é contribuinte (IE ativa) → sem DIFAL, apenas ICMS interestadual 4%.</div>
       </div>
 
-      <!-- FÓRMULAS -->
+      <!-- FÓRMULAS COM MG + IMPORTADO -->
       <div class="df-formula">
-        <div class="df-formula-title">Fórmulas de cálculo — DIFAL</div>
+        <div class="df-formula-title">Fórmulas de cálculo — DIFAL · Origem MG · Produto Importado (alíq. 4%)</div>
         <div class="df-formula-row">
           <div class="df-formula-label">Base de cálculo</div>
           <div class="df-formula-eq">BC = Valor mercadoria + Frete + Seguro + Outras despesas − Descontos</div>
         </div>
         <div class="df-formula-row">
           <div class="df-formula-label">ICMS interestadual</div>
-          <div class="df-formula-eq">ICMS origem = BC × Alíquota interestadual (7% ou 12%)</div>
+          <div class="df-formula-eq">ICMS origem (MG) = BC × 4%  ← fixo para produtos importados (Res. Senado 13/2012)</div>
         </div>
         <div class="df-formula-row">
           <div class="df-formula-label">DIFAL total</div>
-          <div class="df-formula-eq">DIFAL = BC × (Alíq. interna destino − Alíq. interestadual)</div>
+          <div class="df-formula-eq">DIFAL = BC × (Alíq. interna UF destino − 4%)</div>
         </div>
         <div class="df-formula-row">
-          <div class="df-formula-label">Partilha — parte destino</div>
-          <div class="df-formula-eq">UF destino = DIFAL × 60% (2022 em diante = 100% UF destino)</div>
+          <div class="df-formula-label">Partilha (desde 2019)</div>
+          <div class="df-formula-eq">100% do DIFAL → UF destino · 0% para MG (origem)</div>
         </div>
         <div class="df-formula-row">
-          <div class="df-formula-label">Partilha — parte origem</div>
-          <div class="df-formula-eq">UF origem = DIFAL × 40% (a partir de 2019 = 0% UF origem)</div>
+          <div class="df-formula-label">Exemplo prático</div>
+          <div class="df-formula-eq">BC R$ 10.000 → SP (18%): DIFAL = 10.000 × (18% − 4%) = R$ 1.400,00 para SP</div>
         </div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:10px">ℹ A partir de 2019 a partilha é 100% para o estado de destino. A partilha progressiva era válida de 2016 a 2018.</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:10px">ℹ Produtos com conteúdo de importação ≤ 40% podem usar a alíquota padrão (12% Sul/Sudeste, 7% demais). Confirme o conteúdo de importação do produto antes de aplicar 4%.</div>
       </div>
 
-      <!-- ALÍQUOTAS INTERESTADUAIS -->
+      <!-- TABELA DE ALÍQUOTAS COM MG ORIGEM -->
       <div class="df-section">
-        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/><path d="M1.5 5h9M5 1.5v9"/></svg>Alíquotas interestaduais de ICMS (origem SP)</div>
+        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/><path d="M1.5 5h9M5 1.5v9"/></svg>Alíquotas e DIFAL estimado · Origem MG · Produto Importado (4%)</div>
         <div class="df-table-wrap">
           <table class="df-table">
-            <thead><tr><th>Estado de destino</th><th>Alíquota interestadual</th><th>Exemplo alíq. interna</th><th>DIFAL estimado</th></tr></thead>
+            <thead>
+              <tr><th>Estado de destino</th><th>Alíq. interna destino</th><th>Alíq. interestadual (importado)</th><th>DIFAL = diferença</th><th>Exemplo (BC R$ 10.000)</th></tr>
+            </thead>
             <tbody>
-              <tr><td>Sul e Sudeste (exceto ES)</td><td style="font-family:var(--mono);font-size:12px;color:var(--text)">12%</td><td>18% (SP→MG, PR, RS, SC)</td><td style="color:var(--brand)">6%</td></tr>
-              <tr><td>Norte, Nordeste, CO e ES</td><td style="font-family:var(--mono);font-size:12px;color:var(--text)">7%</td><td>17–20% (varia por estado)</td><td style="color:var(--brand)">10–13%</td></tr>
-              <tr><td>Simples Nacional → qualquer</td><td style="font-family:var(--mono);font-size:12px;color:var(--text)">Alíquota efetiva SN</td><td>Conforme faixa SN</td><td style="color:var(--text-muted)">Calculado sobre alíq. efetiva</td></tr>
+              <tr><td><strong style="color:var(--text)">Minas Gerais (MG)</strong></td><td>18%</td><td style="font-family:var(--mono);color:var(--text-muted)">—</td><td><span class="df-yn-nao">Sem DIFAL</span></td><td style="color:var(--text-muted)">Operação intraestadual</td></tr>
+              <tr><td>São Paulo (SP)</td><td>18%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">14%</td><td style="font-family:var(--mono)">R$ 1.400,00</td></tr>
+              <tr><td>Rio de Janeiro (RJ)</td><td>20%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">16%</td><td style="font-family:var(--mono)">R$ 1.600,00</td></tr>
+              <tr><td>Paraná (PR)</td><td>19%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">15%</td><td style="font-family:var(--mono)">R$ 1.500,00</td></tr>
+              <tr><td>Rio Grande do Sul (RS)</td><td>17%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">13%</td><td style="font-family:var(--mono)">R$ 1.300,00</td></tr>
+              <tr><td>Santa Catarina (SC)</td><td>17%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">13%</td><td style="font-family:var(--mono)">R$ 1.300,00</td></tr>
+              <tr><td>Bahia (BA)</td><td>19%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">15%</td><td style="font-family:var(--mono)">R$ 1.500,00</td></tr>
+              <tr><td>Goiás (GO)</td><td>17%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">13%</td><td style="font-family:var(--mono)">R$ 1.300,00</td></tr>
+              <tr><td>Pernambuco (PE)</td><td>20,5%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">16,5%</td><td style="font-family:var(--mono)">R$ 1.650,00</td></tr>
+              <tr><td>Mato Grosso (MT)</td><td>17%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">13%</td><td style="font-family:var(--mono)">R$ 1.300,00</td></tr>
+              <tr><td>Demais estados Norte/Nordeste/CO</td><td>17–20%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">13–16%</td><td style="font-family:var(--mono)">R$ 1.300–1.600</td></tr>
             </tbody>
           </table>
         </div>
@@ -1399,54 +1617,51 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 
       <!-- REGRAS POR OPERAÇÃO -->
       <div class="df-section">
-        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 4v2.5l2 1"/></svg>Regras por tipo de operação do setor</div>
+        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 4v2.5l2 1"/></svg>Regras por tipo de operação — Blips (MG · importado)</div>
         <div class="df-rule-card">
           <div class="df-rule-row">
-            <div class="df-rule-lbl">Suprimentos (Envio Ecom)</div>
-            <div class="df-rule-val"><strong>Verificar sempre:</strong> venda a PF ou PJ sem IE interestadual via e-commerce. Canal digital tem alta incidência de DIFAL — especialmente para estados do Norte e Nordeste.</div>
-          </div>
-          <div class="df-rule-row">
-            <div class="df-rule-lbl">Suprimentos (Envio de SP)</div>
-            <div class="df-rule-val"><strong>Verificar:</strong> se o destinatário é consumidor final não contribuinte em outro estado. CD de SP geralmente despacha para múltiplos estados — alta probabilidade de incidência.</div>
+            <div class="df-rule-lbl">Suprimentos (Ecom / SP)</div>
+            <div class="df-rule-val"><strong>DIFAL quase sempre incide.</strong> Produto importado, saída de MG, destino em outro estado. Se destinatário for PF ou PJ sem IE: calcular DIFAL = alíq. interna destino − 4%. Especialmente crítico para RJ, PE e BA (alíquotas internas mais altas).</div>
           </div>
           <div class="df-rule-row">
             <div class="df-rule-lbl">Remessa de Máquinas (Finza/Ideal)</div>
-            <div class="df-rule-val"><strong>Geralmente não incide</strong> se o destinatário é pessoa jurídica com IE ativa (contribuinte do ICMS). Verificar se o cliente possui IE ativa no estado de destino.</div>
+            <div class="df-rule-val"><strong>Verificar IE do cliente.</strong> Se PJ com IE ativa → sem DIFAL, aplica-se ICMS interestadual 4%. Se PJ sem IE ou PF → DIFAL incide. Alta diferença por conta do 4% de importado vs. alíquota interna.</div>
           </div>
           <div class="df-rule-row">
             <div class="df-rule-lbl">Locação Interestadual</div>
-            <div class="df-rule-val"><strong>Verificar por estado:</strong> alguns estados não consideram locação como fato gerador do ICMS. Consultar legislação do estado de destino antes de aplicar DIFAL.</div>
+            <div class="df-rule-val"><strong>Verificar estado de destino.</strong> Alguns estados não consideram locação como fato gerador do ICMS. Para os que consideram: alíquota interestadual 4% (importado), calcular diferencial normalmente.</div>
+          </div>
+          <div class="df-rule-row">
+            <div class="df-rule-lbl">Dentro de MG</div>
+            <div class="df-rule-val"><strong>Sem DIFAL.</strong> Operação intraestadual — aplica-se apenas a alíquota interna de MG (18%). Não há diferencial de alíquota a recolher.</div>
           </div>
           <div class="df-rule-row">
             <div class="df-rule-lbl">Intercompany</div>
-            <div class="df-rule-val"><strong>Não incide DIFAL:</strong> operações entre contribuintes do ICMS (ambas as empresas têm IE ativa). Aplica-se ICMS interestadual normal, sem diferencial.</div>
-          </div>
-          <div class="df-rule-row">
-            <div class="df-rule-lbl">Bonificações Interestaduais</div>
-            <div class="df-rule-val"><strong>Verificar convênio:</strong> bonificações podem ter tratamento diferenciado por convênio ICMS. Consultar o fiscal antes de emitir a NF com ou sem DIFAL.</div>
+            <div class="df-rule-val"><strong>Sem DIFAL.</strong> Ambas as entidades são contribuintes do ICMS com IE ativa. Aplica-se ICMS interestadual 4% (importado) normalmente.</div>
           </div>
         </div>
       </div>
 
       <!-- CHECKLIST -->
       <div class="df-section">
-        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6l3 3 5-5"/></svg>Checklist prático — antes de emitir NF com DIFAL</div>
+        <div class="df-section-title"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6l3 3 5-5"/></svg>Checklist prático — emissão com DIFAL (origem MG · produto importado)</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           <div class="df-rule-card">
-            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Confirmar se a operação é interestadual (UF origem ≠ UF destino)</div></div>
-            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Verificar IE do destinatário — sem IE ativa = não contribuinte = DIFAL</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Destino é fora de MG? (se MG → sem DIFAL)</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Destinatário é PF ou PJ sem IE ativa? (se tem IE → sem DIFAL)</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Produto com conteúdo de importação &gt; 40%? → alíquota interestadual = 4%</div></div>
             <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Consultar alíquota interna do estado de destino</div></div>
-            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Calcular a diferença (alíq. interna − alíq. interestadual)</div></div>
           </div>
           <div class="df-rule-card">
-            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Verificar se há convênio de redução ou isenção no estado destino</div></div>
-            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Inserir o DIFAL no campo correto da NF-e (tag vICMSUFDest)</div></div>
-            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Gerar GNRE ou DAR para recolhimento antes ou na emissão da NF</div></div>
-            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--amber)">⚠</div><div class="df-rule-val">Dúvida? Acionar o setor fiscal antes de emitir — não emitir com erro</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Calcular: DIFAL = BC × (alíq. interna destino − 4%)</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Inserir DIFAL no campo correto da NF-e (tag vICMSUFDest)</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--green)">✓</div><div class="df-rule-val">Gerar GNRE ou DAR para o estado de destino antes da emissão</div></div>
+            <div class="df-rule-row"><div class="df-rule-lbl" style="width:28px;color:var(--brand)">⚠</div><div class="df-rule-val">Dúvida? Acionar fiscal antes de emitir — não emitir com erro</div></div>
           </div>
         </div>
       </div>
 
+    </div>
     </div>
 
 </main>
@@ -1461,6 +1676,7 @@ const titles={
   volume:'Volume e capacidade',
   sla:'Controle de SLA',
   duvidas:'Dúvidas · Guia de Operações',
+  locais:'Locais de Faturamento · Sankhya',
   difal:'DIFAL · Guia de Cálculo e Cobrança'
 };
 
