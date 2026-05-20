@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard de Faturamento · Blips</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA2NCA2NCc+CiAgPGNpcmNsZSBjeD0nMzInIGN5PSczMicgcj0nMzInIGZpbGw9JyNGNUMyMDAnLz4KICA8dGV4dCB4PScxOCcgeT0nNDcnIGZvbnQtZmFtaWx5PSdBcmlhbCxzYW5zLXNlcmlmJyBmb250LXdlaWdodD0nOTAwJyBmb250LXNpemU9JzQ0JyBmaWxsPSd3aGl0ZScgbGV0dGVyLXNwYWNpbmc9Jy0yJz5GPC90ZXh0Pgo8L3N2Zz4=">
+<link rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA2NCA2NCc+CiAgPGNpcmNsZSBjeD0nMzInIGN5PSczMicgcj0nMzInIGZpbGw9JyNGNUMyMDAnLz4KICA8dGV4dCB4PScxOCcgeT0nNDcnIGZvbnQtZmFtaWx5PSdBcmlhbCxzYW5zLXNlcmlmJyBmb250LXdlaWdodD0nOTAwJyBmb250LXNpemU9JzQ0JyBmaWxsPSd3aGl0ZScgbGV0dGVyLXNwYWNpbmc9Jy0yJz5GPC90ZXh0Pgo8L3N2Zz4=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -126,7 +128,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .chip-green{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
 
 /* ── CONTENT & KPIs ────────────────────────────────────────── */
-.content{padding:22px 28px;flex:1}
+.content{padding:0;flex:1;display:flex;flex-direction:column;min-height:0}
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
 .kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:14px 16px;transition:border-color .15s}
 .kpi:hover{border-color:var(--border-bright)}
@@ -137,8 +139,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .kv-brand{color:var(--brand)} .kv-green{color:var(--green)} .kv-red{color:var(--red)} .kv-blue{color:var(--blue)}
 
 /* ── PAGES ─────────────────────────────────────────────────── */
-.page{display:none;animation:fadeIn .22s ease}
-.page.on{display:block}
+.page{display:none !important;padding:22px 28px;animation:fadeIn .22s ease}
+.page.on{display:block !important}
+#page-ferramentas.on{display:flex !important;flex-direction:column}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
 /* ── CARDS ─────────────────────────────────────────────────── */
@@ -429,13 +432,44 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .lc-al-green{background:var(--green-bg);border-color:var(--green-bd);color:var(--green)}
 .lc-showroom-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;padding:2px 8px;border-radius:4px;background:var(--brand-bg);color:var(--brand);border:1px solid var(--brand-bd);font-family:var(--mono);font-weight:500}
 
+/* ── FERRAMENTAS ─────────────────────────────────────────────── */
+.ft-wrap{max-width:860px}
+.ft-tool-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:16px}
+.ft-tool-header{display:flex;align-items:center;gap:14px;padding:18px 22px;border-bottom:1px solid var(--border)}
+.ft-tool-icon{width:42px;height:42px;border-radius:10px;background:var(--brand-bg);border:1px solid var(--brand-bd);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ft-tool-icon svg{width:20px;height:20px;color:var(--brand)}
+.ft-tool-name{font-size:14px;font-weight:500;color:var(--text);letter-spacing:-.01em}
+.ft-tool-desc{font-size:11px;color:var(--text-muted);margin-top:2px}
+.ft-tool-body{padding:24px 28px;background:var(--bg)}
+/* Calculadora inner styles — scoped inside .ft-calc */
+.ft-calc{font-family:'Inter',var(--font);max-width:780px;margin:0 auto}
+.ft-calc .fc-title{text-align:center;color:var(--brand);font-weight:700;font-size:18px;letter-spacing:.5px;margin-bottom:24px}
+.ft-calc .fc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ft-calc .fc-group{display:flex;flex-direction:column;gap:6px}
+.ft-calc .fc-group-full{display:flex;flex-direction:column;gap:6px;grid-column:1/-1}
+.ft-calc label{font-size:11px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.06em}
+.ft-calc input,.ft-calc select{width:100%;padding:11px 13px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;transition:.2s;outline:none}
+.ft-calc input:focus,.ft-calc select:focus{border-color:var(--brand-bd);box-shadow:0 0 0 3px var(--brand-glow)}
+.ft-calc input::placeholder{color:var(--text-dim)}
+.ft-calc .fc-btn{margin-top:20px;width:100%;padding:13px;background:var(--brand);color:#111;font-weight:700;font-size:15px;border:none;border-radius:10px;cursor:pointer;font-family:inherit;transition:.25s;letter-spacing:.02em}
+.ft-calc .fc-btn:hover{background:#ffd633;transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,194,0,0.25)}
+.ft-calc .fc-btn:active{transform:none}
+.ft-result{margin-top:22px;padding:20px 22px;border-radius:10px;background:var(--bg-card2);border:1px solid var(--brand-bd);line-height:1.9;font-size:13px;display:none}
+.ft-result b{color:var(--brand)}
+.ft-result hr{border:0;border-top:1px solid var(--border);margin:12px 0}
+.ft-result .fc-ok{color:var(--green);font-weight:700;font-size:14px}
+.ft-result .fc-total{font-size:15px;font-weight:600;color:var(--text)}
+.ft-result .fc-tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;margin-left:4px;vertical-align:middle}
+.ft-result .fc-tag-red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.ft-result .fc-tag-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media(max-width:960px){
   .layout{grid-template-columns:1fr}
   .sidebar{display:none}
   .kpi-row{grid-template-columns:repeat(2,1fr)}
   .two-col{grid-template-columns:1fr}
-  .content{padding:16px}
+  .content{padding:0}
   .topbar{padding:13px 16px}
 }
 @media(max-width:640px){
@@ -480,6 +514,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <div class="ni" onclick="gp('duvidas',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M6 6c0-1.1.9-2 2-2s2 .9 2 2c0 1-1 1.5-2 2v1"/><circle cx="8" cy="12.5" r=".75" fill="currentColor" stroke="none"/></svg>Dúvidas / Operações</div>
     <div class="ni" onclick="gp('locais',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="12" height="9" rx="1"/><path d="M5 4V3a1 1 0 0 1 2 0v1M9 4V3a1 1 0 0 1 2 0v1M5 9h6M5 11.5h4"/></svg>Locais Sankhya</div>
     <div class="ni" onclick="gp('difal',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M3 8h10M8 3v10"/></svg>DIFAL</div>
+  </div>
+  <div class="nav-sec">
+    <div class="nav-lbl">Ferramentas</div>
+    <div class="ni" onclick="gp('ferramentas',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 5h2M9 5h2M5 8h2M9 8h2M5 11h2M9 11h2"/></svg>Calculadora DIFAL</div>
+    <div class="ni" onclick="gp('carta',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M6 6h4M6 8.5h4M6 11h2"/><path d="M11 1l2 2-6 6H5v-2l6-6z"/></svg>Carta de Correção</div>
   </div>
   <div class="nav-sec">
     <div class="nav-lbl">Plataformas</div>
@@ -1039,10 +1078,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       </div>
 
     </div>
-  </div><!-- /content -->
+
 
     <!-- ════════ PAGE: DÚVIDAS ════════ -->
-    <div id="page-duvidas" class="page" style="padding:22px 28px">
+    <div id="page-duvidas" class="page">
 
       <div class="dv-search-wrap">
         <div class="dv-search-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="4.5"/><path d="M10.5 10.5l3 3"/></svg></div>
@@ -1354,7 +1393,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     </div>
 
     <!-- ════════ PAGE: LOCAIS SANKHYA ════════ -->
-    <div id="page-locais" class="page" style="padding:22px 28px">
+    <div id="page-locais" class="page">
 
       <div class="lc-hero">
         <div class="lc-hero-icon">
@@ -1497,7 +1536,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     </div>
 
     <!-- ════════ PAGE: DIFAL ════════ -->
-    <div id="page-difal" class="page" style="padding:22px 28px">
+    <div id="page-difal" class="page">
 
       <!-- HERO -->
       <div class="df-hero">
@@ -1663,7 +1702,160 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 
     </div>
     </div>
+    <!-- ════════ PAGE: FERRAMENTAS ════════ -->
+    <div id="page-ferramentas" class="page" style="padding:0">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;background:var(--bg);min-height:0">
 
+        <div style="text-align:center;margin-bottom:28px">
+          <div style="width:52px;height:52px;border-radius:14px;background:var(--brand-bg);border:1px solid var(--brand-bd);display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h2M14 8h2M8 12h2M14 12h2M8 16h2M14 16h2"/></svg>
+          </div>
+          <div style="font-size:20px;font-weight:500;color:var(--text);letter-spacing:-.02em;margin-bottom:6px">Calculadora DIFAL</div>
+          <div style="font-size:12px;color:var(--text-muted);max-width:420px;line-height:1.6;margin:0 auto">Origem <strong style="color:var(--text)">Minas Gerais</strong> · Produto <strong style="color:var(--text)">Importado</strong> · Base por dentro · LC 190/2022</div>
+        </div>
+
+        <div style="width:100%;max-width:500px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.4)">
+
+          <div style="padding:24px 24px 0">
+
+            <div style="margin-bottom:16px">
+              <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Valor da Nota (R$)</div>
+              <input type="number" id="fc-valor" step="0.01" min="0" placeholder="0,00"
+                style="width:100%;padding:12px 14px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:16px;font-family:var(--mono);outline:none;box-sizing:border-box"
+                onfocus="this.style.borderColor='rgba(245,194,0,.5)';this.style.boxShadow='0 0 0 3px rgba(245,194,0,.06)'"
+                onblur="this.style.borderColor='rgba(255,255,255,.07)';this.style.boxShadow='none'">
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+              <div>
+                <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Origem do produto</div>
+                <select id="fc-tipo"
+                  style="width:100%;padding:11px 12px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:var(--font);outline:none;cursor:pointer;box-sizing:border-box"
+                  onfocus="this.style.borderColor='rgba(245,194,0,.5)'"
+                  onblur="this.style.borderColor='rgba(255,255,255,.07)'">
+                  <option value="importado" selected>Importado — 4% (Res. 13)</option>
+                  <option value="nacional">Nacional — 12%</option>
+                </select>
+              </div>
+              <div>
+                <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Estado de destino</div>
+                <select id="fc-uf"
+                  style="width:100%;padding:11px 12px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:var(--font);outline:none;cursor:pointer;box-sizing:border-box"
+                  onfocus="this.style.borderColor='rgba(245,194,0,.5)'"
+                  onblur="this.style.borderColor='rgba(255,255,255,.07)'">
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <div style="padding:0 24px 24px">
+            <button onclick="fcCalc()"
+              style="width:100%;padding:13px;background:#F5C200;color:#111214;font-weight:700;font-size:15px;border:none;border-radius:10px;cursor:pointer;font-family:var(--font);letter-spacing:.02em;transition:.2s"
+              onmouseover="this.style.background='#ffd633';this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(245,194,0,0.28)'"
+              onmouseout="this.style.background='#F5C200';this.style.transform='none';this.style.boxShadow='none'">
+              ⚡ Calcular DIFAL
+            </button>
+          </div>
+
+          <div id="fc-resultado" style="display:none;margin:0 24px 24px;padding:16px 18px;background:var(--bg-card2);border:1px solid rgba(245,194,0,.3);border-radius:10px;font-size:12px;line-height:2;color:var(--text-muted)">
+          </div>
+
+        </div>
+
+        <div style="margin-top:14px;max-width:500px;width:100%;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);font-size:11px;color:var(--text-muted);line-height:1.6;text-align:center">
+          FCP calculado a 2% · Base por dentro · Origem sempre MG ·
+          <strong style="color:#F5C200">Dúvidas? Acionar o fiscal antes de emitir.</strong>
+        </div>
+
+      </div>
+    </div>
+    <!-- ════════ PAGE: CARTA DE CORREÇÃO ════════ -->
+    <div id="page-carta" class="page">
+
+      <!-- Hero -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:18px 22px;margin-bottom:16px;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+        <div style="width:44px;height:44px;border-radius:11px;background:var(--purple-bg);border:1px solid var(--purple-bd);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--purple)" stroke-width="1.5"><path d="M5 4h10v12H5z"/><path d="M8 7h4M8 10h4M8 13h2"/><path d="M13 2l3 3-5 5H8v-3l5-5z"/></svg>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:500;letter-spacing:-.02em;margin-bottom:3px">Carta de Correção Eletrônica — CC-e</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.6;max-width:700px">A CC-e é um evento fiscal vinculado à NF-e que permite corrigir informações na nota já autorizada <strong style="color:var(--text)">sem cancelá-la</strong>. Possui restrições rígidas quanto ao que pode e ao que não pode ser corrigido. Emitir CC-e incorretamente pode gerar autuação fiscal.</div>
+        </div>
+      </div>
+
+      <!-- Alertas -->
+      <div style="padding:12px 14px;border-radius:var(--r);font-size:12px;line-height:1.6;display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;border:1px solid var(--red-bd);background:var(--red-bg)">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="var(--red)" stroke-width="1.5" style="flex-shrink:0;margin-top:1px"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
+        <div style="color:var(--red)"><strong>Atenção:</strong> a CC-e <strong>não substitui</strong> o cancelamento da NF-e. Se o erro for impeditivo (valor errado, destinatário errado, CFOP errado), o correto é cancelar a nota dentro do prazo legal (até 24h após autorização) e emitir uma nova. CC-e é apenas para correções secundárias.</div>
+      </div>
+      <div style="padding:12px 14px;border-radius:var(--r);font-size:12px;line-height:1.6;display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;border:1px solid var(--brand-bd);background:var(--brand-bg)">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="var(--brand)" stroke-width="1.5" style="flex-shrink:0;margin-top:1px"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
+        <div style="color:var(--brand)"><strong>Prazo:</strong> a CC-e pode ser emitida em até <strong>720 horas (30 dias)</strong> após a autorização da NF-e. Após esse prazo, não é mais possível. Limite de <strong>20 CC-e</strong> por NF-e.</div>
+      </div>
+
+      <!-- O QUE PODE / NÃO PODE -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+
+        <!-- PODE -->
+        <div style="background:var(--bg-card);border:1px solid var(--green-bd);border-radius:var(--rl);overflow:hidden">
+          <div style="padding:12px 16px;background:var(--green-bg);border-bottom:1px solid var(--green-bd);display:flex;align-items:center;gap:8px">
+            <svg width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M2 6l3 3 5-5"/></svg>
+            <span style="font-size:11px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.07em">O que PODE ser corrigido</span>
+          </div>
+          <div id="cc-pode-list" style="display:flex;flex-direction:column"></div>
+        </div>
+
+        <!-- NÃO PODE -->
+        <div style="background:var(--bg-card);border:1px solid var(--red-bd);border-radius:var(--rl);overflow:hidden">
+          <div style="padding:12px 16px;background:var(--red-bg);border-bottom:1px solid var(--red-bd);display:flex;align-items:center;gap:8px">
+            <svg width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="var(--red)" stroke-width="1.5"><path d="M3 3l6 6M9 3l-6 6"/></svg>
+            <span style="font-size:11px;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:.07em">O que NÃO PODE ser corrigido</span>
+          </div>
+          <div id="cc-naopode-list" style="display:flex;flex-direction:column"></div>
+        </div>
+
+      </div>
+
+      <!-- PASSO A PASSO -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px;margin-bottom:14px">
+        <div class="card-title" style="margin-bottom:14px">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
+          Passo a passo — emitir uma CC-e
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0" id="cc-steps"></div>
+      </div>
+
+      <!-- CHECKLIST -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden">
+          <div style="padding:11px 16px;background:var(--bg-card2);border-bottom:1px solid var(--border);font-size:10px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em">Antes de emitir — verificar</div>
+          <div id="cc-check-antes" style="display:flex;flex-direction:column"></div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden">
+          <div style="padding:11px 16px;background:var(--bg-card2);border-bottom:1px solid var(--border);font-size:10px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em">Casos que exigem cancelamento</div>
+          <div id="cc-cancelar" style="display:flex;flex-direction:column"></div>
+        </div>
+      </div>
+
+      <!-- EXEMPLOS PRÁTICOS -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden">
+        <div style="padding:12px 16px;background:var(--bg-card2);border-bottom:1px solid var(--border);font-size:10px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em">Exemplos práticos — CC-e ou cancelamento?</div>
+        <table style="width:100%;border-collapse:collapse" id="cc-exemplos-tbl">
+          <thead>
+            <tr style="background:var(--bg-card2)">
+              <th style="padding:8px 14px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);border-right:1px solid var(--border);text-align:left">Situação</th>
+              <th style="padding:8px 14px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);border-right:1px solid var(--border);text-align:left">Ação correta</th>
+              <th style="padding:8px 14px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);text-align:left">Motivo</th>
+            </tr>
+          </thead>
+          <tbody id="cc-exemplos-body"></tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div><!-- /content -->
 </main>
 </div>
 
@@ -1677,7 +1869,9 @@ const titles={
   sla:'Controle de SLA',
   duvidas:'Dúvidas · Guia de Operações',
   locais:'Locais de Faturamento · Sankhya',
-  difal:'DIFAL · Guia de Cálculo e Cobrança'
+  difal:'DIFAL · Guia de Cálculo e Cobrança',
+  ferramentas:'Ferramentas · Calculadora DIFAL',
+  carta:'Carta de Correção · Regras e Procedimentos'
 };
 
 function gp(id, el) {
@@ -1688,9 +1882,6 @@ function gp(id, el) {
   if (el && !el.classList.contains('ni-static')) el.classList.add('on');
   const t = document.getElementById('pg-title');
   if (t) t.textContent = titles[id] || id;
-  // Scroll content area back to top on page change
-  const content = document.querySelector('.content');
-  if (content) content.scrollTop = 0;
   window.scrollTo(0, 0);
 }
 
@@ -1730,6 +1921,215 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+// ── CALCULADORA DIFAL ─────────────────────────────────────────
+const fcEstados = {
+  "AC":{nome:"Acre",         aliq:19,  fcp:2},
+  "AL":{nome:"Alagoas",      aliq:20.5,fcp:2},
+  "AP":{nome:"Amapá",        aliq:18,  fcp:2},
+  "AM":{nome:"Amazonas",     aliq:20,  fcp:2},
+  "BA":{nome:"Bahia",        aliq:20.5,fcp:2},
+  "CE":{nome:"Ceará",        aliq:20,  fcp:2},
+  "DF":{nome:"Dist. Federal",aliq:20,  fcp:2},
+  "ES":{nome:"Espírito Santo",aliq:17, fcp:2},
+  "GO":{nome:"Goiás",        aliq:19,  fcp:2},
+  "MA":{nome:"Maranhão",     aliq:23,  fcp:2},
+  "MT":{nome:"Mato Grosso",  aliq:17,  fcp:2},
+  "MS":{nome:"Mato G. do Sul",aliq:17, fcp:2},
+  "PA":{nome:"Pará",         aliq:19,  fcp:2},
+  "PB":{nome:"Paraíba",      aliq:20,  fcp:2},
+  "PR":{nome:"Paraná",       aliq:19.5,fcp:2},
+  "PE":{nome:"Pernambuco",   aliq:20.5,fcp:2},
+  "PI":{nome:"Piauí",        aliq:22.5,fcp:2},
+  "RJ":{nome:"Rio de Janeiro",aliq:20, fcp:2},
+  "RN":{nome:"Rio G. do Norte",aliq:20,fcp:2},
+  "RS":{nome:"Rio G. do Sul", aliq:20, fcp:2},
+  "RO":{nome:"Rondônia",     aliq:19.5,fcp:2},
+  "RR":{nome:"Roraima",      aliq:20,  fcp:2},
+  "SC":{nome:"Santa Catarina",aliq:17, fcp:2},
+  "SP":{nome:"São Paulo",    aliq:18,  fcp:2},
+  "SE":{nome:"Sergipe",      aliq:19,  fcp:2},
+  "TO":{nome:"Tocantins",    aliq:20,  fcp:2}
+};
+
+(function populateFcUF(){
+  const sel = document.getElementById('fc-uf');
+  if(!sel) return;
+  Object.entries(fcEstados)
+    .sort((a,b) => a[1].nome.localeCompare(b[1].nome))
+    .forEach(([uf, d]) => {
+      const opt = document.createElement('option');
+      opt.value = uf;
+      opt.textContent = `${d.nome} (${uf}) — ${d.aliq}%`;
+      if(uf === 'SP') opt.selected = true;
+      sel.appendChild(opt);
+    });
+})();
+
+function fcMoeda(v){
+  return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+}
+
+function fcCalc(){
+  const valorRaw = parseFloat(document.getElementById('fc-valor').value);
+  const tipo     = document.getElementById('fc-tipo').value;
+  const uf       = document.getElementById('fc-uf').value;
+  const res      = document.getElementById('fc-resultado');
+
+  if(!valorRaw || isNaN(valorRaw) || valorRaw <= 0){
+    res.style.display = 'block';
+    res.innerHTML = `<span style="color:var(--red)">⚠ Informe um valor válido para a nota.</span>`;
+    return;
+  }
+
+  const estado      = fcEstados[uf];
+  const aliqDest    = estado.aliq / 100;
+  const aliqFCP     = estado.fcp  / 100;
+  const aliqInter   = tipo === 'nacional' ? 0.12 : 0.04;
+  const tipoLabel   = tipo === 'nacional' ? 'Nacional (12%)' : 'Importado — Res. 13/2012 (4%)';
+
+  // Base por dentro: BC = Valor / (1 - aliq_interna_destino)
+  const base           = valorRaw / (1 - aliqDest);
+  const icmsOrigem     = base * aliqInter;
+  const icmsDestinoTot = base * aliqDest;
+  const difal          = Math.max(0, icmsDestinoTot - icmsOrigem);
+  const valorFCP       = base * aliqFCP;
+  const totalRecolher  = difal + valorFCP;
+  const semDifal       = difal === 0;
+
+  res.style.display = 'block';
+  res.innerHTML = `
+    <b>UF de Destino:</b> ${estado.nome} (${uf}) &nbsp;
+    <b>Alíquota Interna:</b> ${estado.aliq.toFixed(1)}% &nbsp;
+    <b>FCP:</b> ${estado.fcp}%<br>
+    <b>Origem:</b> Minas Gerais (MG) &nbsp;
+    <b>Tipo do produto:</b> ${tipoLabel}<br>
+    <b>Alíquota Interestadual:</b> ${(aliqInter*100).toFixed(0)}%
+    <hr>
+    <b>Valor da NF:</b> ${fcMoeda(valorRaw)}<br>
+    <b>Base de cálculo (por dentro):</b> ${fcMoeda(base)}<br>
+    <b>ICMS origem (MG):</b> ${fcMoeda(icmsOrigem)}<br>
+    <b>ICMS destino total:</b> ${fcMoeda(icmsDestinoTot)}
+    <hr>
+    ${semDifal
+      ? `<div class="fc-ok">✔ NÃO HÁ DIFAL A RECOLHER — ICMS origem ≥ destino</div>`
+      : `<b>DIFAL — UF Destino (${uf}):</b> ${fcMoeda(difal)} <span class="fc-tag fc-tag-red">recolher</span><br>`
+    }
+    <b>FCP — UF Destino (${uf}):</b> ${fcMoeda(valorFCP)} <span class="fc-tag fc-tag-red">recolher</span>
+    <hr>
+    <div class="fc-total">Total a Recolher: ${fcMoeda(totalRecolher)} <span class="fc-tag ${semDifal ? 'fc-tag-green' : 'fc-tag-red'}">${semDifal ? 'somente FCP' : 'DIFAL + FCP'}</span></div>
+  `;
+}
+// ── CARTA DE CORREÇÃO ─────────────────────────────────────────
+const ccPode = [
+  ["Dados do emitente","Correção de endereço, IE, telefone do emissor (exceto CNPJ/CPF e razão social)"],
+  ["Dados complementares","Informações adicionais, observações, número do pedido do cliente"],
+  ["Dados de transporte","Placa do veículo, transportadora, volumes — desde que não altere o valor do frete"],
+  ["Código do produto","Correção do código interno do produto, se não alterar descrição nem NCM"],
+  ["Unidade de medida","Correção da unidade (ex: PC → CX) desde que não altere quantidade nem valor"],
+  ["Dados de exportação","NFEAT, drawback, informações de exportação indireta"],
+  ["Referência de NF","Inclusão ou correção de referência a outra NF-e ou documento fiscal"],
+  ["Informações de pedido","Número de pedido, contrato, OS — campo de informações adicionais"],
+];
+
+const ccNaoPode = [
+  ["Valor da NF","Não é possível alterar preço unitário, desconto, total da nota ou valor do ICMS"],
+  ["Destinatário","CNPJ/CPF, razão social ou endereço de entrega do comprador nunca podem ser corrigidos"],
+  ["CFOP","Natureza da operação e CFOP não podem ser alterados por CC-e"],
+  ["Quantidade","Quantidade de itens não pode ser modificada via CC-e"],
+  ["NCM / Tributação","Código NCM, CST, CSOSN e alíquotas de tributos não podem ser corrigidos"],
+  ["Data de emissão","A data de emissão da nota é imutável após autorização"],
+  ["Adição de produtos","Não é possível incluir novos itens em uma NF-e já emitida"],
+  ["Chave de acesso","A chave de acesso é gerada pelo sistema e jamais pode ser alterada"],
+];
+
+const ccSteps = [
+  ["Identificar o erro","Verifique exatamente qual campo está incorreto. Confirme que o erro é corrigível por CC-e (não envolve valor, destinatário ou CFOP)."],
+  ["Verificar o prazo","A NF-e precisa estar autorizada há menos de 720 horas (30 dias). Verificar a data de emissão."],
+  ["Verificar quantidade de CC-e","Cada NF-e aceita no máximo 20 CC-e. Consultar quantas já foram emitidas para a nota em questão."],
+  ["Redigir o texto de correção","O texto deve ser claro, objetivo e indicar exatamente o que está sendo corrigido. Exemplo: 'Correção do campo X-Info: onde se lê [errado] leia-se [correto].'"],
+  ["Emitir no sistema","Acessar o sistema fiscal (Sankhya ou plataforma), localizar a NF-e e emitir o evento de CC-e com o texto redigido."],
+  ["Enviar ao destinatário","Após a autorização da CC-e pela SEFAZ, enviar o XML e o DANFE da CC-e ao destinatário. O envio é responsabilidade do time após a emissão."],
+  ["Registrar no chamado","Atualizar o chamado no TomTicket com o número da CC-e emitida e a chave de acesso do evento."],
+];
+
+const ccCheckAntes = [
+  ["✓","O erro é corrigível por CC-e? (não é valor, destinatário, CFOP ou NCM)"],
+  ["✓","A NF-e está dentro do prazo de 30 dias (720h)?"],
+  ["✓","Ainda há CC-e disponíveis para essa nota (limite 20)?"],
+  ["✓","O texto da correção está claro e específico?"],
+  ["✓","Foi solicitado por chamado no TomTicket com autorização?"],
+];
+
+const ccCancelar = [
+  ["✗","Valor da nota incorreto (preço, desconto, total)"],
+  ["✗","CNPJ/CPF ou razão social do destinatário errado"],
+  ["✗","CFOP ou natureza da operação incorreta"],
+  ["✗","NCM ou tributação errada (CST, alíquotas)"],
+  ["✗","Quantidade de itens incorreta"],
+  ["✗","NF emitida para o cliente errado"],
+];
+
+const ccExemplos = [
+  ["Endereço do emitente digitado errado", "CC-e", "Dado do emitente — corrigível", true],
+  ["CNPJ do cliente errado", "Cancelar a NF-e", "Destinatário — não corrigível por CC-e", false],
+  ["Valor unitário errado", "Cancelar a NF-e", "Valor da nota — não corrigível por CC-e", false],
+  ["Número do pedido do cliente ausente", "CC-e", "Campo de informações adicionais — corrigível", true],
+  ["CFOP errado (ex: 5101 → 6101)", "Cancelar a NF-e", "CFOP — não corrigível por CC-e", false],
+  ["Placa do veículo transportador errada", "CC-e", "Dados de transporte — corrigível", true],
+  ["NCM do produto errado", "Cancelar a NF-e", "NCM/tributação — não corrigível por CC-e", false],
+  ["Observação/complemento incorreto", "CC-e", "Informações adicionais — corrigível", true],
+  ["Quantidade de itens errada", "Cancelar a NF-e", "Quantidade — não corrigível por CC-e", false],
+  ["Unidade de medida errada (sem alterar valor)", "CC-e", "Unidade — corrigível se não altera valor", true],
+];
+
+function ccRenderItem(text, sub, color){
+  return `<div style="display:flex;gap:10px;padding:9px 14px;border-bottom:1px solid var(--border);align-items:flex-start">
+    <div style="width:6px;height:6px;border-radius:50%;background:${color};flex-shrink:0;margin-top:5px"></div>
+    <div><div style="font-size:12px;font-weight:500;color:var(--text)">${text}</div><div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:1px">${sub}</div></div>
+  </div>`;
+}
+
+function ccRenderCheck(icon, text, color){
+  return `<div style="display:flex;gap:10px;padding:9px 14px;border-bottom:1px solid var(--border);align-items:flex-start;font-size:12px">
+    <span style="color:${color};font-weight:600;flex-shrink:0">${icon}</span>
+    <span style="color:var(--text-muted);line-height:1.55">${text}</span>
+  </div>`;
+}
+
+function ccRenderStep(num, title, desc){
+  return `<div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start">
+    <div style="width:22px;height:22px;border-radius:50%;background:var(--purple-bg);border:1px solid var(--purple-bd);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--purple);flex-shrink:0;font-family:var(--mono)">${num}</div>
+    <div><div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:2px">${title}</div><div style="font-size:11px;color:var(--text-muted);line-height:1.55">${desc}</div></div>
+  </div>`;
+}
+
+(function renderCC(){
+  const podeEl = document.getElementById('cc-pode-list');
+  const naoEl  = document.getElementById('cc-naopode-list');
+  const stpEl  = document.getElementById('cc-steps');
+  const antesEl= document.getElementById('cc-check-antes');
+  const canEl  = document.getElementById('cc-cancelar');
+  const exBody = document.getElementById('cc-exemplos-body');
+  if(!podeEl) return;
+
+  podeEl.innerHTML  = ccPode.map(([t,s])  => ccRenderItem(t,s,'var(--green)')).join('');
+  naoEl.innerHTML   = ccNaoPode.map(([t,s])=> ccRenderItem(t,s,'var(--red)')).join('');
+  stpEl.innerHTML   = ccSteps.map(([t,d],i)=> ccRenderStep(i+1,t,d)).join('');
+  antesEl.innerHTML = ccCheckAntes.map(([i,t])=> ccRenderCheck(i,t,'var(--green)')).join('');
+  canEl.innerHTML   = ccCancelar.map(([i,t]) => ccRenderCheck(i,t,'var(--red)')).join('');
+
+  exBody.innerHTML  = ccExemplos.map(([sit,acao,mot,ok])=>{
+    const cor = ok ? 'var(--green)' : 'var(--red)';
+    const tag = ok
+      ? `<span style="font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)">${acao}</span>`
+      : `<span style="font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)">${acao}</span>`;
+    return `<tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:10px 14px;font-size:12px;color:var(--text-muted);border-right:1px solid var(--border)">${sit}</td>
+      <td style="padding:10px 14px;border-right:1px solid var(--border)">${tag}</td>
+      <td style="padding:10px 14px;font-size:11px;color:var(--text-muted)">${mot}</td>
+    </tr>`;
+  }).join('');
+})();
 </script>
 </body>
 </html>
