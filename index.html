@@ -430,6 +430,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .lc-al-cyan{background:var(--cyan-bg);border-color:var(--cyan-bd);color:var(--cyan)}
 .lc-al-red{background:var(--red-bg);border-color:var(--red-bd);color:var(--red)}
 .lc-al-green{background:var(--green-bg);border-color:var(--green-bd);color:var(--green)}
+.lc-al-green{background:var(--green-bg);border-color:var(--green-bd);color:var(--green)}
 .lc-showroom-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;padding:2px 8px;border-radius:4px;background:var(--brand-bg);color:var(--brand);border:1px solid var(--brand-bd);font-family:var(--mono);font-weight:500}
 
 /* ── FERRAMENTAS ─────────────────────────────────────────────── */
@@ -1401,7 +1402,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         </div>
         <div>
           <div class="lc-hero-title">Locais de Faturamento · Sankhya</div>
-          <div class="lc-hero-desc">Define qual local utilizar ao emitir cada tipo de documento no Sankhya. O local impacta diretamente a série, o CFOP e os dados fiscais da NF-e. Selecione sempre o local correto antes de confirmar o faturamento. A empresa é a <strong style="color:var(--text)">Importação</strong> e o local padrão é o <strong style="color:var(--text)">803412</strong> para ambas as empresas (8 e 9).</div>
+          <div class="lc-hero-desc">Define qual local utilizar ao emitir cada tipo de documento no Sankhya. O local impacta diretamente a série, o CFOP e os dados fiscais da NF-e. Selecione sempre o local correto antes de confirmar o faturamento. A empresa é a <strong style="color:var(--text)">Importação</strong> e o local padrão é o <strong style="color:var(--text)">803412</strong> para ambas as empresas (8 e 9). Seminovos utilizam o local <strong style="color:var(--purple)">199600</strong>.</div>
         </div>
       </div>
 
@@ -1453,6 +1454,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
                 <td><div class="lc-loc-num">199300</div><div class="lc-loc-alt">Sempre este</div></td>
                 <td style="color:var(--text-dim);font-size:11px">— não há alternativo</td>
                 <td style="font-size:11px">Usar sempre 199300 independente da saída física</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text)">Seminovos</strong></td>
+                <td><div class="lc-loc-num" style="color:var(--purple)">199600</div></td>
+                <td style="color:var(--text-dim);font-size:11px">— não há alternativo</td>
+                <td style="font-size:11px">Equipamentos seminovos destinados à venda — usar exclusivamente o local 199600</td>
               </tr>
             </tbody>
           </table>
@@ -1525,6 +1532,88 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         <div class="lc-rule-row">
           <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--brand)">1101109</div>
           <div class="lc-rv">Local alternativo de <strong>Suprimentos — Showroom SP</strong>. Usar quando o suprimento sair fisicamente do endereço do showroom de São Paulo.</div>
+        </div>
+        <div class="lc-rule-row">
+          <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--purple)">199600</div>
+          <div class="lc-rv">Local de <strong>Seminovos</strong> — exclusivo para faturamento de equipamentos seminovos destinados à venda. <strong>Não possui alternativo</strong>: usar sempre este local para essa categoria.</div>
+        </div>
+      </div>
+
+      <!-- REGRAS DE DEVOLUÇÃO E TROCA -->
+      <div class="df-section-title" style="margin-top:18px;margin-bottom:10px">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8c0-3.3 2.7-6 6-6"/><path d="M10 4c0 3.3-2.7 6-6 6"/><path d="M8.5 2L10 4l-1.5 2"/><path d="M3.5 10L2 8l1.5-2"/></svg>
+        Regras de locais — Devolução e Troca de equipamentos
+      </div>
+
+      <!-- Card devolução -->
+      <div class="lc-alert lc-al-cyan" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8a5 5 0 0 1 10 0"/><path d="M13 6l-1 2-2-1"/><path d="M6 14l-2-2 2-2"/></svg>
+        <div><strong>Devolução de equipamento:</strong> quando o cliente devolve um equipamento (rescisão, garantia ou retorno), o local de <strong>entrada</strong> é sempre o <span class="lc-showroom-tag" style="background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)">199300 Manutenção</span>. O equipamento retorna para avaliação técnica antes de qualquer outra movimentação.</div>
+      </div>
+
+      <!-- Fluxo devolução -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:16px 20px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">Fluxo · Devolução de equipamento</div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:120px">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Cliente</div>
+            <div style="font-weight:500;color:var(--text)">Devolve equipamento</div>
+          </div>
+          <div style="color:var(--text-dim);font-size:18px;padding:0 4px">→</div>
+          <div style="background:var(--cyan-bg);border:1px solid var(--cyan-bd);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:140px">
+            <div style="font-size:10px;color:var(--cyan);margin-bottom:4px">Entrada — NF entrada</div>
+            <div style="font-weight:500;color:var(--text);font-family:var(--mono)">199300</div>
+            <div style="font-size:10px;color:var(--cyan);margin-top:2px">Local Manutenção</div>
+          </div>
+          <div style="color:var(--text-dim);font-size:18px;padding:0 4px">→</div>
+          <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:120px">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Destino</div>
+            <div style="font-weight:500;color:var(--text)">Avaliação técnica</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card troca -->
+      <div class="lc-alert lc-al-green" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M10 4l4 4-4 4"/><path d="M14 8H2M6 4L2 8l4 4"/></svg>
+        <div><strong>Troca de equipamento:</strong> na troca, o equipamento do cliente <strong>entra</strong> pelo local <span class="lc-showroom-tag" style="background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)">199300 Manutenção</span> e o equipamento substituto <strong>sai</strong> pelo local <span class="lc-showroom-tag" style="background:var(--green-bg);color:var(--green);border-color:var(--green-bd)">199100 Expedição</span>. Sempre dois documentos: NF de entrada + NF de saída.</div>
+      </div>
+
+      <!-- Fluxo troca -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:16px 20px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">Fluxo · Troca de equipamento</div>
+        <div style="display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap">
+
+          <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:120px">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Cliente</div>
+            <div style="font-weight:500;color:var(--text)">Entrega equipamento com defeito</div>
+          </div>
+
+          <div style="color:var(--text-dim);font-size:18px;padding:8px 4px 0">→</div>
+
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="background:var(--cyan-bg);border:1px solid var(--cyan-bd);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:160px">
+              <div style="font-size:10px;color:var(--cyan);margin-bottom:4px">① NF de Entrada</div>
+              <div style="font-weight:500;color:var(--text);font-family:var(--mono)">199300</div>
+              <div style="font-size:10px;color:var(--cyan);margin-top:2px">Local Manutenção</div>
+            </div>
+            <div style="background:var(--green-bg);border:1px solid var(--green-bd);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:160px">
+              <div style="font-size:10px;color:var(--green);margin-bottom:4px">② NF de Saída</div>
+              <div style="font-weight:500;color:var(--text);font-family:var(--mono)">199100</div>
+              <div style="font-size:10px;color:var(--green);margin-top:2px">Local Expedição</div>
+            </div>
+          </div>
+
+          <div style="color:var(--text-dim);font-size:18px;padding:8px 4px 0">→</div>
+
+          <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:120px">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Cliente</div>
+            <div style="font-weight:500;color:var(--text)">Recebe equipamento substituto</div>
+          </div>
+
+        </div>
+        <div style="margin-top:12px;padding:10px 12px;background:var(--bg-card2);border-radius:6px;font-size:11px;color:var(--text-muted);line-height:1.6">
+          <strong style="color:var(--text)">Regra:</strong> emitir sempre nesta ordem — <strong style="color:var(--cyan)">primeiro a NF de entrada (199300 Manutenção)</strong> para registrar o recebimento do equipamento defeituoso, <strong style="color:var(--green)">depois a NF de saída (199100 Expedição)</strong> para o envio do substituto. Nunca inverter a ordem.
         </div>
       </div>
 
@@ -1758,7 +1847,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
             </button>
           </div>
 
-          <div id="fc-resultado" style="display:none;margin:0 24px 24px;padding:16px 18px;background:var(--bg-card2);border:1px solid rgba(245,194,0,.3);border-radius:10px;font-size:12px;line-height:2;color:var(--text-muted)">
+          <div id="fc-resultado" style="display:none;margin:0 24px 24px;padding:16px 18px;background:var(--bg-card2);border:1px solid var(--border);border-radius:10px">
           </div>
 
         </div>
@@ -1977,7 +2066,10 @@ function fcCalc(){
 
   if(!valorRaw || isNaN(valorRaw) || valorRaw <= 0){
     res.style.display = 'block';
-    res.innerHTML = `<span style="color:var(--red)">⚠ Informe um valor válido para a nota.</span>`;
+    res.innerHTML = `<div style="display:flex;align-items:center;gap:8px;color:var(--red);font-size:13px;padding:4px 0">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3M8 10.5v.5"/></svg>
+      Informe um valor válido para a nota.
+    </div>`;
     return;
   }
 
@@ -1985,9 +2077,7 @@ function fcCalc(){
   const aliqDest    = estado.aliq / 100;
   const aliqFCP     = estado.fcp  / 100;
   const aliqInter   = tipo === 'nacional' ? 0.12 : 0.04;
-  const tipoLabel   = tipo === 'nacional' ? 'Nacional (12%)' : 'Importado — Res. 13/2012 (4%)';
 
-  // Base por dentro: BC = Valor / (1 - aliq_interna_destino)
   const base           = valorRaw / (1 - aliqDest);
   const icmsOrigem     = base * aliqInter;
   const icmsDestinoTot = base * aliqDest;
@@ -1996,27 +2086,76 @@ function fcCalc(){
   const totalRecolher  = difal + valorFCP;
   const semDifal       = difal === 0;
 
+  const pct = (v) => v.toFixed(1) + '%';
+  const m   = fcMoeda;
+
   res.style.display = 'block';
   res.innerHTML = `
-    <b>UF de Destino:</b> ${estado.nome} (${uf}) &nbsp;
-    <b>Alíquota Interna:</b> ${estado.aliq.toFixed(1)}% &nbsp;
-    <b>FCP:</b> ${estado.fcp}%<br>
-    <b>Origem:</b> Minas Gerais (MG) &nbsp;
-    <b>Tipo do produto:</b> ${tipoLabel}<br>
-    <b>Alíquota Interestadual:</b> ${(aliqInter*100).toFixed(0)}%
-    <hr>
-    <b>Valor da NF:</b> ${fcMoeda(valorRaw)}<br>
-    <b>Base de cálculo (por dentro):</b> ${fcMoeda(base)}<br>
-    <b>ICMS origem (MG):</b> ${fcMoeda(icmsOrigem)}<br>
-    <b>ICMS destino total:</b> ${fcMoeda(icmsDestinoTot)}
-    <hr>
-    ${semDifal
-      ? `<div class="fc-ok">✔ NÃO HÁ DIFAL A RECOLHER — ICMS origem ≥ destino</div>`
-      : `<b>DIFAL — UF Destino (${uf}):</b> ${fcMoeda(difal)} <span class="fc-tag fc-tag-red">recolher</span><br>`
-    }
-    <b>FCP — UF Destino (${uf}):</b> ${fcMoeda(valorFCP)} <span class="fc-tag fc-tag-red">recolher</span>
-    <hr>
-    <div class="fc-total">Total a Recolher: ${fcMoeda(totalRecolher)} <span class="fc-tag ${semDifal ? 'fc-tag-green' : 'fc-tag-red'}">${semDifal ? 'somente FCP' : 'DIFAL + FCP'}</span></div>
+    <!-- Cabeçalho resumo -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <div style="font-size:13px;font-weight:500;color:#f2f2f3">
+        ${estado.nome} (${uf}) &nbsp;·&nbsp; ${pct(estado.aliq)} interna &nbsp;·&nbsp; ${(aliqInter*100).toFixed(0)}% interestadual
+      </div>
+      <div style="font-size:11px;color:var(--text-muted)">Base por dentro</div>
+    </div>
+
+    <!-- KPI cards principais -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px">
+      <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:11px 13px">
+        <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Valor da NF</div>
+        <div style="font-size:16px;font-weight:500;font-family:var(--mono);color:#f2f2f3">${m(valorRaw)}</div>
+      </div>
+      <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:11px 13px">
+        <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Base de cálculo (por dentro)</div>
+        <div style="font-size:16px;font-weight:500;font-family:var(--mono);color:#f2f2f3">${m(base)}</div>
+      </div>
+    </div>
+
+    <!-- Separador cálculo -->
+    <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Memória de cálculo</div>
+    <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 13px;margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.06)">
+        <span style="font-size:12px;color:var(--text-muted)">ICMS origem (MG) — ${(aliqInter*100).toFixed(0)}%</span>
+        <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(icmsOrigem)}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0">
+        <span style="font-size:12px;color:var(--text-muted)">ICMS destino total (${pct(estado.aliq)})</span>
+        <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(icmsDestinoTot)}</span>
+      </div>
+    </div>
+
+    <!-- Resultado DIFAL + FCP -->
+    <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Valores a recolher</div>
+    ${semDifal ? `
+    <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(52,212,122,0.08);border:1px solid rgba(52,212,122,0.22);border-radius:8px;margin-bottom:8px">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M4 8l3 3 5-5"/><circle cx="8" cy="8" r="6"/></svg>
+      <span style="font-size:13px;font-weight:500;color:var(--green)">Não há DIFAL a recolher — ICMS origem ≥ destino</span>
+    </div>
+    ` : `
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:rgba(242,108,108,0.08);border:1px solid rgba(242,108,108,0.22);border-radius:8px;margin-bottom:8px">
+      <div>
+        <div style="font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">DIFAL — ${uf}</div>
+        <div style="font-size:11px;color:var(--text-muted)">Alíq. interna ${pct(estado.aliq)} − interestadual ${(aliqInter*100).toFixed(0)}% = ${pct(estado.aliq - aliqInter*100)}</div>
+      </div>
+      <div style="font-size:18px;font-weight:500;font-family:var(--mono);color:var(--red)">${m(difal)}</div>
+    </div>
+    `}
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:rgba(245,194,0,0.07);border:1px solid rgba(245,194,0,0.2);border-radius:8px;margin-bottom:14px">
+      <div>
+        <div style="font-size:10px;color:#F5C200;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">FCP — ${uf}</div>
+        <div style="font-size:11px;color:var(--text-muted)">${estado.fcp}% sobre a base ampliada</div>
+      </div>
+      <div style="font-size:18px;font-weight:500;font-family:var(--mono);color:#F5C200">${m(valorFCP)}</div>
+    </div>
+
+    <!-- Total -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px">
+      <div style="font-size:13px;font-weight:500;color:#f2f2f3">Total a Recolher</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;background:${semDifal ? 'rgba(52,212,122,0.1)' : 'rgba(242,108,108,0.1)'};color:${semDifal ? 'var(--green)' : 'var(--red)'};border:1px solid ${semDifal ? 'rgba(52,212,122,0.25)' : 'rgba(242,108,108,0.25)'}">${semDifal ? 'somente FCP' : 'DIFAL + FCP'}</span>
+        <span style="font-size:20px;font-weight:600;font-family:var(--mono);color:#f2f2f3">${m(totalRecolher)}</span>
+      </div>
+    </div>
   `;
 }
 // ── CARTA DE CORREÇÃO ─────────────────────────────────────────
