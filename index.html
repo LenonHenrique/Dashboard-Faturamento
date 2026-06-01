@@ -66,7 +66,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   padding:0;
   display:flex;flex-direction:column;
   position:sticky;top:0;height:100vh;
-  overflow-y:auto;
+  overflow-y:auto;overflow-x:hidden;
 }
 .sb-brand{
   padding:22px 20px 18px;
@@ -112,7 +112,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
 /* ── TOPBAR ────────────────────────────────────────────────── */
-.main{display:flex;flex-direction:column;min-height:100vh}
+.main{display:flex;flex-direction:column;min-height:100vh;max-height:100vh;overflow:hidden}
 .topbar{
   padding:14px 28px;border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;
@@ -128,7 +128,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .chip-green{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
 
 /* ── CONTENT & KPIs ────────────────────────────────────────── */
-.content{padding:0;flex:1;display:flex;flex-direction:column;min-height:0}
+.content{padding:0;flex:1;display:flex;flex-direction:column;min-height:0;overflow-y:auto}
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
 .kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:14px 16px;transition:border-color .15s}
 .kpi:hover{border-color:var(--border-bright)}
@@ -464,6 +464,73 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .ft-result .fc-tag-red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
 .ft-result .fc-tag-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
 
+/* ── INDICADORES ─────────────────────────────────────────────── */
+.ind-topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.ind-topbar-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ind-month-select{display:flex;align-items:center;gap:8px}
+.ind-month-select select{padding:8px 12px;background:var(--bg-card);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:var(--font);outline:none;cursor:pointer}
+.ind-month-select select:focus{border-color:var(--brand-bd)}
+.ind-btn{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid;cursor:pointer;font-family:var(--font);transition:.15s}
+.ind-btn-primary{background:var(--brand);color:#111;border-color:var(--brand)}
+.ind-btn-primary:hover{background:#ffd633}
+.ind-btn-ghost{background:transparent;color:var(--text-muted);border-color:var(--border)}
+.ind-btn-ghost:hover{background:var(--bg-hover);color:var(--text)}
+.ind-btn-danger{background:var(--red-bg);color:var(--red);border-color:var(--red-bd)}
+.ind-btn-danger:hover{background:rgba(242,108,108,.15)}
+.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.ind-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:0;transition:border-color .15s;position:relative;overflow:hidden}
+.ind-card:hover{border-color:var(--border-bright)}
+.ind-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.ind-card-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ind-card-icon svg{width:16px;height:16px}
+.ind-card-badges{display:flex;align-items:center;gap:6px}
+.ind-badge-status{font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;border:1px solid}
+.ind-badge-ativa{background:var(--brand-bg);color:var(--brand);border-color:var(--brand-bd)}
+.ind-badge-pausa{background:var(--red-bg);color:var(--red);border-color:var(--red-bd)}
+.ind-menu-btn{background:none;border:none;color:var(--text-dim);cursor:pointer;padding:4px;border-radius:4px;font-size:16px;line-height:1;transition:.15s}
+.ind-menu-btn:hover{color:var(--text);background:var(--bg-hover)}
+.ind-card-name{font-size:14px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:4px}
+.ind-card-desc{font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:14px}
+.ind-card-value{font-size:32px;font-weight:700;letter-spacing:-.03em;color:var(--text);line-height:1;margin-bottom:4px}
+.ind-card-meta{font-size:12px;color:var(--text-muted);margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ind-delta{font-size:12px;font-weight:600}
+.ind-delta-up{color:var(--red)}
+.ind-delta-down{color:var(--green)}
+.ind-delta-neutral{color:var(--text-muted)}
+.ind-progress-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;font-size:12px;color:var(--text-muted)}
+.ind-progress-pct{font-size:12px;font-weight:600;color:var(--text)}
+.ind-bar{height:6px;background:var(--bg-card2);border-radius:99px;overflow:hidden;margin-bottom:14px}
+.ind-bar-fill{height:100%;border-radius:99px;transition:width .5s ease}
+.ind-bar-green{background:var(--green)}
+.ind-bar-red{background:var(--red)}
+.ind-bar-brand{background:var(--brand)}
+.ind-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px;border-top:1px solid var(--border)}
+.ind-avatar{width:26px;height:26px;border-radius:50%;background:var(--brand);color:#111;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ind-owner{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:6px}
+.ind-date{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:4px}
+/* Modal */
+.ind-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.ind-modal-backdrop.open{display:flex}
+.ind-modal{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;width:100%;max-width:480px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.ind-modal-title{font-size:15px;font-weight:500;margin-bottom:16px;color:var(--text)}
+.ind-field{margin-bottom:14px}
+.ind-field label{display:block;font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.ind-field input,.ind-field select,.ind-field textarea{width:100%;padding:10px 12px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:var(--font);outline:none;box-sizing:border-box;transition:.15s}
+.ind-field input:focus,.ind-field select:focus,.ind-field textarea:focus{border-color:var(--brand-bd);box-shadow:0 0 0 3px rgba(245,194,0,.06)}
+.ind-field textarea{resize:vertical;min-height:64px}
+.ind-modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+/* History */
+.ind-history{margin-bottom:24px}
+.ind-history-title{font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.ind-hist-table{width:100%;border-collapse:collapse;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden}
+.ind-hist-table th{padding:8px 14px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;background:var(--bg-card2);border-bottom:1px solid var(--border);border-right:1px solid var(--border);text-align:left}
+.ind-hist-table th:last-child{border-right:none}
+.ind-hist-table td{padding:9px 14px;font-size:12px;color:var(--text-muted);border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
+.ind-hist-table td:last-child{border-right:none}
+.ind-hist-table tr:last-child td{border-bottom:none}
+.ind-hist-table tr:hover td{background:rgba(255,255,255,.01)}
+.ind-empty{text-align:center;padding:40px 20px;color:var(--text-dim);font-size:13px}
+
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media(max-width:960px){
   .layout{grid-template-columns:1fr}
@@ -472,6 +539,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   .two-col{grid-template-columns:1fr}
   .content{padding:0}
   .topbar{padding:13px 16px}
+  .ind-grid{grid-template-columns:1fr}
 }
 @media(max-width:640px){
   .kpi-row{grid-template-columns:1fr 1fr}
@@ -509,6 +577,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <div class="ni" onclick="gp('equipe',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="5" r="2.5"/><circle cx="11" cy="5" r="2"/><path d="M1 13c0-2.5 2-4 5-4s5 1.5 5 4"/><path d="M11 9c1.5 0 3 .8 3 3"/></svg>Equipe</div>
     <div class="ni" onclick="gp('volume',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13V8l3-3 3 3 3-4 3 2"/><path d="M2 13h12"/></svg>Volume</div>
     <div class="ni" onclick="gp('sla',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3.5l2.5 1.5"/></svg>SLA</div>
+    <div class="ni" onclick="gp('indicadores',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12V8l3-4 3 3 2-3 3 4v4"/><path d="M2 12h12"/></svg>Indicadores</div>
   </div>
   <div class="nav-sec">
     <div class="nav-lbl">Consultas</div>
@@ -1795,21 +1864,26 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     </div>
     <!-- ════════ PAGE: FERRAMENTAS ════════ -->
     <div id="page-ferramentas" class="page" style="padding:0">
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;background:var(--bg);min-height:0">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:32px 20px;background:var(--bg);min-height:0">
 
-        <div style="text-align:center;margin-bottom:28px">
+        <!-- Header -->
+        <div style="text-align:center;margin-bottom:24px">
           <div style="width:52px;height:52px;border-radius:14px;background:var(--brand-bg);border:1px solid var(--brand-bd);display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h2M14 8h2M8 12h2M14 12h2M8 16h2M14 16h2"/></svg>
           </div>
           <div style="font-size:20px;font-weight:500;color:var(--text);letter-spacing:-.02em;margin-bottom:6px">Calculadora DIFAL</div>
-          <div style="font-size:12px;color:var(--text-muted);max-width:420px;line-height:1.6;margin:0 auto">Origem <strong style="color:var(--text)">Minas Gerais</strong> · Produto <strong style="color:var(--text)">Importado</strong> · Base por dentro · LC 190/2022</div>
+          <div id="fc-subtitle" style="font-size:12px;color:var(--text-muted);max-width:480px;line-height:1.6;margin:0 auto">
+            Selecione a UF de origem e destino · Produto importado ou nacional · Base dupla (por dentro) · LC 190/2022
+          </div>
         </div>
 
-        <div style="width:100%;max-width:500px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.4)">
+        <!-- Card principal -->
+        <div style="width:100%;max-width:560px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.4)">
 
-          <div style="padding:24px 24px 0">
+          <div style="padding:22px 22px 0">
 
-            <div style="margin-bottom:16px">
+            <!-- Valor -->
+            <div style="margin-bottom:14px">
               <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Valor da Nota (R$)</div>
               <input type="number" id="fc-valor" step="0.01" min="0" placeholder="0,00"
                 style="width:100%;padding:12px 14px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:16px;font-family:var(--mono);outline:none;box-sizing:border-box"
@@ -1817,19 +1891,19 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
                 onblur="this.style.borderColor='rgba(255,255,255,.07)';this.style.boxShadow='none'">
             </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+            <!-- Linha 1: Origem + Destino -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
               <div>
-                <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Origem do produto</div>
-                <select id="fc-tipo"
+                <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Estado de Origem</div>
+                <select id="fc-uf-origem"
                   style="width:100%;padding:11px 12px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:var(--font);outline:none;cursor:pointer;box-sizing:border-box"
                   onfocus="this.style.borderColor='rgba(245,194,0,.5)'"
-                  onblur="this.style.borderColor='rgba(255,255,255,.07)'">
-                  <option value="importado" selected>Importado — 4% (Res. 13)</option>
-                  <option value="nacional">Nacional — 12%</option>
+                  onblur="this.style.borderColor='rgba(255,255,255,.07)'"
+                  onchange="fcUpdateSubtitle()">
                 </select>
               </div>
               <div>
-                <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Estado de destino</div>
+                <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Estado de Destino</div>
                 <select id="fc-uf"
                   style="width:100%;padding:11px 12px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:var(--font);outline:none;cursor:pointer;box-sizing:border-box"
                   onfocus="this.style.borderColor='rgba(245,194,0,.5)'"
@@ -1838,9 +1912,22 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
               </div>
             </div>
 
+            <!-- Linha 2: Tipo produto -->
+            <div style="margin-bottom:14px">
+              <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Origem do produto</div>
+              <select id="fc-tipo"
+                style="width:100%;padding:11px 12px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:var(--font);outline:none;cursor:pointer;box-sizing:border-box"
+                onfocus="this.style.borderColor='rgba(245,194,0,.5)'"
+                onblur="this.style.borderColor='rgba(255,255,255,.07)'">
+                <option value="importado" selected>Importado — 4% (Res. Senado 13/2012)</option>
+                <option value="nacional">Nacional — alíquota conforme tabela ICMS</option>
+              </select>
+            </div>
+
           </div>
 
-          <div style="padding:0 24px 24px">
+          <!-- Botão -->
+          <div style="padding:0 22px 22px">
             <button onclick="fcCalc()"
               style="width:100%;padding:13px;background:#F5C200;color:#111214;font-weight:700;font-size:15px;border:none;border-radius:10px;cursor:pointer;font-family:var(--font);letter-spacing:.02em;transition:.2s"
               onmouseover="this.style.background='#ffd633';this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(245,194,0,0.28)'"
@@ -1849,14 +1936,53 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
             </button>
           </div>
 
-          <div id="fc-resultado" style="display:none;margin:0 24px 24px;padding:16px 18px;background:var(--bg-card2);border:1px solid var(--border);border-radius:10px">
+          <!-- Resultado -->
+          <div id="fc-resultado" style="display:none;margin:0 22px 22px;padding:16px 18px;background:var(--bg-card2);border:1px solid var(--border);border-radius:10px">
           </div>
 
         </div>
 
-        <div style="margin-top:14px;max-width:500px;width:100%;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);font-size:11px;color:var(--text-muted);line-height:1.6;text-align:center">
-          FCP calculado a 2% · Base por dentro · Origem sempre MG ·
-          <strong style="color:#F5C200">Dúvidas? Acionar o fiscal antes de emitir.</strong>
+        <!-- Fórmula explicativa -->
+        <div style="margin-top:14px;width:100%;max-width:560px;background:var(--bg-card);border:1px solid var(--brand-bd);border-radius:var(--rl);padding:16px 18px">
+          <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;align-items:center;gap:6px">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10V5l4-3 4 3v5"/><path d="M5 10V7h2v3"/></svg>
+            Como a base de cálculo é apurada
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;font-size:11px">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="width:22px;height:18px;border-radius:4px;background:var(--brand-bg);color:var(--brand);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">1</span>
+              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">ICMS Origem</strong> = Valor da NF × Alíquota Interestadual</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="width:22px;height:18px;border-radius:4px;background:var(--brand-bg);color:var(--brand);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">2</span>
+              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">Base Líquida</strong> = Valor da NF − ICMS Origem</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="width:22px;height:18px;border-radius:4px;background:var(--brand-bg);color:var(--brand);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">3</span>
+              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">Base por Dentro</strong> = Base Líquida ÷ (1 − Alíquota Interna Destino)</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="width:22px;height:18px;border-radius:4px;background:var(--brand-bg);color:var(--brand);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">4</span>
+              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">ICMS Interno Destino</strong> = Base por Dentro × Alíquota Interna Destino</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="width:22px;height:18px;border-radius:4px;background:rgba(242,108,108,.15);color:var(--red);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">5</span>
+              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--red)">DIFAL</strong> = ICMS Interno Destino − ICMS Origem</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="width:22px;height:18px;border-radius:4px;background:var(--brand-bg);color:var(--brand);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">6</span>
+              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">FCP</strong> = Base por Dentro × Alíquota FCP (2%)</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="width:22px;height:18px;border-radius:4px;background:rgba(52,212,122,.12);color:var(--green);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">7</span>
+              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--green)">Total a Recolher</strong> = DIFAL + FCP</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nota rodapé -->
+        <div style="margin-top:10px;max-width:560px;width:100%;padding:9px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);font-size:11px;color:var(--text-muted);line-height:1.6;text-align:center">
+          Cálculo conforme LC 190/2022 · FCP 2% · <strong style="color:#F5C200">Dúvidas? Acionar o fiscal antes de emitir.</strong>
         </div>
 
       </div>
@@ -1946,6 +2072,98 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 
     </div>
 
+    <!-- ════════ PAGE: INDICADORES ════════ -->
+    <div id="page-indicadores" class="page">
+
+      <div class="ind-topbar">
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--text)">Indicadores de Desempenho</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Acompanhamento mensal · histórico gravado por período</div>
+        </div>
+        <div class="ind-topbar-actions">
+          <div class="ind-month-select">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--text-muted)" stroke-width="1.4"><rect x="1" y="2" width="12" height="11" rx="1"/><path d="M1 6h12M4 1v2M10 1v2"/></svg>
+            <select id="ind-period-select" onchange="indLoadPeriod(this.value)"></select>
+          </div>
+          <button class="ind-btn ind-btn-ghost" onclick="indExportJSON()" title="Exportar histórico em JSON">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" style="margin-right:4px;vertical-align:middle"><path d="M6 1v7M3 5l3 3 3-3"/><path d="M1 9v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9"/></svg>
+            Exportar
+          </button>
+          <label class="ind-btn ind-btn-ghost" style="cursor:pointer" title="Importar histórico de JSON">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" style="margin-right:4px;vertical-align:middle"><path d="M6 8V1M3 4l3-3 3 3"/><path d="M1 9v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9"/></svg>
+            Importar
+            <input type="file" accept=".json" style="display:none" onchange="indImportJSON(event)">
+          </label>
+          <button class="ind-btn ind-btn-primary" onclick="indOpenModal()">+ Registrar mês</button>
+        </div>
+      </div>
+
+      <!-- Cards de indicadores -->
+      <div class="ind-grid" id="ind-cards-container">
+        <div class="ind-empty" style="grid-column:1/-1">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--text-dim)" stroke-width="1.5" style="margin:0 auto 12px;display:block"><path d="M4 30V18l8-10 8 8 6-8 8 10v12"/><path d="M4 30h32"/><path d="M20 30v-8"/></svg>
+          <div>Nenhum dado registrado para este período.</div>
+          <div style="margin-top:6px;font-size:11px">Clique em <strong style="color:var(--brand)">+ Registrar mês</strong> para adicionar os indicadores.</div>
+        </div>
+      </div>
+
+      <!-- Histórico -->
+      <div class="ind-history">
+        <div class="ind-history-title">Histórico de períodos registrados</div>
+        <div id="ind-history-container">
+          <div class="ind-empty">Nenhum histórico disponível ainda.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal: Registrar/Editar mês -->
+    <div class="ind-modal-backdrop" id="ind-modal">
+      <div class="ind-modal">
+        <div class="ind-modal-title" id="ind-modal-title">Registrar indicadores do mês</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="ind-field">
+            <label>Mês/Ano</label>
+            <input type="month" id="ind-f-period">
+          </div>
+          <div class="ind-field">
+            <label>Responsável</label>
+            <input type="text" id="ind-f-owner" placeholder="Nome do analista">
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--border);margin:6px 0 14px;padding-top:14px">
+          <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Taxa de Erro de Faturamento</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="ind-field"><label>Valor atual (%)</label><input type="number" id="ind-f-erro-val" step="0.01" placeholder="ex: 3.13"></div>
+            <div class="ind-field"><label>Meta (%)</label><input type="number" id="ind-f-erro-meta" step="0.01" placeholder="ex: 3"></div>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--border);margin:6px 0 14px;padding-top:14px">
+          <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Tempo Méd. Faturamento Máquinas (hr)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="ind-field"><label>Valor atual (hr)</label><input type="number" id="ind-f-maq-val" step="0.1" placeholder="ex: 4.2"></div>
+            <div class="ind-field"><label>Meta (hr)</label><input type="number" id="ind-f-maq-meta" step="0.1" placeholder="ex: 4"></div>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--border);margin:6px 0 14px;padding-top:14px">
+          <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">% de Automação no Faturamento</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="ind-field"><label>Valor atual (%)</label><input type="number" id="ind-f-tmf-val" step="0.1" placeholder="ex: 72"></div>
+            <div class="ind-field"><label>Meta (%)</label><input type="number" id="ind-f-tmf-meta" step="0.1" placeholder="ex: 80"></div>
+          </div>
+        </div>
+
+        <div class="ind-modal-actions">
+          <button class="ind-btn ind-btn-ghost" onclick="indCloseModal()">Cancelar</button>
+          <button class="ind-btn ind-btn-primary" onclick="indSave()">Salvar</button>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /content -->
 </main>
 </div>
@@ -1962,7 +2180,8 @@ const titles={
   locais:'Locais de Faturamento · Sankhya',
   difal:'DIFAL · Guia de Cálculo e Cobrança',
   ferramentas:'Ferramentas · Calculadora DIFAL',
-  carta:'Carta de Correção · Regras e Procedimentos'
+  carta:'Carta de Correção · Regras e Procedimentos',
+  indicadores:'Indicadores · Desempenho Mensal'
 };
 
 function gp(id, el) {
@@ -2013,60 +2232,133 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 // ── CALCULADORA DIFAL ─────────────────────────────────────────
+// Alíquotas internas corrigidas conforme tabela oficial (diagonal)
 const fcEstados = {
-  "AC":{nome:"Acre",         aliq:19,  fcp:2},
-  "AL":{nome:"Alagoas",      aliq:20.5,fcp:2},
-  "AP":{nome:"Amapá",        aliq:18,  fcp:2},
-  "AM":{nome:"Amazonas",     aliq:20,  fcp:2},
-  "BA":{nome:"Bahia",        aliq:20.5,fcp:2},
-  "CE":{nome:"Ceará",        aliq:20,  fcp:2},
-  "DF":{nome:"Dist. Federal",aliq:20,  fcp:2},
-  "ES":{nome:"Espírito Santo",aliq:17, fcp:2},
-  "GO":{nome:"Goiás",        aliq:19,  fcp:2},
-  "MA":{nome:"Maranhão",     aliq:23,  fcp:2},
-  "MT":{nome:"Mato Grosso",  aliq:17,  fcp:2},
-  "MS":{nome:"Mato G. do Sul",aliq:17, fcp:2},
-  "PA":{nome:"Pará",         aliq:19,  fcp:2},
-  "PB":{nome:"Paraíba",      aliq:20,  fcp:2},
-  "PR":{nome:"Paraná",       aliq:19.5,fcp:2},
-  "PE":{nome:"Pernambuco",   aliq:20.5,fcp:2},
-  "PI":{nome:"Piauí",        aliq:22.5,fcp:2},
-  "RJ":{nome:"Rio de Janeiro",aliq:20, fcp:2},
-  "RN":{nome:"Rio G. do Norte",aliq:20,fcp:2},
-  "RS":{nome:"Rio G. do Sul", aliq:20, fcp:2},
-  "RO":{nome:"Rondônia",     aliq:19.5,fcp:2},
-  "RR":{nome:"Roraima",      aliq:20,  fcp:2},
-  "SC":{nome:"Santa Catarina",aliq:17, fcp:2},
-  "SP":{nome:"São Paulo",    aliq:18,  fcp:2},
-  "SE":{nome:"Sergipe",      aliq:19,  fcp:2},
-  "TO":{nome:"Tocantins",    aliq:20,  fcp:2}
+  "AC":{nome:"Acre",           aliq:19,   fcp:2},
+  "AL":{nome:"Alagoas",        aliq:20.5, fcp:2},
+  "AM":{nome:"Amazonas",       aliq:20,   fcp:2},
+  "AP":{nome:"Amapá",          aliq:18,   fcp:2},
+  "BA":{nome:"Bahia",          aliq:20.5, fcp:2},
+  "CE":{nome:"Ceará",          aliq:20,   fcp:2},
+  "DF":{nome:"Dist. Federal",  aliq:20,   fcp:2},
+  "ES":{nome:"Espírito Santo", aliq:17,   fcp:2},
+  "GO":{nome:"Goiás",          aliq:19,   fcp:2},
+  "MA":{nome:"Maranhão",       aliq:23,   fcp:2},
+  "MT":{nome:"Mato Grosso",    aliq:17,   fcp:2},
+  "MS":{nome:"Mato G. do Sul", aliq:17,   fcp:2},
+  "MG":{nome:"Minas Gerais",   aliq:18,   fcp:2},
+  "PA":{nome:"Pará",           aliq:19,   fcp:2},
+  "PB":{nome:"Paraíba",        aliq:20,   fcp:2},
+  "PR":{nome:"Paraná",         aliq:19.5, fcp:2},
+  "PE":{nome:"Pernambuco",     aliq:20.5, fcp:2},
+  "PI":{nome:"Piauí",          aliq:22.5, fcp:2},
+  "RN":{nome:"Rio G. do Norte",aliq:20,   fcp:2},
+  "RS":{nome:"Rio G. do Sul",  aliq:17,   fcp:2},
+  "RJ":{nome:"Rio de Janeiro", aliq:22,   fcp:2},
+  "RO":{nome:"Rondônia",       aliq:19.5, fcp:2},
+  "RR":{nome:"Roraima",        aliq:20,   fcp:2},
+  "SC":{nome:"Santa Catarina", aliq:17,   fcp:2},
+  "SP":{nome:"São Paulo",      aliq:18,   fcp:2},
+  "SE":{nome:"Sergipe",        aliq:20,   fcp:2},
+  "TO":{nome:"Tocantins",      aliq:20,   fcp:2}
 };
 
-(function populateFcUF(){
-  const sel = document.getElementById('fc-uf');
-  if(!sel) return;
-  Object.entries(fcEstados)
-    .sort((a,b) => a[1].nome.localeCompare(b[1].nome))
-    .forEach(([uf, d]) => {
-      const opt = document.createElement('option');
-      opt.value = uf;
-      opt.textContent = `${d.nome} (${uf}) — ${d.aliq}%`;
-      if(uf === 'SP') opt.selected = true;
-      sel.appendChild(opt);
-    });
-})();
+// Matriz interestadual completa baseada na tabela oficial
+// Colunas na ordem: AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RN RS RJ RO RR SC SP SE TO
+const fcUFs = ["AC","AL","AM","AP","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RN","RS","RJ","RO","RR","SC","SP","SE","TO"];
+const fcMatrix = {
+  //        AC   AL   AM   AP   BA   CE   DF   ES   GO   MA   MT   MS   MG   PA   PB   PR   PE   PI   RN   RS   RJ   RO   RR   SC   SP   SE   TO
+  "AC":  [  19,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "AL":  [  12,20.5,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "AM":  [  12,  12,  20,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "AP":  [  12,  12,  12,  18,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "BA":  [  12,  12,  12,  12,20.5,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "CE":  [  12,  12,  12,  12,  12,  20,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "DF":  [  12,  12,  12,  12,  12,  12,  20,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "ES":  [  12,  12,  12,  12,  12,  12,  12,  17,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "GO":  [  12,  12,  12,  12,  12,  12,  12,  12,  19,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "MA":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  23,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "MT":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  17,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "MS":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  17,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "MG":  [   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,  18,   7,   7,  12,   7,   7,   7,  12,  12,   7,   7,  12,  12,   7,   7],
+  "PA":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  19,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "PB":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  20,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "PR":  [   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,  12,   7,   7,19.5,   7,   7,   7,  12,  12,   7,   7,  12,  12,   7,   7],
+  "PE":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,20.5,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "PI":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,22.5,  12,  12,  12,  12,  12,  12,  12,  12,  12],
+  "RN":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  20,  12,  12,  12,  12,  12,  12,  12,  12],
+  "RS":  [   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,  12,   7,   7,  12,   7,   7,   7,  17,  12,   7,   7,  12,  12,   7,   7],
+  "RJ":  [   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,  12,   7,   7,  12,   7,   7,   7,  12,  22,   7,   7,  12,  12,   7,   7],
+  "RO":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,19.5,  12,  12,  12,  12,  12],
+  "RR":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  20,  12,  12,  12,  12],
+  "SC":  [   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,  12,   7,   7,  12,   7,   7,   7,  12,  12,   7,   7,  17,  12,   7,   7],
+  "SP":  [   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,   7,  12,   7,   7,  12,   7,   7,   7,  12,  12,   7,   7,  12,  18,  12,   7],
+  "SE":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  20,  12],
+  "TO":  [  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  20]
+};
 
-function fcMoeda(v){
-  return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+// Produto nacional: consulta matriz; importado: sempre 4%
+function fcAliqInter(ufOrigem, ufDestino, tipo) {
+  if (tipo === 'importado') return 4;
+  const row = fcMatrix[ufOrigem];
+  if (!row) return 12;
+  const colIdx = fcUFs.indexOf(ufDestino);
+  if (colIdx === -1) return 12;
+  return row[colIdx];
 }
 
-function fcCalc(){
-  const valorRaw = parseFloat(document.getElementById('fc-valor').value);
-  const tipo     = document.getElementById('fc-tipo').value;
-  const uf       = document.getElementById('fc-uf').value;
-  const res      = document.getElementById('fc-resultado');
+function calcularDifal({ valorNota, aliquotaInterna, aliquotaInterestadual, fcp = 0 }) {
+  const icmsOrigem     = valorNota * (aliquotaInterestadual / 100);
+  const base1          = valorNota - icmsOrigem;
+  const basePorDentro  = base1 / (1 - (aliquotaInterna / 100));
+  const icmsInterno    = basePorDentro * (aliquotaInterna / 100);
+  const difal          = icmsInterno - icmsOrigem;
+  const valorFcp       = basePorDentro * (fcp / 100);
+  const total          = difal + valorFcp;
+  return { basePorDentro, icmsOrigem, icmsInterno, difal, valorFcp, total };
+}
 
-  if(!valorRaw || isNaN(valorRaw) || valorRaw <= 0){
+(function populateFcUFs(){
+  const sorted = Object.entries(fcEstados).sort((a,b) => a[1].nome.localeCompare(b[1].nome));
+  ['fc-uf-origem','fc-uf'].forEach((id, idx) => {
+    const sel = document.getElementById(id);
+    if (!sel) return;
+    sorted.forEach(([uf, d]) => {
+      const opt = document.createElement('option');
+      opt.value = uf;
+      opt.textContent = `${d.nome} (${uf})`;
+      // defaults: origem = MG, destino = SP
+      if (idx === 0 && uf === 'MG') opt.selected = true;
+      if (idx === 1 && uf === 'SP') opt.selected = true;
+      sel.appendChild(opt);
+    });
+  });
+  fcUpdateSubtitle();
+})();
+
+function fcUpdateSubtitle() {
+  const ufOrig = document.getElementById('fc-uf-origem');
+  const sub    = document.getElementById('fc-subtitle');
+  if (!ufOrig || !sub) return;
+  const uf = ufOrig.value;
+  const st = fcEstados[uf];
+  sub.innerHTML = `Origem <strong style="color:var(--text)">${st ? st.nome : uf}</strong> · Selecione destino e tipo de produto · Base dupla (por dentro) · LC 190/2022`;
+}
+
+function fcMoeda(v) {
+  return v.toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
+}
+
+function fcPct(v) { return v.toFixed(1) + '%'; }
+
+function fcCalc() {
+  const valorRaw  = parseFloat(document.getElementById('fc-valor').value);
+  const tipo      = document.getElementById('fc-tipo').value;
+  const ufDest    = document.getElementById('fc-uf').value;
+  const ufOrig    = document.getElementById('fc-uf-origem').value;
+  const res       = document.getElementById('fc-resultado');
+
+  if (!valorRaw || isNaN(valorRaw) || valorRaw <= 0) {
     res.style.display = 'block';
     res.innerHTML = `<div style="display:flex;align-items:center;gap:8px;color:var(--red);font-size:13px;padding:4px 0">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3M8 10.5v.5"/></svg>
@@ -2075,87 +2367,118 @@ function fcCalc(){
     return;
   }
 
-  const estado      = fcEstados[uf];
-  const aliqDest    = estado.aliq / 100;
-  const aliqFCP     = estado.fcp  / 100;
-  const aliqInter   = tipo === 'nacional' ? 0.12 : 0.04;
+  if (ufOrig === ufDest) {
+    res.style.display = 'block';
+    res.innerHTML = `<div style="display:flex;align-items:center;gap:8px;color:var(--brand);font-size:13px;padding:4px 0">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
+      Operação intraestadual — não há DIFAL a recolher.
+    </div>`;
+    return;
+  }
 
-  const base           = valorRaw / (1 - aliqDest);
-  const icmsOrigem     = base * aliqInter;
-  const icmsDestinoTot = base * aliqDest;
-  const difal          = Math.max(0, icmsDestinoTot - icmsOrigem);
-  const valorFCP       = base * aliqFCP;
-  const totalRecolher  = difal + valorFCP;
-  const semDifal       = difal === 0;
+  const estadoDest      = fcEstados[ufDest];
+  const estadoOrig      = fcEstados[ufOrig];
+  const aliqInter       = fcAliqInter(ufOrig, ufDest, tipo);
+  const aliqInterna     = estadoDest.aliq;
+  const fcp             = estadoDest.fcp;
 
-  const pct = (v) => v.toFixed(1) + '%';
-  const m   = fcMoeda;
+  const r = calcularDifal({
+    valorNota: valorRaw,
+    aliquotaInterna: aliqInterna,
+    aliquotaInterestadual: aliqInter,
+    fcp
+  });
+
+  const semDifal = r.difal <= 0;
+  const m = fcMoeda;
+  const pct = fcPct;
 
   res.style.display = 'block';
   res.innerHTML = `
-    <!-- Cabeçalho resumo -->
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-      <div style="font-size:13px;font-weight:500;color:#f2f2f3">
-        ${estado.nome} (${uf}) &nbsp;·&nbsp; ${pct(estado.aliq)} interna &nbsp;·&nbsp; ${(aliqInter*100).toFixed(0)}% interestadual
-      </div>
-      <div style="font-size:11px;color:var(--text-muted)">Base por dentro</div>
+    <!-- Rota -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+      <span style="font-size:12px;font-weight:500;padding:4px 10px;border-radius:20px;background:var(--bg);border:1px solid var(--border);color:var(--text)">${estadoOrig.nome} (${ufOrig})</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--brand)" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      <span style="font-size:12px;font-weight:500;padding:4px 10px;border-radius:20px;background:var(--brand-bg);border:1px solid var(--brand-bd);color:var(--brand)">${estadoDest.nome} (${ufDest})</span>
+      <span style="font-size:11px;color:var(--text-muted);margin-left:auto">Inter: ${aliqInter}% · Interna: ${pct(aliqInterna)} · FCP: ${fcp}%</span>
     </div>
 
-    <!-- KPI cards principais -->
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px">
-      <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:11px 13px">
-        <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Valor da NF</div>
-        <div style="font-size:16px;font-weight:500;font-family:var(--mono);color:#f2f2f3">${m(valorRaw)}</div>
+    <!-- KPIs: Valor NF e Base por dentro -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+      <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 12px">
+        <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Valor da NF</div>
+        <div style="font-size:15px;font-weight:500;font-family:var(--mono);color:#f2f2f3">${m(valorRaw)}</div>
       </div>
-      <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:11px 13px">
-        <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Base de cálculo (por dentro)</div>
-        <div style="font-size:16px;font-weight:500;font-family:var(--mono);color:#f2f2f3">${m(base)}</div>
-      </div>
-    </div>
-
-    <!-- Separador cálculo -->
-    <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Memória de cálculo</div>
-    <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 13px;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.06)">
-        <span style="font-size:12px;color:var(--text-muted)">ICMS origem (MG) — ${(aliqInter*100).toFixed(0)}%</span>
-        <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(icmsOrigem)}</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0">
-        <span style="font-size:12px;color:var(--text-muted)">ICMS destino total (${pct(estado.aliq)})</span>
-        <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(icmsDestinoTot)}</span>
+      <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 12px">
+        <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Base por Dentro</div>
+        <div style="font-size:15px;font-weight:500;font-family:var(--mono);color:#f2f2f3">${m(r.basePorDentro)}</div>
       </div>
     </div>
 
-    <!-- Resultado DIFAL + FCP -->
-    <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Valores a recolher</div>
+    <!-- Memória de cálculo com fórmula -->
+    <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Memória de cálculo</div>
+    <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;margin-bottom:14px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div>
+          <span style="font-size:11px;color:var(--text-muted)">① ICMS Origem (${ufOrig})</span>
+          <span style="font-size:10px;color:var(--text-dim);margin-left:6px;font-family:var(--mono)">${m(valorRaw)} × ${aliqInter}%</span>
+        </div>
+        <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(r.icmsOrigem)}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div>
+          <span style="font-size:11px;color:var(--text-muted)">② Base Líquida</span>
+          <span style="font-size:10px;color:var(--text-dim);margin-left:6px;font-family:var(--mono)">${m(valorRaw)} − ${m(r.icmsOrigem)}</span>
+        </div>
+        <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(valorRaw - r.icmsOrigem)}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div>
+          <span style="font-size:11px;color:var(--text-muted)">③ Base por Dentro</span>
+          <span style="font-size:10px;color:var(--text-dim);margin-left:6px;font-family:var(--mono)">÷ (1 − ${pct(aliqInterna)})</span>
+        </div>
+        <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(r.basePorDentro)}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:7px 12px">
+        <div>
+          <span style="font-size:11px;color:var(--text-muted)">④ ICMS Interno (${ufDest})</span>
+          <span style="font-size:10px;color:var(--text-dim);margin-left:6px;font-family:var(--mono)">${m(r.basePorDentro)} × ${pct(aliqInterna)}</span>
+        </div>
+        <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(r.icmsInterno)}</span>
+      </div>
+    </div>
+
+    <!-- DIFAL + FCP -->
+    <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Valores a recolher</div>
     ${semDifal ? `
-    <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(52,212,122,0.08);border:1px solid rgba(52,212,122,0.22);border-radius:8px;margin-bottom:8px">
+    <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:rgba(52,212,122,0.08);border:1px solid rgba(52,212,122,0.22);border-radius:8px;margin-bottom:8px">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M4 8l3 3 5-5"/><circle cx="8" cy="8" r="6"/></svg>
       <span style="font-size:13px;font-weight:500;color:var(--green)">Não há DIFAL a recolher — ICMS origem ≥ destino</span>
-    </div>
-    ` : `
+    </div>` : `
     <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:rgba(242,108,108,0.08);border:1px solid rgba(242,108,108,0.22);border-radius:8px;margin-bottom:8px">
       <div>
-        <div style="font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">DIFAL — ${uf}</div>
-        <div style="font-size:11px;color:var(--text-muted)">Alíq. interna ${pct(estado.aliq)} − interestadual ${(aliqInter*100).toFixed(0)}% = ${pct(estado.aliq - aliqInter*100)}</div>
+        <div style="font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">⑤ DIFAL — ${ufDest}</div>
+        <div style="font-size:10px;color:var(--text-dim);font-family:var(--mono)">${m(r.icmsInterno)} − ${m(r.icmsOrigem)}</div>
       </div>
-      <div style="font-size:18px;font-weight:500;font-family:var(--mono);color:var(--red)">${m(difal)}</div>
-    </div>
-    `}
+      <div style="font-size:18px;font-weight:500;font-family:var(--mono);color:var(--red)">${m(r.difal)}</div>
+    </div>`}
     <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:rgba(245,194,0,0.07);border:1px solid rgba(245,194,0,0.2);border-radius:8px;margin-bottom:14px">
       <div>
-        <div style="font-size:10px;color:#F5C200;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">FCP — ${uf}</div>
-        <div style="font-size:11px;color:var(--text-muted)">${estado.fcp}% sobre a base ampliada</div>
+        <div style="font-size:10px;color:#F5C200;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">⑥ FCP — ${ufDest}</div>
+        <div style="font-size:10px;color:var(--text-dim);font-family:var(--mono)">${m(r.basePorDentro)} × ${fcp}%</div>
       </div>
-      <div style="font-size:18px;font-weight:500;font-family:var(--mono);color:#F5C200">${m(valorFCP)}</div>
+      <div style="font-size:18px;font-weight:500;font-family:var(--mono);color:#F5C200">${m(r.valorFcp)}</div>
     </div>
 
     <!-- Total -->
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px">
-      <div style="font-size:13px;font-weight:500;color:#f2f2f3">Total a Recolher</div>
-      <div style="display:flex;align-items:center;gap:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px">
+      <div>
+        <div style="font-size:12px;font-weight:500;color:#f2f2f3">⑦ Total a Recolher</div>
+        <div style="font-size:10px;color:var(--text-dim);font-family:var(--mono);margin-top:1px">${semDifal ? `0 + ${m(r.valorFcp)}` : `${m(r.difal)} + ${m(r.valorFcp)}`}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
         <span style="font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;background:${semDifal ? 'rgba(52,212,122,0.1)' : 'rgba(242,108,108,0.1)'};color:${semDifal ? 'var(--green)' : 'var(--red)'};border:1px solid ${semDifal ? 'rgba(52,212,122,0.25)' : 'rgba(242,108,108,0.25)'}">${semDifal ? 'somente FCP' : 'DIFAL + FCP'}</span>
-        <span style="font-size:20px;font-weight:600;font-family:var(--mono);color:#f2f2f3">${m(totalRecolher)}</span>
+        <span style="font-size:20px;font-weight:600;font-family:var(--mono);color:#f2f2f3">${m(r.total)}</span>
       </div>
     </div>
   `;
@@ -2270,6 +2593,324 @@ function ccRenderStep(num, title, desc){
       <td style="padding:10px 14px;font-size:11px;color:var(--text-muted)">${mot}</td>
     </tr>`;
   }).join('');
+})();
+// ── INDICADORES ───────────────────────────────────────────────
+const IND_STORAGE_KEY = 'blips_indicadores_v1';
+
+const indKpis = [
+  {
+    id: 'erro',
+    nome: 'Taxa de Erro Faturamento',
+    unidade: '%',
+    desc: 'Reduzir erros de faturamento, mitigando cancelamento de notas e cartas de correção.',
+    owner: 'Lenon Henrique da Silva',
+    prazo: '31/12/2026',
+    // menor é melhor (meta é teto)
+    menorMelhor: true
+  },
+  {
+    id: 'maq',
+    nome: 'Tempo Méd. Faturamento Máquinas',
+    unidade: 'hr',
+    desc: 'Medir o tempo médio de faturamento a fim de manter um SLA aceitável à operação.',
+    owner: 'Lenon Henrique da Silva',
+    prazo: '31/12/2026',
+    menorMelhor: true
+  },
+  {
+    id: 'tmf',
+    nome: '% de Automação no Faturamento',
+    unidade: '%',
+    desc: 'Percentual de documentos faturados de forma automatizada, sem intervenção manual.',
+    owner: 'Lenon Henrique da Silva',
+    prazo: '31/12/2026',
+    // maior é melhor (meta é piso)
+    menorMelhor: false
+  }
+];
+
+// Carregar dados do localStorage
+function indLoad() {
+  try { return JSON.parse(localStorage.getItem(IND_STORAGE_KEY) || '{}'); }
+  catch { return {}; }
+}
+
+function indSaveData(data) {
+  localStorage.setItem(IND_STORAGE_KEY, JSON.stringify(data));
+}
+
+function indFmtPeriod(p) {
+  if (!p) return '';
+  const [y, m] = p.split('-');
+  const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  return `${meses[parseInt(m)-1]}/${y}`;
+}
+
+function indCurrentPeriod() {
+  const now = new Date();
+  const m = String(now.getMonth()+1).padStart(2,'0');
+  return `${now.getFullYear()}-${m}`;
+}
+
+function indProgressColor(pct, menorMelhor) {
+  if (menorMelhor) {
+    // meta é teto: atingir 100% = atingiu a meta. Menor que meta = bom
+    if (pct >= 100) return 'ind-bar-green';
+    if (pct >= 80)  return 'ind-bar-brand';
+    return 'ind-bar-red';
+  } else {
+    if (pct >= 100) return 'ind-bar-green';
+    if (pct >= 70)  return 'ind-bar-brand';
+    return 'ind-bar-red';
+  }
+}
+
+function indCalcProgress(val, meta, menorMelhor) {
+  if (!meta || meta === 0) return 0;
+  if (menorMelhor) {
+    // ex: val=3.13, meta=3. progresso = meta/val * 100. se val < meta = acima de 100%
+    return Math.min(150, (meta / val) * 100);
+  }
+  return Math.min(150, (val / meta) * 100);
+}
+
+function indDelta(val, meta, menorMelhor, unidade) {
+  if (!meta) return '';
+  const diff = val - meta;
+  const pct  = Math.abs(Math.round((diff/meta)*100));
+  if (diff === 0) return '';
+  if (menorMelhor) {
+    // val > meta = ruim (acima do teto)
+    if (diff > 0) return `<span class="ind-delta ind-delta-up">↑ +${pct}%</span>`;
+    return `<span class="ind-delta ind-delta-down">↓ ${pct}%</span>`;
+  } else {
+    if (diff > 0) return `<span class="ind-delta ind-delta-down">↑ +${pct}%</span>`;
+    return `<span class="ind-delta ind-delta-up">↓ ${pct}%</span>`;
+  }
+}
+
+function indRenderCards(period) {
+  const data   = indLoad();
+  const entry  = data[period];
+  const cont   = document.getElementById('ind-cards-container');
+  if (!cont) return;
+
+  if (!entry) {
+    cont.innerHTML = `<div class="ind-empty" style="grid-column:1/-1">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--text-dim)" stroke-width="1.5" style="margin:0 auto 12px;display:block"><path d="M4 30V18l8-10 8 8 6-8 8 10v12"/><path d="M4 30h32"/></svg>
+      <div>Nenhum dado para <strong style="color:var(--brand)">${indFmtPeriod(period)}</strong>.</div>
+      <div style="margin-top:6px;font-size:11px">Clique em <strong style="color:var(--brand)">+ Registrar mês</strong> para adicionar.</div>
+    </div>`;
+    return;
+  }
+
+  cont.innerHTML = indKpis.map(kpi => {
+    const val  = parseFloat(entry[kpi.id+'_val']  || 0);
+    const meta = parseFloat(entry[kpi.id+'_meta'] || 0);
+    const pct  = indCalcProgress(val, meta, kpi.menorMelhor);
+    const pctDisplay = Math.min(100, pct);
+    const barClass = indProgressColor(pct, kpi.menorMelhor);
+    const deltaHtml = indDelta(val, meta, kpi.menorMelhor, kpi.unidade);
+    const owner = entry.owner || kpi.owner;
+    const initials = owner.split(' ').filter(w=>w).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+    const metaLabel = meta ? `Meta ${indFmtPeriod(period)}: ${meta}${kpi.unidade}` : '';
+
+    return `<div class="ind-card">
+      <div class="ind-card-top">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="ind-card-icon" style="background:var(--brand-bg);border:1px solid var(--brand-bd)">
+            <svg viewBox="0 0 16 16" fill="none" stroke="var(--brand)" stroke-width="1.5"><path d="M2 12V8l3-4 3 3 2-3 3 4v4"/><path d="M2 12h12"/></svg>
+          </div>
+          <span class="ind-badge-status ind-badge-ativa">Ativa</span>
+        </div>
+        <button class="ind-menu-btn" onclick="indEditPeriod('${period}')" title="Editar">···</button>
+      </div>
+      <div class="ind-card-name">${kpi.nome} (${kpi.unidade})</div>
+      <div class="ind-card-desc">${kpi.desc}</div>
+      <div class="ind-card-value">${val}${kpi.unidade === '%' ? '%' : ' '+kpi.unidade}</div>
+      <div class="ind-card-meta">${metaLabel} ${deltaHtml}</div>
+      <div class="ind-progress-label">
+        <span>Progresso Mensal</span>
+        <span class="ind-progress-pct">${Math.round(pctDisplay)}%</span>
+      </div>
+      <div class="ind-bar"><div class="ind-bar-fill ${barClass}" style="width:${pctDisplay}%"></div></div>
+      <div class="ind-card-footer">
+        <div class="ind-owner"><div class="ind-avatar">${initials}</div>${owner}</div>
+        <div class="ind-date">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="2" width="10" height="9" rx="1"/><path d="M1 5h10M4 1v2M8 1v2"/></svg>
+          ${kpi.prazo}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function indRenderHistory() {
+  const data = indLoad();
+  const periods = Object.keys(data).sort().reverse();
+  const cont = document.getElementById('ind-history-container');
+  if (!cont) return;
+
+  if (!periods.length) {
+    cont.innerHTML = '<div class="ind-empty">Nenhum histórico disponível ainda.</div>';
+    return;
+  }
+
+  const rows = periods.map(p => {
+    const e = data[p];
+    return `<tr>
+      <td><strong style="color:var(--text)">${indFmtPeriod(p)}</strong></td>
+      ${indKpis.map(k => `<td style="font-family:var(--mono);font-size:12px">${e[k.id+'_val'] || '—'}${k.unidade === '%' ? '%' : ' '+k.unidade} <span style="color:var(--text-dim);font-size:10px">(meta: ${e[k.id+'_meta'] || '—'}${k.unidade === '%' ? '%' : ''})</span></td>`).join('')}
+      <td style="font-size:11px">${e.owner || '—'}</td>
+      <td>
+        <button class="ind-btn ind-btn-ghost" style="padding:4px 10px;font-size:11px" onclick="indEditPeriod('${p}')">Editar</button>
+        <button class="ind-btn ind-btn-danger" style="padding:4px 10px;font-size:11px;margin-left:4px" onclick="indDeletePeriod('${p}')">Excluir</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  cont.innerHTML = `<table class="ind-hist-table">
+    <thead><tr>
+      <th>Período</th>
+      ${indKpis.map(k=>`<th>${k.nome}</th>`).join('')}
+      <th>Responsável</th>
+      <th>Ações</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function indPopulatePeriodSelect() {
+  const sel = document.getElementById('ind-period-select');
+  if (!sel) return;
+  const data    = indLoad();
+  const saved   = Object.keys(data).sort().reverse();
+  const current = indCurrentPeriod();
+  const periods = [...new Set([current, ...saved])].sort().reverse();
+
+  sel.innerHTML = periods.map(p =>
+    `<option value="${p}">${indFmtPeriod(p)}</option>`
+  ).join('');
+  sel.value = current;
+}
+
+function indLoadPeriod(period) {
+  indRenderCards(period);
+}
+
+function indOpenModal(period) {
+  const p = period || indCurrentPeriod();
+  const data  = indLoad();
+  const entry = data[p] || {};
+
+  document.getElementById('ind-f-period').value   = p;
+  document.getElementById('ind-f-owner').value    = entry.owner || 'Lenon Henrique da Silva';
+  document.getElementById('ind-f-erro-val').value  = entry.erro_val  || '';
+  document.getElementById('ind-f-erro-meta').value = entry.erro_meta || '';
+  document.getElementById('ind-f-maq-val').value   = entry.maq_val   || '';
+  document.getElementById('ind-f-maq-meta').value  = entry.maq_meta  || '';
+  document.getElementById('ind-f-tmf-val').value   = entry.tmf_val   || '';
+  document.getElementById('ind-f-tmf-meta').value  = entry.tmf_meta  || '';
+
+  document.getElementById('ind-modal-title').textContent =
+    period ? `Editar — ${indFmtPeriod(period)}` : 'Registrar indicadores do mês';
+  document.getElementById('ind-modal').classList.add('open');
+}
+
+function indEditPeriod(period) { indOpenModal(period); }
+
+function indCloseModal() {
+  document.getElementById('ind-modal').classList.remove('open');
+}
+
+function indSave() {
+  const period = document.getElementById('ind-f-period').value;
+  if (!period) { alert('Selecione o mês/ano.'); return; }
+
+  const data = indLoad();
+  data[period] = {
+    owner:     document.getElementById('ind-f-owner').value,
+    erro_val:  document.getElementById('ind-f-erro-val').value,
+    erro_meta: document.getElementById('ind-f-erro-meta').value,
+    maq_val:   document.getElementById('ind-f-maq-val').value,
+    maq_meta:  document.getElementById('ind-f-maq-meta').value,
+    tmf_val:   document.getElementById('ind-f-tmf-val').value,
+    tmf_meta:  document.getElementById('ind-f-tmf-meta').value,
+  };
+  indSaveData(data);
+  indCloseModal();
+  indPopulatePeriodSelect();
+  const sel = document.getElementById('ind-period-select');
+  if (sel) sel.value = period;
+  indRenderCards(period);
+  indRenderHistory();
+}
+
+function indDeletePeriod(period) {
+  if (!confirm(`Excluir os dados de ${indFmtPeriod(period)}?`)) return;
+  const data = indLoad();
+  delete data[period];
+  indSaveData(data);
+  indPopulatePeriodSelect();
+  const sel = document.getElementById('ind-period-select');
+  const current = indCurrentPeriod();
+  if (sel) { indPopulatePeriodSelect(); sel.value = current; }
+  indRenderCards(current);
+  indRenderHistory();
+}
+
+// Fechar modal ao clicar fora
+document.getElementById('ind-modal')?.addEventListener('click', function(e) {
+  if (e.target === this) indCloseModal();
+});
+
+function indExportJSON() {
+  const data = indLoad();
+  const json = JSON.stringify({ blips_indicadores: true, version: 1, data }, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url;
+  const now = new Date();
+  a.download = `indicadores_blips_${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function indImportJSON(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      const importData = parsed.blips_indicadores ? parsed.data : parsed;
+      if (typeof importData !== 'object' || Array.isArray(importData)) {
+        alert('Arquivo inválido. O JSON precisa ter o formato exportado pelo dashboard.');
+        return;
+      }
+      const existing = indLoad();
+      const merged = { ...existing, ...importData };
+      const count = Object.keys(importData).length;
+      indSaveData(merged);
+      indPopulatePeriodSelect();
+      const sel = document.getElementById('ind-period-select');
+      if (sel && sel.options.length) indRenderCards(sel.value);
+      indRenderHistory();
+      alert(`✓ ${count} período(s) importado(s) com sucesso!`);
+    } catch(err) {
+      alert('Erro ao ler o arquivo JSON. Verifique o formato e tente novamente.');
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// Init indicadores ao carregar a página
+(function initIndicadores() {
+  indPopulatePeriodSelect();
+  indRenderCards(indCurrentPeriod());
+  indRenderHistory();
 })();
 </script>
 </body>
