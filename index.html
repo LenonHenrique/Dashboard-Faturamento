@@ -141,7 +141,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 /* ── PAGES ─────────────────────────────────────────────────── */
 .page{display:none !important;padding:22px 28px;animation:fadeIn .22s ease}
 .page.on{display:block !important}
-#page-ferramentas.on{display:flex !important;flex-direction:column}
+#page-ferramentas.on{display:flex !important;flex-direction:column;overflow-y:auto;min-height:0}
+#page-ferramentas{overflow-y:auto;-webkit-overflow-scrolling:touch}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
 /* ── CARDS ─────────────────────────────────────────────────── */
@@ -1608,83 +1609,98 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
           <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--purple)">199600</div>
           <div class="lc-rv">Local de <strong>Seminovos</strong> — exclusivo para faturamento de equipamentos seminovos destinados à venda. <strong>Não possui alternativo</strong>: usar sempre este local para essa categoria.</div>
         </div>
+        <div class="lc-rule-row">
+          <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--amber)">199400</div>
+          <div class="lc-rv">Local <strong>Em Homologação</strong> — utilizado quando um equipamento que chegou em quarentena (importação) precisa de manutenção física. O local é alterado fiscalmente para 199400 até a liberação do item para uso ou venda.</div>
+        </div>
+        <div class="lc-rule-row">
+          <div class="lc-rl" style="font-family:var(--mono);font-size:13px;color:var(--blue)">199500</div>
+          <div class="lc-rv">Local <strong>Em Trânsito</strong> — utilizado quando há solicitação de devolução. O produto permanece neste local enquanto está fisicamente em deslocamento. Ao chegar no destino, realiza-se uma transferência de locais para que o fiscal bata com o físico.</div>
+        </div>
       </div>
 
-      <!-- REGRAS DE DEVOLUÇÃO E TROCA -->
+      <!-- QUARENTENA → HOMOLOGAÇÃO -->
       <div class="df-section-title" style="margin-top:18px;margin-bottom:10px">
-        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8c0-3.3 2.7-6 6-6"/><path d="M10 4c0 3.3-2.7 6-6 6"/><path d="M8.5 2L10 4l-1.5 2"/><path d="M3.5 10L2 8l1.5-2"/></svg>
-        Regras de locais — Devolução e Troca de equipamentos
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"/><path d="M6 3v3.5l2 1.5"/></svg>
+        Fluxo de Quarentena e Homologação — Importação (199400)
       </div>
 
-      <!-- Card devolução -->
-      <div class="lc-alert lc-al-cyan" style="margin-bottom:10px">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8a5 5 0 0 1 10 0"/><path d="M13 6l-1 2-2-1"/><path d="M6 14l-2-2 2-2"/></svg>
-        <div><strong>Devolução de equipamento:</strong> quando o cliente devolve um equipamento (rescisão, garantia ou retorno), o local de <strong>entrada</strong> é sempre o <span class="lc-showroom-tag" style="background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)">199300 Manutenção</span>. O equipamento retorna para avaliação técnica antes de qualquer outra movimentação.</div>
+      <div class="lc-alert lc-al-brand" style="margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
+        <div><strong>Quarentena → Em Homologação (199400):</strong> quando um equipamento importado chega e precisa de manutenção física antes de ser liberado, o local fiscal é alterado de <span class="lc-showroom-tag" style="background:var(--bg-card2);color:var(--text-muted);border-color:var(--border)">Quarentena</span> para <span class="lc-showroom-tag" style="background:var(--amber-bg);color:var(--amber);border-color:var(--amber-bd)">199400 Em Homologação</span>. Não emitir NF de venda enquanto o item estiver neste status.</div>
       </div>
 
-      <!-- Fluxo devolução -->
       <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:16px 20px;margin-bottom:14px">
-        <div style="font-size:10px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">Fluxo · Devolução de equipamento</div>
+        <div style="font-size:10px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">Fluxo · Importação com manutenção física</div>
         <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
           <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:120px">
-            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Cliente</div>
-            <div style="font-weight:500;color:var(--text)">Devolve equipamento</div>
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Chegada</div>
+            <div style="font-weight:500;color:var(--text)">Importação chega</div>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:2px">Local: Quarentena</div>
           </div>
           <div style="color:var(--text-dim);font-size:18px;padding:0 4px">→</div>
-          <div style="background:var(--cyan-bg);border:1px solid var(--cyan-bd);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:140px">
-            <div style="font-size:10px;color:var(--cyan);margin-bottom:4px">Entrada — NF entrada</div>
-            <div style="font-weight:500;color:var(--text);font-family:var(--mono)">199300</div>
-            <div style="font-size:10px;color:var(--cyan);margin-top:2px">Local Manutenção</div>
+          <div style="background:var(--amber-bg);border:1px solid var(--amber-bd);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:150px">
+            <div style="font-size:10px;color:var(--amber);margin-bottom:4px">Alteração fiscal</div>
+            <div style="font-weight:500;color:var(--text);font-family:var(--mono)">199400</div>
+            <div style="font-size:10px;color:var(--amber);margin-top:2px">Em Homologação</div>
           </div>
           <div style="color:var(--text-dim);font-size:18px;padding:0 4px">→</div>
           <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:120px">
-            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Destino</div>
-            <div style="font-weight:500;color:var(--text)">Avaliação técnica</div>
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Manutenção</div>
+            <div style="font-weight:500;color:var(--text)">Reparo físico</div>
           </div>
-        </div>
-      </div>
-
-      <!-- Card troca -->
-      <div class="lc-alert lc-al-green" style="margin-bottom:10px">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M10 4l4 4-4 4"/><path d="M14 8H2M6 4L2 8l4 4"/></svg>
-        <div><strong>Troca de equipamento:</strong> na troca, o equipamento do cliente <strong>entra</strong> pelo local <span class="lc-showroom-tag" style="background:var(--cyan-bg);color:var(--cyan);border-color:var(--cyan-bd)">199300 Manutenção</span> e o equipamento substituto <strong>sai</strong> pelo local <span class="lc-showroom-tag" style="background:var(--green-bg);color:var(--green);border-color:var(--green-bd)">199100 Expedição</span>. Sempre dois documentos: NF de entrada + NF de saída.</div>
-      </div>
-
-      <!-- Fluxo troca -->
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:16px 20px;margin-bottom:14px">
-        <div style="font-size:10px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">Fluxo · Troca de equipamento</div>
-        <div style="display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap">
-
-          <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:120px">
-            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Cliente</div>
-            <div style="font-weight:500;color:var(--text)">Entrega equipamento com defeito</div>
+          <div style="color:var(--text-dim);font-size:18px;padding:0 4px">→</div>
+          <div style="background:var(--green-bg);border:1px solid var(--green-bd);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:130px">
+            <div style="font-size:10px;color:var(--green);margin-bottom:4px">Liberação</div>
+            <div style="font-weight:500;color:var(--text)">Local atualizado</div>
+            <div style="font-size:10px;color:var(--green);margin-top:2px">Apto para uso/venda</div>
           </div>
-
-          <div style="color:var(--text-dim);font-size:18px;padding:8px 4px 0">→</div>
-
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <div style="background:var(--cyan-bg);border:1px solid var(--cyan-bd);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:160px">
-              <div style="font-size:10px;color:var(--cyan);margin-bottom:4px">① NF de Entrada</div>
-              <div style="font-weight:500;color:var(--text);font-family:var(--mono)">199300</div>
-              <div style="font-size:10px;color:var(--cyan);margin-top:2px">Local Manutenção</div>
-            </div>
-            <div style="background:var(--green-bg);border:1px solid var(--green-bd);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:160px">
-              <div style="font-size:10px;color:var(--green);margin-bottom:4px">② NF de Saída</div>
-              <div style="font-weight:500;color:var(--text);font-family:var(--mono)">199100</div>
-              <div style="font-size:10px;color:var(--green);margin-top:2px">Local Expedição</div>
-            </div>
-          </div>
-
-          <div style="color:var(--text-dim);font-size:18px;padding:8px 4px 0">→</div>
-
-          <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:120px">
-            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Cliente</div>
-            <div style="font-weight:500;color:var(--text)">Recebe equipamento substituto</div>
-          </div>
-
         </div>
         <div style="margin-top:12px;padding:10px 12px;background:var(--bg-card2);border-radius:6px;font-size:11px;color:var(--text-muted);line-height:1.6">
-          <strong style="color:var(--text)">Regra:</strong> emitir sempre nesta ordem — <strong style="color:var(--cyan)">primeiro a NF de entrada (199300 Manutenção)</strong> para registrar o recebimento do equipamento defeituoso, <strong style="color:var(--green)">depois a NF de saída (199100 Expedição)</strong> para o envio do substituto. Nunca inverter a ordem.
+          <strong style="color:var(--text)">Regra:</strong> enquanto o local fiscal for <strong style="color:var(--amber)">199400 (Em Homologação)</strong> o equipamento não pode ser faturado para cliente. Somente após a liberação técnica e alteração do local é que a emissão da NF se torna permitida.
+        </div>
+      </div>
+
+      <!-- EM TRÂNSITO 199500 -->
+      <div class="df-section-title" style="margin-top:4px;margin-bottom:10px">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 6h8M7 3l3 3-3 3"/><circle cx="3" cy="9" r="1.5"/><circle cx="9" cy="9" r="1.5"/></svg>
+        Fluxo de Devolução com Local Em Trânsito (199500)
+      </div>
+
+      <div class="lc-alert" style="background:var(--blue-bg);border:1px solid var(--blue-bd);color:var(--blue);margin-bottom:10px">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h10M9 5l3 3-3 3"/><circle cx="4" cy="12" r="1.5"/><circle cx="10" cy="12" r="1.5"/></svg>
+        <div style="color:var(--blue)"><strong>Em Trânsito (199500):</strong> quando há solicitação de devolução, o produto recebe o local <span class="lc-showroom-tag" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bd)">199500 Em Trânsito</span> enquanto está fisicamente em deslocamento. Ao chegar no destino, é feita uma <strong>transferência de locais</strong> para que o fiscal bata com o físico.</div>
+      </div>
+
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:16px 20px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">Fluxo · Devolução com Em Trânsito</div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:120px">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Solicitação</div>
+            <div style="font-weight:500;color:var(--text)">Devolução solicitada</div>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:2px">Local atual do produto</div>
+          </div>
+          <div style="color:var(--text-dim);font-size:18px;padding:0 4px">→</div>
+          <div style="background:var(--blue-bg);border:1px solid var(--blue-bd);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:150px">
+            <div style="font-size:10px;color:var(--blue);margin-bottom:4px">Alteração fiscal</div>
+            <div style="font-weight:500;color:var(--text);font-family:var(--mono)">199500</div>
+            <div style="font-size:10px;color:var(--blue);margin-top:2px">Em Trânsito</div>
+          </div>
+          <div style="color:var(--text-dim);font-size:18px;padding:0 4px">→</div>
+          <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:130px">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">Deslocamento</div>
+            <div style="font-weight:500;color:var(--text)">Produto em trânsito</div>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:2px">Fiscal = 199500</div>
+          </div>
+          <div style="color:var(--text-dim);font-size:18px;padding:0 4px">→</div>
+          <div style="background:var(--green-bg);border:1px solid var(--green-bd);border-radius:8px;padding:10px 14px;font-size:12px;text-align:center;min-width:150px">
+            <div style="font-size:10px;color:var(--green);margin-bottom:4px">Chegada + Transferência</div>
+            <div style="font-weight:500;color:var(--text)">Local atualizado</div>
+            <div style="font-size:10px;color:var(--green);margin-top:2px">Fiscal = Físico ✓</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:10px 12px;background:var(--bg-card2);border-radius:6px;font-size:11px;color:var(--text-muted);line-height:1.6">
+          <strong style="color:var(--text)">Transferência de locais:</strong> ao confirmar a chegada do produto devolvido, realizar a transferência fiscal do local <strong style="color:var(--blue)">199500 (Em Trânsito)</strong> para o local físico correto (ex: 199300 Manutenção). Sem essa etapa, o sistema ficará com divergência entre o local fiscal e o físico.
         </div>
       </div>
 
@@ -1761,6 +1777,60 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
           <div class="df-step-box done"><strong>6. Emitir NF</strong>Com DIFAL destacado</div>
         </div>
         <div style="font-size:11px;color:var(--text-dim);margin-top:8px;padding-left:4px">Se destino = MG → sem DIFAL. Se destinatário é contribuinte (IE ativa) → sem DIFAL, apenas ICMS interestadual 4%.</div>
+      </div>
+
+      <!-- GNRE -->
+      <div class="df-section-title" style="margin-top:4px;margin-bottom:10px">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="9" height="9" rx="1"/><path d="M4 6h4M6 4v4"/></svg>
+        Passo a passo — Emissão de GNRE
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+
+        <!-- GNRE MG -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden">
+          <div style="padding:12px 16px;background:var(--amber-bg);border-bottom:1px solid var(--amber-bd);display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:11px;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:.06em">GNRE — Minas Gerais (MG)</span>
+            </div>
+            <a href="https://gnre.fazenda.mg.gov.br" target="_blank" rel="noopener" style="font-size:10px;color:var(--amber);text-decoration:none;display:flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;border:1px solid var(--amber-bd);background:var(--bg-card)">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V8M7 1h4m0 0v4M11 1L5.5 6.5"/></svg>
+              gnre.fazenda.mg.gov.br
+            </a>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--amber);font-weight:700;font-family:var(--mono)">1</div><div class="lc-rv">Acessar o portal: <strong style="color:var(--text)">gnre.fazenda.mg.gov.br</strong> e clicar em <strong style="color:var(--text)">Emitir GNRE</strong>.</div></div>
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--amber);font-weight:700;font-family:var(--mono)">2</div><div class="lc-rv">Selecionar o <strong style="color:var(--text)">Estado de destino: MG</strong> no campo UF favorecida.</div></div>
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--amber);font-weight:700;font-family:var(--mono)">3</div><div class="lc-rv">Escolher a receita: <strong style="color:var(--text)">10008-0 — ICMS Diferencial de Alíquota</strong>.</div></div>
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--amber);font-weight:700;font-family:var(--mono)">4</div><div class="lc-rv">Informar o <strong style="color:var(--text)">CNPJ do emitente</strong> (remetente da NF-e) e o <strong style="color:var(--text)">período de referência</strong> (mês/ano da NF).</div></div>
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--amber);font-weight:700;font-family:var(--mono)">5</div><div class="lc-rv">Preencher o <strong style="color:var(--text)">valor do DIFAL</strong> calculado e o <strong style="color:var(--text)">valor do FCP</strong> em campos separados (MG cobra FCP à parte).</div></div>
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--amber);font-weight:700;font-family:var(--mono)">6</div><div class="lc-rv">Informar a <strong style="color:var(--text)">chave de acesso da NF-e</strong> vinculada ao recolhimento.</div></div>
+            <div class="lc-rule-row" style="border-bottom:none"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--green);font-weight:700;font-family:var(--mono)">7</div><div class="lc-rv">Gerar o DANFE da GNRE e <strong style="color:var(--green)">realizar o pagamento antes da saída da mercadoria</strong>. Após pago, incluir a chave da GNRE na NF-e.</div></div>
+          </div>
+        </div>
+
+        <!-- GNRE ES -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden">
+          <div style="padding:12px 16px;background:var(--blue-bg);border-bottom:1px solid var(--blue-bd);display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:11px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em">GNRE — Espírito Santo (ES)</span>
+            </div>
+            <a href="https://gnre.sefaz.es.gov.br" target="_blank" rel="noopener" style="font-size:10px;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;border:1px solid var(--blue-bd);background:var(--bg-card)">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V8M7 1h4m0 0v4M11 1L5.5 6.5"/></svg>
+              gnre.sefaz.es.gov.br
+            </a>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--blue);font-weight:700;font-family:var(--mono)">1</div><div class="lc-rv">Acessar o portal: <strong style="color:var(--text)">gnre.sefaz.es.gov.br</strong> e selecionar <strong style="color:var(--text)">Emissão de GNRE Online</strong>.</div></div>
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--blue);font-weight:700;font-family:var(--mono)">2</div><div class="lc-rv">Selecionar <strong style="color:var(--text)">UF favorecida: ES</strong> e o tipo de documento <strong style="color:var(--text)">NF-e</strong>.</div></div>
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--blue);font-weight:700;font-family:var(--mono)">3</div><div class="lc-rv">Escolher a receita: <strong style="color:var(--text)">10008-0 — ICMS Diferencial de Alíquota</strong>.</div></div>
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--blue);font-weight:700;font-family:var(--mono)">4</div><div class="lc-rv">Informar o <strong style="color:var(--text)">CNPJ do emitente</strong>, o <strong style="color:var(--text)">CNPJ/CPF do destinatário</strong> e o <strong style="color:var(--text)">período de apuração</strong>.</div></div>
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--blue);font-weight:700;font-family:var(--mono)">5</div><div class="lc-rv">Inserir o <strong style="color:var(--text)">valor do DIFAL</strong>. O ES não destaca o FCP separadamente — verificar se há convênio específico.</div></div>
+            <div class="lc-rule-row"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--blue);font-weight:700;font-family:var(--mono)">6</div><div class="lc-rv">Informar a <strong style="color:var(--text)">chave de acesso da NF-e</strong> e confirmar os dados do remetente.</div></div>
+            <div class="lc-rule-row" style="border-bottom:none"><div class="lc-rl" style="width:28px;min-width:28px;color:var(--green);font-weight:700;font-family:var(--mono)">7</div><div class="lc-rv">Gerar o DANFE da GNRE e <strong style="color:var(--green)">pagar antes da saída da mercadoria</strong>. Incluir a chave da GNRE no campo específico da NF-e.</div></div>
+          </div>
+        </div>
+
       </div>
 
       <!-- FÓRMULAS COM MG + IMPORTADO -->
@@ -1864,7 +1934,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     </div>
     <!-- ════════ PAGE: FERRAMENTAS ════════ -->
     <div id="page-ferramentas" class="page" style="padding:0">
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:32px 20px;background:var(--bg);min-height:0">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:32px 20px 80px;background:var(--bg);min-height:max-content;width:100%">
 
         <!-- Header -->
         <div style="text-align:center;margin-bottom:24px">
