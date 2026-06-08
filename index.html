@@ -112,7 +112,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
 /* ── TOPBAR ────────────────────────────────────────────────── */
-.main{display:flex;flex-direction:column;min-height:100vh;max-height:100vh;overflow:hidden}
+.main{display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
 .topbar{
   padding:14px 28px;border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;
@@ -143,6 +143,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .page.on{display:block !important}
 #page-ferramentas.on{display:flex !important;flex-direction:column;overflow-y:auto;min-height:0}
 #page-ferramentas{overflow-y:auto;-webkit-overflow-scrolling:touch}
+#page-carta,#page-difal,#page-locais,#page-duvidas,#page-indicadores{overflow-y:auto;-webkit-overflow-scrolling:touch}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
 /* ── CARDS ─────────────────────────────────────────────────── */
@@ -590,6 +591,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <div class="nav-lbl">Ferramentas</div>
     <div class="ni" onclick="gp('ferramentas',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 5h2M9 5h2M5 8h2M9 8h2M5 11h2M9 11h2"/></svg>Calculadora DIFAL</div>
     <div class="ni" onclick="gp('carta',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M6 6h4M6 8.5h4M6 11h2"/><path d="M11 1l2 2-6 6H5v-2l6-6z"/></svg>Carta de Correção</div>
+    <div class="ni" onclick="gp('auditoria',this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h7l3 3v9H3z"/><path d="M10 2v3h3"/><path d="M5 7h6M5 9.5h6M5 12h4"/><circle cx="12.5" cy="12.5" r="2.5"/><path d="M14.5 14.5l1.5 1.5"/></svg>Auditoria Ped. × NF</div>
   </div>
     <!--<div class="nav-sec">
     <div class="nav-lbl">Plataformas</div>
@@ -2234,6 +2236,78 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       </div>
     </div>
 
+
+
+<!-- PAGE: AUDITORIA -->
+<div id="page-auditoria" class="page" style="padding:22px 28px">
+
+  <input type="file" id="aud-file-input" accept=".xlsx,.xls" style="display:none">
+
+  <!-- Upload zone -->
+  <div class="aud-upload-zone" id="aud-upload-zone">
+    <div class="aud-upload-icon">📂</div>
+    <h2>Arraste o arquivo .xlsx exportado do Sankhya</h2>
+    <p>Execute a query de auditoria no DBExplorer, exporte como Excel<br>e solte o arquivo aqui para gerar a análise completa.</p>
+    <div class="aud-upload-btn">Selecionar arquivo</div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="aud-dash" id="aud-dash">
+    <div class="aud-err-banner" id="aud-err"></div>
+
+    <div class="aud-toprow">
+      <div>
+        <div class="aud-title">Auditoria de pedidos × notas fiscais</div>
+        <div class="aud-sub" id="aud-sub"></div>
+      </div>
+      <button class="aud-reload-btn" onclick="audReset()">↩ Carregar outro arquivo</button>
+    </div>
+
+    <div class="aud-kpi-row" id="aud-kpis"></div>
+    <div class="aud-charts" id="aud-charts"></div>
+
+    <div class="aud-toolbar">
+      <input class="aud-search" id="aud-q" placeholder="🔍  Buscar contrato, NF, TOP, crítica…" oninput="audRenderTable()">
+      <div class="aud-filters">
+        <button class="aud-fb on" data-f="todos"   onclick="audSetF(this)">Todos</button>
+        <button class="aud-fb"   data-f="ok"       onclick="audSetF(this)">Somente OK</button>
+        <button class="aud-fb"   data-f="critica"  onclick="audSetF(this)">Com crítica</button>
+      </div>
+      <button class="aud-export-btn" onclick="audExportCSV()">⬇ Exportar CSV</button>
+    </div>
+    <!-- Sub-filter: critica types — shown only when AUD_F === 'critica' -->
+    <div class="aud-subfilter" id="aud-subfilter" style="display:none">
+      <div class="aud-subfilter-inner">
+        <span class="aud-subfilter-lbl">Tipo de crítica:</span>
+        <div class="aud-subfilter-btns" id="aud-subfilter-btns"></div>
+      </div>
+    </div>
+
+    <div class="aud-tbl-wrap">
+      <table class="aud-table">
+        <thead><tr>
+          <th style="width:90px">Contrato</th>
+          <th style="width:82px">Dt. pedido</th>
+          <th style="width:75px">Nº único</th>
+          <th style="width:140px">TOP pedido</th>
+          <th style="width:100px">Vlr. pedido</th>
+          <th style="width:88px">NFs</th>
+          <th style="width:100px">Vlr. NF</th>
+          <th style="width:68px">Status NFe</th>
+          <th>Crítica</th>
+        </tr></thead>
+        <tbody id="aud-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="aud-statusbar">
+      <span id="aud-cnt"></span>
+      <span id="aud-ts"></span>
+    </div>
+  </div>
+</div>
+
+
   </div><!-- /content -->
 </main>
 </div>
@@ -2251,7 +2325,8 @@ const titles={
   difal:'DIFAL · Guia de Cálculo e Cobrança',
   ferramentas:'Ferramentas · Calculadora DIFAL',
   carta:'Carta de Correção · Regras e Procedimentos',
-  indicadores:'Indicadores · Desempenho Mensal'
+  indicadores:'Indicadores · Desempenho Mensal',
+  auditoria:'Auditoria · Pedidos × Notas Fiscais'
 };
 
 function gp(id, el) {
@@ -2982,6 +3057,445 @@ function indImportJSON(event) {
   indRenderCards(indCurrentPeriod());
   indRenderHistory();
 })();
+</script>
+
+<!-- ══════════════════════════════════════════════════════════
+     AUDITORIA PAGE — Pedidos × Notas Fiscais
+     ══════════════════════════════════════════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<style>
+/* ── AUDITORIA PAGE ─────────────────────────────────────────── */
+#page-auditoria { overflow-y: auto; -webkit-overflow-scrolling: touch; min-height: 0; }
+
+.aud-upload-zone {
+  border: 2px dashed rgba(245,194,0,0.25);
+  border-radius: var(--rl);
+  background: var(--bg-card);
+  padding: 56px 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  margin-bottom: 0;
+  display: block !important;
+}
+.aud-upload-zone:hover,
+.aud-upload-zone.drag {
+  border-color: var(--brand-bd);
+  background: var(--bg-card2);
+}
+.aud-upload-icon { font-size: 42px; margin-bottom: 14px; }
+.aud-upload-zone h2 { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 8px; letter-spacing: -.02em; }
+.aud-upload-zone p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+.aud-upload-btn {
+  display: inline-block; margin-top: 20px;
+  background: var(--brand); color: #111;
+  padding: 9px 22px; border-radius: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: .02em;
+}
+
+/* Dashboard area */
+.aud-dash { display: none; }
+.aud-toprow {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; flex-wrap: wrap;
+  gap: 10px; margin-bottom: 16px;
+}
+.aud-title { font-size: 14px; font-weight: 500; color: var(--text); letter-spacing: -.02em; }
+.aud-sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+.aud-reload-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--bg-card2); border: 1px solid var(--border);
+  padding: 7px 14px; border-radius: 8px; font-size: 12px;
+  cursor: pointer; color: var(--text-muted); font-family: var(--font);
+  font-weight: 500; transition: .15s;
+}
+.aud-reload-btn:hover { color: var(--text); border-color: var(--border-bright); }
+
+/* KPIs */
+.aud-kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 14px; }
+@media(max-width:1100px) { .aud-kpi-row { grid-template-columns: repeat(3,1fr); } }
+.aud-kpi { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--rl); padding: 13px 15px; transition: border-color .15s; }
+.aud-kpi:hover { border-color: var(--border-bright); }
+.aud-kpi-lbl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 500; margin-bottom: 6px; }
+.aud-kpi-val { font-size: 22px; font-weight: 500; letter-spacing: -.03em; line-height: 1; font-family: var(--mono); color: var(--text); }
+.aud-kpi-sub { font-size: 10px; color: var(--text-dim); margin-top: 4px; }
+.aud-kpi.kv-ok   .aud-kpi-val { color: var(--green); }
+.aud-kpi.kv-err  .aud-kpi-val { color: var(--red); }
+.aud-kpi.kv-amber .aud-kpi-val { color: var(--brand); }
+
+/* Charts */
+.aud-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+@media(max-width:820px) { .aud-charts { grid-template-columns: 1fr; } }
+.aud-chart-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--rl); padding: 15px 18px; }
+.aud-chart-title { font-size: 10px; font-weight: 500; color: var(--text-dim); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 13px; }
+.aud-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 11px; }
+.aud-bar:last-child { margin-bottom: 0; }
+.aud-bar-lbl { width: 190px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-muted); flex-shrink: 0; }
+.aud-bar-track { flex: 1; height: 8px; background: var(--bg-card2); border-radius: 3px; overflow: hidden; }
+.aud-bar-fill { height: 100%; border-radius: 3px; }
+.aud-bar-count { min-width: 26px; text-align: right; font-weight: 500; color: var(--text); font-family: var(--mono); font-size: 11px; }
+
+/* Toolbar */
+.aud-toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+.aud-search {
+  padding: 8px 12px; border: 1px solid var(--border);
+  border-radius: 8px; font-size: 12px;
+  background: var(--bg-card); color: var(--text);
+  font-family: var(--font); width: 230px; outline: none;
+  transition: border-color .15s;
+}
+.aud-search:focus { border-color: var(--brand-bd); box-shadow: 0 0 0 3px var(--brand-glow); }
+.aud-search::placeholder { color: var(--text-dim); }
+.aud-filters { display: flex; gap: 5px; flex-wrap: wrap; }
+.aud-fb {
+  font-size: 11px; padding: 5px 12px; border: 1px solid var(--border);
+  border-radius: 99px; background: transparent; color: var(--text-muted);
+  cursor: pointer; font-family: var(--font); transition: .15s;
+}
+.aud-fb:hover { background: var(--bg-hover); color: var(--text); }
+.aud-fb.on { background: var(--brand-bg); color: var(--brand); border-color: var(--brand-bd); font-weight: 500; }
+.aud-export-btn {
+  margin-left: auto; display: flex; align-items: center; gap: 5px;
+  padding: 6px 13px; border: 1px solid var(--border);
+  border-radius: 8px; background: transparent; font-size: 11px;
+  cursor: pointer; font-family: var(--font); color: var(--text-muted);
+  font-weight: 500; transition: .15s;
+}
+.aud-export-btn:hover { color: var(--text); border-color: var(--border-bright); }
+
+/* Table */
+.aud-tbl-wrap {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--rl); overflow: auto; max-height: 440px;
+}
+.aud-tbl-wrap::-webkit-scrollbar { width: 5px; height: 5px; }
+.aud-tbl-wrap::-webkit-scrollbar-thumb { background: rgba(245,194,0,.3); border-radius: 99px; }
+.aud-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 900px; }
+.aud-table thead th {
+  position: sticky; top: 0; z-index: 2;
+  background: var(--bg-card2);
+  font-size: 10px; font-weight: 500; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: .06em;
+  padding: 9px 12px; text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.aud-table tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+.aud-table tbody tr:last-child { border-bottom: none; }
+.aud-table tbody tr:hover { background: rgba(255,255,255,.025); }
+.aud-table tbody td { padding: 8px 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 210px; color: var(--text-muted); }
+.aud-table tbody td:nth-child(5) { text-align: right; font-family: var(--mono); color: var(--text); font-size: 11px; }
+.aud-table tbody td:nth-child(7) { text-align: right; font-family: var(--mono); font-size: 11px; }
+
+/* Badges */
+.aud-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; border: 1px solid; }
+.aud-b-ok   { background: var(--green-bg); color: var(--green); border-color: var(--green-bd); }
+.aud-b-err  { background: var(--red-bg);   color: var(--red);   border-color: var(--red-bd);  }
+.aud-b-warn { background: var(--brand-bg); color: var(--brand); border-color: var(--brand-bd); }
+
+.aud-statusbar { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--text-dim); flex-wrap: wrap; gap: 4px; }
+.aud-subfilter { margin-bottom: 10px; }
+.aud-subfilter-inner { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r); flex-wrap: wrap; }
+.aud-subfilter-lbl { font-size: 10px; font-weight: 500; color: var(--text-dim); text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
+.aud-subfilter-btns { display: flex; gap: 5px; flex-wrap: wrap; }
+.aud-sfb {
+  font-size: 11px; padding: 4px 11px; border: 1px solid var(--border);
+  border-radius: 99px; background: transparent; color: var(--text-muted);
+  cursor: pointer; font-family: var(--font); transition: .15s; white-space: nowrap;
+}
+.aud-sfb:hover { background: var(--bg-hover); color: var(--text); }
+.aud-sfb.on { background: var(--red-bg); color: var(--red); border-color: var(--red-bd); font-weight: 500; }
+.aud-sfb.on-warn { background: var(--brand-bg); color: var(--brand); border-color: var(--brand-bd); font-weight: 500; }
+.aud-sfb-all.on { background: var(--bg-card2); color: var(--text); border-color: var(--border-bright); font-weight: 500; }
+.aud-err-banner {
+  background: var(--red-bg); border: 1px solid var(--red-bd);
+  border-radius: 8px; padding: 10px 14px;
+  font-size: 12px; color: var(--red); margin-bottom: 14px; display: none;
+}
+</style>
+
+<script>
+// ── AUDITORIA JS ─────────────────────────────────────────────
+let AUD_ALL = [];
+let AUD_F = 'todos';
+let AUD_CRITICA_F = 'todos'; // sub-filter for critica type
+
+(function audInit() {
+  const zone = document.getElementById('aud-upload-zone');
+  const inp  = document.getElementById('aud-file-input');
+  zone.addEventListener('click', () => inp.click());
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag'));
+  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag'); if (e.dataTransfer.files[0]) audProcess(e.dataTransfer.files[0]); });
+  inp.addEventListener('change', () => { if (inp.files[0]) audProcess(inp.files[0]); });
+})();
+
+function audReset() {
+  AUD_ALL = []; AUD_F = 'todos'; AUD_CRITICA_F = 'todos';
+  document.getElementById('aud-dash').style.display = 'none';
+  document.getElementById('aud-upload-zone').style.display = '';
+  document.getElementById('aud-file-input').value = '';
+  document.querySelectorAll('.aud-fb').forEach(b => b.classList.toggle('on', b.dataset.f === 'todos'));
+  document.getElementById('aud-q').value = '';
+  document.getElementById('aud-subfilter').style.display = 'none';
+}
+
+function audFmtDate(v) {
+  if (!v && v !== 0) return '';
+  if (typeof v === 'number') {
+    // Excel serial date (only if looks like a date serial, i.e. > 40000)
+    if (v > 40000) {
+      const d = new Date(Math.round((v - 25569) * 86400 * 1000));
+      return d.toLocaleDateString('pt-BR');
+    }
+    return '';
+  }
+  const s = String(v).trim();
+  if (!s || s === 'NaT' || s === 'nan') return '';
+  if (/^\d{2}\/\d{2}\/\d{4}/.test(s)) return s.slice(0,10);
+  if (/^\d{4}-\d{2}-\d{2}/.test(s)) { const [y,m,d] = s.slice(0,10).split('-'); return `${d}/${m}/${y}`; }
+  return s.slice(0,10);
+}
+
+// Robust number parser: handles float, int, "890.08" (dot), "38.348,61" (BR), "R$1.200,00", null/undefined
+function audParseNum(v) {
+  if (v === null || v === undefined || v === '') return 0;
+  if (typeof v === 'number') return isNaN(v) ? 0 : v;
+  const s = String(v).trim();
+  if (!s) return 0;
+  // Remove currency symbols and spaces
+  let clean = s.replace(/R\$\s*/g, '').replace(/\s/g, '');
+  // Detect Brazilian format: has dot as thousands sep and comma as decimal
+  // e.g. "38.348,61" or "1.200,00"
+  if (/^-?[\d.]+,\d{1,2}$/.test(clean)) {
+    // BR format: remove dots, replace comma with dot
+    clean = clean.replace(/\./g, '').replace(',', '.');
+  } else if (/^-?[\d,]+\.\d{1,2}$/.test(clean)) {
+    // US format with comma thousands: "38,348.61" — remove commas
+    clean = clean.replace(/,/g, '');
+  } else {
+    // Plain number string "890.08" or "0" — remove any remaining commas
+    clean = clean.replace(/,/g, '');
+  }
+  const n = parseFloat(clean);
+  return isNaN(n) ? 0 : n;
+}
+
+function audProcess(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const wb = XLSX.read(e.target.result, { type: 'array' });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const raw = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '', raw: true });
+      let hdr = -1;
+      for (let i = 0; i < Math.min(raw.length, 10); i++) {
+        const r = raw[i].map(c => String(c).trim().toUpperCase());
+        if (r.includes('NUM_CONTRATO') || r.includes('NUM_UNICO_PEDIDO')) { hdr = i; break; }
+      }
+      if (hdr === -1) { audErr('Cabeçalho não encontrado. Verifique se o arquivo contém as colunas da query de auditoria.'); return; }
+      const headers = raw[hdr].map(c => String(c).trim().toUpperCase());
+      const rows    = raw.slice(hdr + 1).filter(r => r.some(c => c !== ''));
+      const idx = n => headers.indexOf(n);
+      AUD_ALL = rows.map(r => ({
+        NUM_CONTRATO:     String(r[idx('NUM_CONTRATO')]??'').replace(/\.0$/,'').trim(),
+        DT_NEG_PEDIDO:    audFmtDate(r[idx('DT_NEG_PEDIDO')]),
+        COD_TOP_PEDIDO:   Number(r[idx('COD_TOP_PEDIDO')])||0,
+        DESC_TOP_PEDIDO:  String(r[idx('DESC_TOP_PEDIDO')]??'').trim(),
+        NUM_UNICO_PEDIDO: String(r[idx('NUM_UNICO_PEDIDO')]??'').replace(/\.0$/,'').trim(),
+        VLR_PEDIDO:       audParseNum(r[idx('VLR_PEDIDO')]),
+        DT_NEG_NF:        audFmtDate(r[idx('DT_NEG_NF')]),
+        COD_TOP_NF:       String(r[idx('COD_TOP_NF')]??'').trim(),
+        DESC_TOP_NF:      String(r[idx('DESC_TOP_NF')]??'').trim(),
+        NUMEROS_NF:       String(r[idx('NUMEROS_NF')]??'').trim(),
+        VLR_TOTAL_NF:     audParseNum(r[idx('VLR_TOTAL_NF')]),
+        STATUS_NFE:       String(r[idx('STATUS_NFE')]??'').trim(),
+        CRITICA:          String(r[idx('CRITICA')]??'').trim()||'OK',
+      })).filter(r => r.NUM_UNICO_PEDIDO && r.NUM_UNICO_PEDIDO !== '');
+      if (!AUD_ALL.length) { audErr('Nenhum dado encontrado no arquivo.'); return; }
+      audShowDash(file.name);
+    } catch(ex) { audErr('Erro ao ler o arquivo: ' + ex.message); }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function audErr(msg) {
+  const b = document.getElementById('aud-err');
+  b.style.display = 'block'; b.textContent = '⚠ ' + msg;
+  document.getElementById('aud-upload-zone').style.display = 'none';
+  document.getElementById('aud-dash').style.display = 'block';
+  document.getElementById('aud-kpis').innerHTML = '';
+  document.getElementById('aud-charts').innerHTML = '';
+  document.getElementById('aud-tbody').innerHTML = '';
+}
+
+function audShowDash(filename) {
+  document.getElementById('aud-err').style.display = 'none';
+  document.getElementById('aud-upload-zone').style.display = 'none';
+  document.getElementById('aud-dash').style.display = 'block';
+  const datas = [...new Set(AUD_ALL.map(r => r.DT_NEG_PEDIDO).filter(Boolean))].sort();
+  const periodo = datas.length ? `${datas[0]} → ${datas[datas.length-1]}` : '';
+  document.getElementById('aud-sub').textContent = `${filename} · ${AUD_ALL.length} registros` + (periodo ? ` · ${periodo}` : '');
+  audRenderKpis(); audRenderCharts();
+  AUD_F = 'todos'; AUD_CRITICA_F = 'todos';
+  document.querySelectorAll('.aud-fb').forEach(b => b.classList.toggle('on', b.dataset.f === 'todos'));
+  document.getElementById('aud-q').value = '';
+  document.getElementById('aud-subfilter').style.display = 'none';
+  audRenderTable();
+  document.getElementById('aud-ts').textContent = 'Carregado às ' + new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
+}
+
+function audFmt(v) { return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); }
+
+function audRenderKpis() {
+  const total = AUD_ALL.length;
+  const ok    = AUD_ALL.filter(r => r.CRITICA === 'OK').length;
+  const crit  = AUD_ALL.filter(r => r.CRITICA !== 'OK').length;
+  const vlr   = AUD_ALL.reduce((a,r) => a + r.VLR_PEDIDO, 0);
+  const vlrNF = AUD_ALL.filter(r => r.VLR_TOTAL_NF > 0).reduce((a,r) => a + r.VLR_TOTAL_NF, 0);
+  const pct   = total ? Math.round(ok/total*100) : 0;
+  document.getElementById('aud-kpis').innerHTML = `
+    <div class="aud-kpi"><div class="aud-kpi-lbl">Total pedidos</div><div class="aud-kpi-val">${total}</div></div>
+    <div class="aud-kpi kv-ok"><div class="aud-kpi-lbl">OK</div><div class="aud-kpi-val">${ok}</div><div class="aud-kpi-sub">${pct}% do total</div></div>
+    <div class="aud-kpi kv-err"><div class="aud-kpi-lbl">Com crítica</div><div class="aud-kpi-val">${crit}</div><div class="aud-kpi-sub">${100-pct}% do total</div></div>
+    <div class="aud-kpi kv-amber"><div class="aud-kpi-lbl">Vlr. total pedidos</div><div class="aud-kpi-val" style="font-size:14px">${audFmt(vlr)}</div></div>
+    <div class="aud-kpi"><div class="aud-kpi-lbl">Vlr. total NFs</div><div class="aud-kpi-val" style="font-size:14px">${audFmt(vlrNF)}</div></div>`;
+}
+
+function audRenderCharts() {
+  const cc = {};
+  AUD_ALL.filter(r => r.CRITICA !== 'OK').forEach(r => { cc[r.CRITICA]=(cc[r.CRITICA]||0)+1; });
+  const cs = Object.entries(cc).sort((a,b) => b[1]-a[1]);
+  const maxC = cs[0]?.[1]||1;
+  const critBars = cs.map(([k,v]) => `
+    <div class="aud-bar">
+      <div class="aud-bar-lbl" title="${k}">${k.length>30?k.slice(0,28)+'…':k}</div>
+      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:${Math.round(v/maxC*100)}%;background:rgba(242,108,108,.55)"></div></div>
+      <div class="aud-bar-count">${v}</div>
+    </div>`).join('') || '<div style="font-size:11px;color:var(--green)">✓ Sem críticas no período</div>';
+
+  const tc = {};
+  AUD_ALL.forEach(r => { const t = r.DESC_TOP_PEDIDO||'TOP '+r.COD_TOP_PEDIDO; tc[t]=(tc[t]||0)+1; });
+  const ts = Object.entries(tc).sort((a,b) => b[1]-a[1]).slice(0,7);
+  const maxT = ts[0]?.[1]||1;
+  const topBars = ts.map(([k,v]) => `
+    <div class="aud-bar">
+      <div class="aud-bar-lbl" title="${k}">${k.length>30?k.slice(0,28)+'…':k}</div>
+      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:${Math.round(v/maxT*100)}%;background:rgba(79,168,255,.55)"></div></div>
+      <div class="aud-bar-count">${v}</div>
+    </div>`).join('');
+
+  document.getElementById('aud-charts').innerHTML = `
+    <div class="aud-chart-box"><div class="aud-chart-title">Críticas por tipo</div>${critBars}</div>
+    <div class="aud-chart-box"><div class="aud-chart-title">TOP de pedido mais frequente</div>${topBars}</div>`;
+}
+
+function audSetF(el) {
+  document.querySelectorAll('.aud-fb').forEach(b => b.classList.remove('on'));
+  el.classList.add('on');
+  AUD_F = el.dataset.f;
+  AUD_CRITICA_F = 'todos';
+  if (AUD_F === 'critica') {
+    audBuildSubfilter();
+    document.getElementById('aud-subfilter').style.display = '';
+  } else {
+    document.getElementById('aud-subfilter').style.display = 'none';
+  }
+  audRenderTable();
+}
+
+function audBuildSubfilter() {
+  // Collect unique critica types from data (excluding OK)
+  const counts = {};
+  AUD_ALL.filter(r => r.CRITICA !== 'OK').forEach(r => {
+    counts[r.CRITICA] = (counts[r.CRITICA] || 0) + 1;
+  });
+  const types = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  const wrap = document.getElementById('aud-subfilter-btns');
+  // Label helper: shorten long strings
+  const lbl = (k) => {
+    const s = k.replace('deveria gerar NF ', '→ NF ').replace(/^Pedido /, '');
+    return s.length > 35 ? s.slice(0, 33) + '…' : s;
+  };
+  const isWarn = (k) => k.startsWith('Valor');
+  wrap.innerHTML =
+    `<button class="aud-sfb aud-sfb-all on" data-sf="todos" onclick="audSetSF(this)" title="Todas as críticas">Todas (${types.reduce((a,[,v])=>a+v,0)})</button>` +
+    types.map(([k, v]) =>
+      `<button class="aud-sfb${isWarn(k)?' aud-sfb-warn':''}" data-sf="${k.replace(/"/g,'&quot;')}" onclick="audSetSF(this)" title="${k}">${lbl(k)} <span style="opacity:.65">(${v})</span></button>`
+    ).join('');
+}
+
+function audSetSF(el) {
+  document.querySelectorAll('.aud-sfb').forEach(b => { b.classList.remove('on'); b.classList.remove('on-warn'); });
+  AUD_CRITICA_F = el.dataset.sf;
+  if (AUD_CRITICA_F === 'todos') {
+    el.classList.add('on');
+  } else {
+    el.classList.add(el.classList.contains('aud-sfb-warn') ? 'on-warn' : 'on');
+  }
+  audRenderTable();
+}
+
+function audBadge(c) {
+  if (c === 'OK') return `<span class="aud-badge aud-b-ok">OK</span>`;
+  if (c.startsWith('Valor')) return `<span class="aud-badge aud-b-warn" title="${c}">Vlr. divergente</span>`;
+  const s = c.replace('deveria gerar NF ','→ ').replace(/^Pedido /,'');
+  return `<span class="aud-badge aud-b-err" title="${c}">${s.length>32?s.slice(0,30)+'…':s}</span>`;
+}
+
+function audRenderTable() {
+  const q = (document.getElementById('aud-q').value||'').toLowerCase();
+  let rows = AUD_ALL;
+  if (AUD_F === 'ok')      rows = rows.filter(r => r.CRITICA === 'OK');
+  if (AUD_F === 'critica') rows = rows.filter(r => r.CRITICA !== 'OK');
+  // Sub-filter by specific critica type
+  if (AUD_F === 'critica' && AUD_CRITICA_F !== 'todos') {
+    rows = rows.filter(r => r.CRITICA === AUD_CRITICA_F);
+  }
+  if (q) rows = rows.filter(r =>
+    r.NUM_CONTRATO.toLowerCase().includes(q) ||
+    r.NUMEROS_NF.toLowerCase().includes(q) ||
+    r.DESC_TOP_PEDIDO.toLowerCase().includes(q) ||
+    r.NUM_UNICO_PEDIDO.includes(q) ||
+    r.CRITICA.toLowerCase().includes(q)
+  );
+  document.getElementById('aud-cnt').textContent = `${rows.length} registro(s) de ${AUD_ALL.length}`;
+  if (!rows.length) {
+    document.getElementById('aud-tbody').innerHTML = `<tr><td colspan="9" style="text-align:center;padding:2.5rem;color:var(--text-dim)">Nenhum registro para os filtros selecionados.</td></tr>`;
+    return;
+  }
+  document.getElementById('aud-tbody').innerHTML = rows.map(r => `<tr>
+    <td title="${r.NUM_CONTRATO}">${r.NUM_CONTRATO==='0'?'—':r.NUM_CONTRATO}</td>
+    <td>${r.DT_NEG_PEDIDO||'—'}</td>
+    <td style="font-family:var(--mono);font-size:11px;color:var(--text)">${r.NUM_UNICO_PEDIDO}</td>
+    <td title="${r.DESC_TOP_PEDIDO}">${r.DESC_TOP_PEDIDO}</td>
+    <td>${r.VLR_PEDIDO.toLocaleString('pt-BR',{minimumFractionDigits:2})}</td>
+    <td title="${r.NUMEROS_NF}">${r.NUMEROS_NF||'—'}</td>
+    <td style="color:var(--text-muted)">${r.VLR_TOTAL_NF?r.VLR_TOTAL_NF.toLocaleString('pt-BR',{minimumFractionDigits:2}):'—'}</td>
+    <td style="text-align:center">${r.STATUS_NFE||'—'}</td>
+    <td>${audBadge(r.CRITICA)}</td>
+  </tr>`).join('');
+}
+
+function audExportCSV() {
+  const q = (document.getElementById('aud-q').value||'').toLowerCase();
+  let rows = AUD_ALL;
+  if (AUD_F === 'ok')      rows = rows.filter(r => r.CRITICA === 'OK');
+  if (AUD_F === 'critica') rows = rows.filter(r => r.CRITICA !== 'OK');
+  if (AUD_F === 'critica' && AUD_CRITICA_F !== 'todos') {
+    rows = rows.filter(r => r.CRITICA === AUD_CRITICA_F);
+  }
+  if (q) rows = rows.filter(r =>
+    r.NUM_CONTRATO.toLowerCase().includes(q) || r.NUMEROS_NF.toLowerCase().includes(q) ||
+    r.DESC_TOP_PEDIDO.toLowerCase().includes(q) || r.NUM_UNICO_PEDIDO.includes(q) || r.CRITICA.toLowerCase().includes(q)
+  );
+  const h = ['NUM_CONTRATO','DT_NEG_PEDIDO','COD_TOP_PEDIDO','DESC_TOP_PEDIDO','NUM_UNICO_PEDIDO','VLR_PEDIDO','DT_NEG_NF','COD_TOP_NF','DESC_TOP_NF','NUMEROS_NF','VLR_TOTAL_NF','STATUS_NFE','CRITICA'];
+  const csv = [h.join(';'), ...rows.map(r => h.map(k=>`"${(r[k]??'').toString().replace(/"/g,'""')}"`).join(';'))].join('\n');
+  const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'auditoria_pedidos_' + new Date().toISOString().slice(0,10) + '.csv'; a.click();
+}
 </script>
 </body>
 </html>
