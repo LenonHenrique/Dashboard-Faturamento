@@ -1872,12 +1872,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
             <tbody>
               <tr><td><strong style="color:var(--text)">Minas Gerais (MG)</strong></td><td>18%</td><td style="font-family:var(--mono);color:var(--text-muted)">—</td><td><span class="df-yn-nao">Sem DIFAL</span></td><td style="color:var(--text-muted)">Operação intraestadual</td></tr>
               <tr><td>São Paulo (SP)</td><td>18%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">14%</td><td style="font-family:var(--mono)">R$ 1.400,00</td></tr>
-              <tr><td>Rio de Janeiro (RJ)</td><td>20%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">16%</td><td style="font-family:var(--mono)">R$ 1.600,00</td></tr>
-              <tr><td>Paraná (PR)</td><td>19%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">15%</td><td style="font-family:var(--mono)">R$ 1.500,00</td></tr>
+              <tr><td>Rio de Janeiro (RJ) <span style="font-size:9px;color:var(--text-dim)">(+2% FECP = 22% total)</span></td><td>20%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">16%</td><td style="font-family:var(--mono)">R$ 1.600,00 + R$ 200 FCP</td></tr>
+              <tr><td>Paraná (PR)</td><td>19,5%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">15,5%</td><td style="font-family:var(--mono)">R$ 1.550,00</td></tr>
               <tr><td>Rio Grande do Sul (RS)</td><td>17%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">13%</td><td style="font-family:var(--mono)">R$ 1.300,00</td></tr>
               <tr><td>Santa Catarina (SC)</td><td>17%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">13%</td><td style="font-family:var(--mono)">R$ 1.300,00</td></tr>
-              <tr><td>Bahia (BA)</td><td>19%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">15%</td><td style="font-family:var(--mono)">R$ 1.500,00</td></tr>
-              <tr><td>Goiás (GO)</td><td>17%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">13%</td><td style="font-family:var(--mono)">R$ 1.300,00</td></tr>
+              <tr><td>Bahia (BA)</td><td>20,5%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">16,5%</td><td style="font-family:var(--mono)">R$ 1.650,00</td></tr>
+              <tr><td>Goiás (GO)</td><td>19%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">15%</td><td style="font-family:var(--mono)">R$ 1.500,00</td></tr>
               <tr><td>Pernambuco (PE)</td><td>20,5%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">16,5%</td><td style="font-family:var(--mono)">R$ 1.650,00</td></tr>
               <tr><td>Mato Grosso (MT)</td><td>17%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">13%</td><td style="font-family:var(--mono)">R$ 1.300,00</td></tr>
               <tr><td>Demais estados Norte/Nordeste/CO</td><td>17–20%</td><td style="font-family:var(--mono);color:var(--brand)">4%</td><td style="color:var(--brand);font-family:var(--mono);font-weight:500">13–16%</td><td style="font-family:var(--mono)">R$ 1.300–1.600</td></tr>
@@ -1945,7 +1945,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
           </div>
           <div style="font-size:20px;font-weight:500;color:var(--text);letter-spacing:-.02em;margin-bottom:6px">Calculadora DIFAL</div>
           <div id="fc-subtitle" style="font-size:12px;color:var(--text-muted);max-width:480px;line-height:1.6;margin:0 auto">
-            Selecione a UF de origem e destino · Produto importado ou nacional · Base dupla (por dentro) · LC 190/2022
+            Selecione a UF de origem e destino · Produto importado ou nacional · Base única · LC 190/2022
           </div>
         </div>
 
@@ -1979,7 +1979,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
                 <select id="fc-uf"
                   style="width:100%;padding:11px 12px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:var(--font);outline:none;cursor:pointer;box-sizing:border-box"
                   onfocus="this.style.borderColor='rgba(245,194,0,.5)'"
-                  onblur="this.style.borderColor='rgba(255,255,255,.07)'">
+                  onblur="this.style.borderColor='rgba(255,255,255,.07)'"
+                  onchange="fcAtualizaBeneficio(this.value);fcNcmBuscar()">
                 </select>
               </div>
             </div>
@@ -1994,6 +1995,36 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
                 <option value="importado" selected>Importado — 4% (Res. Senado 13/2012)</option>
                 <option value="nacional">Nacional — alíquota conforme tabela ICMS</option>
               </select>
+            </div>
+
+            <!-- Linha 3: NCM do produto -->
+            <div style="margin-bottom:14px">
+              <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center">
+                <span>NCM do Produto (opcional)</span>
+                <span id="fc-ncm-badge" style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--text-dim);border:1px solid var(--border)">Informe o NCM</span>
+              </div>
+              <input type="text" id="fc-ncm" maxlength="10" placeholder="Ex: 8443.32.10 ou 8443"
+                style="width:100%;padding:11px 12px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:var(--mono);outline:none;box-sizing:border-box"
+                onfocus="this.style.borderColor='rgba(245,194,0,.5)'"
+                onblur="this.style.borderColor='rgba(255,255,255,.07)';fcNcmBuscar()"
+                oninput="fcNcmBuscar()">
+              <div id="fc-ncm-desc" style="font-size:10px;color:var(--text-dim);margin-top:5px;display:none;padding:7px 10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:6px;line-height:1.5"></div>
+            </div>
+
+            <!-- Linha 4: Redução de Base / Benefício Fiscal -->
+            <div style="margin-bottom:6px">
+              <div style="font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center">
+                <span>Redução de Base / Benefício Fiscal</span>
+                <span id="fc-beneficio-badge" style="font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--text-dim);border:1px solid var(--border)">Sem redução</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center">
+                <input type="number" id="fc-reducao" step="0.01" min="0" max="100" value="0" placeholder="0,00"
+                  style="width:100%;padding:11px 12px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--mono);outline:none;box-sizing:border-box"
+                  onfocus="this.style.borderColor='rgba(245,194,0,.5)'"
+                  onblur="this.style.borderColor='rgba(255,255,255,.07)'">
+                <span style="font-size:11px;color:var(--text-muted);white-space:nowrap">% de redução</span>
+              </div>
+              <div id="fc-reducao-hint" style="font-size:10px;color:var(--text-dim);margin-top:6px;line-height:1.5;display:none;padding:7px 10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:6px"></div>
             </div>
 
           </div>
@@ -2026,35 +2057,65 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
               <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">ICMS Origem</strong> = Valor da NF × Alíquota Interestadual</div>
             </div>
             <div style="display:flex;gap:10px;align-items:flex-start">
-              <span style="width:22px;height:18px;border-radius:4px;background:var(--brand-bg);color:var(--brand);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">2</span>
-              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">Base Líquida</strong> = Valor da NF − ICMS Origem</div>
+              <span style="width:22px;height:18px;border-radius:4px;background:rgba(96,198,255,.12);color:#60c6ff;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">2</span>
+              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:#60c6ff">Base Efetiva</strong> = Valor da NF × (1 − % Redução) <span style="color:var(--text-dim)">(1 se sem redução)</span></div>
             </div>
             <div style="display:flex;gap:10px;align-items:flex-start">
-              <span style="width:22px;height:18px;border-radius:4px;background:var(--brand-bg);color:var(--brand);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">3</span>
-              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">Base por Dentro</strong> = Base Líquida ÷ (1 − Alíquota Interna Destino)</div>
+              <span style="width:22px;height:18px;border-radius:4px;background:rgba(242,108,108,.15);color:var(--red);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">3</span>
+              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--red)">DIFAL</strong> = Base Efetiva × Alíq. Interna Destino − ICMS Origem</div>
             </div>
             <div style="display:flex;gap:10px;align-items:flex-start">
               <span style="width:22px;height:18px;border-radius:4px;background:var(--brand-bg);color:var(--brand);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">4</span>
-              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">ICMS Interno Destino</strong> = Base por Dentro × Alíquota Interna Destino</div>
+              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">FCP</strong> = Base Efetiva × Alíquota FCP</div>
             </div>
             <div style="display:flex;gap:10px;align-items:flex-start">
-              <span style="width:22px;height:18px;border-radius:4px;background:rgba(242,108,108,.15);color:var(--red);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">5</span>
-              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--red)">DIFAL</strong> = ICMS Interno Destino − ICMS Origem</div>
-            </div>
-            <div style="display:flex;gap:10px;align-items:flex-start">
-              <span style="width:22px;height:18px;border-radius:4px;background:var(--brand-bg);color:var(--brand);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">6</span>
-              <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--text)">FCP</strong> = Base por Dentro × Alíquota FCP (2%)</div>
-            </div>
-            <div style="display:flex;gap:10px;align-items:flex-start">
-              <span style="width:22px;height:18px;border-radius:4px;background:rgba(52,212,122,.12);color:var(--green);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">7</span>
+              <span style="width:22px;height:18px;border-radius:4px;background:rgba(52,212,122,.12);color:var(--green);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)">5</span>
               <div style="color:var(--text-muted);line-height:1.5"><strong style="color:var(--green)">Total a Recolher</strong> = DIFAL + FCP</div>
+            </div>
+            <div style="margin-top:6px;padding:7px 10px;background:var(--blue-bg);border:1px solid var(--blue-bd);border-radius:6px;font-size:10px;color:var(--blue);line-height:1.5">
+              Base única = Valor da NF (Conv. ICMS 236/2021, cláusula 2ª, §1° + LC 87/96 art. 13 §1° I) · Base reduzida: Conv. ICMS 52/91 (máq. e equip. industriais)
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabela de Benefícios Fiscais por Estado -->
+        <div style="margin-top:14px;width:100%;max-width:560px;background:var(--bg-card);border:1px solid rgba(96,198,255,0.18);border-radius:var(--rl);overflow:hidden">
+          <div style="padding:14px 18px 10px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('.fc-arrow').style.transform=this.nextElementSibling.style.display==='none'?'rotate(0deg)':'rotate(180deg)'">
+            <div style="display:flex;align-items:center;gap:8px">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#60c6ff" stroke-width="1.5"><path d="M8 1v14M1 8h14"/><circle cx="8" cy="8" r="7"/></svg>
+              <span style="font-size:11px;font-weight:600;color:#60c6ff;text-transform:uppercase;letter-spacing:.07em">Benefícios Fiscais por Estado — Base Reduzida</span>
+            </div>
+            <svg class="fc-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="var(--text-dim)" stroke-width="1.5" style="transition:.2s;transform:rotate(180deg)"><path d="M2 4l4 4 4-4"/></svg>
+          </div>
+          <div style="display:block">
+            <div style="padding:10px 18px 6px;font-size:10px;color:var(--text-dim);line-height:1.5;border-bottom:1px solid rgba(255,255,255,0.04)">
+              Estes benefícios dependem do NCM do produto e das condições do contribuinte. Verifique junto ao contador antes de aplicar.
+              A redução de base é inserida automaticamente ao selecionar o estado de destino — confirme e ajuste se necessário.
+            </div>
+            <table style="width:100%;border-collapse:collapse;font-size:11px">
+              <thead>
+                <tr style="background:rgba(255,255,255,0.03)">
+                  <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid rgba(255,255,255,0.06)">Estado</th>
+                  <th style="padding:7px 8px;text-align:center;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid rgba(255,255,255,0.06)">Alíq.</th>
+                  <th style="padding:7px 8px;text-align:center;font-size:10px;font-weight:600;color:#60c6ff;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid rgba(255,255,255,0.06)">Red. Ind. (AI)</th>
+                  <th style="padding:7px 8px;text-align:center;font-size:10px;font-weight:600;color:#a3e635;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid rgba(255,255,255,0.06)">Red. Agríc. (AII)</th>
+                  <th style="padding:7px 14px;text-align:left;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid rgba(255,255,255,0.06)">Legislação</th>
+                </tr>
+              </thead>
+              <tbody id="fc-beneficios-tbody"></tbody>
+            </table>
+            <div style="padding:10px 14px;font-size:10px;color:var(--text-dim);line-height:1.5;border-top:1px solid rgba(255,255,255,0.04)">
+              <strong style="color:#60c6ff">AI (Anexo I)</strong> = máq. e equip. industriais — carga efetiva B2C: 8,80% ·
+              <strong style="color:#a3e635">AII (Anexo II)</strong> = implementos agrícolas — carga efetiva B2C: 5,60%<br>
+              Informe o NCM no campo acima para identificar automaticamente qual anexo se aplica ao seu produto.<br>
+              ⚠ Clique em cada linha para detalhes. Confirmar com contador ou SEFAZ do destino antes de emitir.
             </div>
           </div>
         </div>
 
         <!-- Nota rodapé -->
         <div style="margin-top:10px;max-width:560px;width:100%;padding:9px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);font-size:11px;color:var(--text-muted);line-height:1.6;text-align:center">
-          Cálculo conforme LC 190/2022 · FCP 2% · <strong style="color:#F5C200">Dúvidas? Acionar o fiscal antes de emitir.</strong>
+          LC 190/2022 · Conv. ICMS 236/2021 · LC 87/96 art. 13 §1° I · Base única = valor da NF · Conv. ICMS 52/91 (equip. industriais) · <strong style="color:#F5C200">Dúvidas? Acionar o fiscal antes de emitir.</strong>
         </div>
 
       </div>
@@ -2379,36 +2440,215 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── CALCULADORA DIFAL ─────────────────────────────────────────
 // Alíquotas internas corrigidas conforme tabela oficial (diagonal)
 const fcEstados = {
-  "AC":{nome:"Acre",           aliq:19,   fcp:2},
-  "AL":{nome:"Alagoas",        aliq:20.5, fcp:2},
-  "AM":{nome:"Amazonas",       aliq:20,   fcp:2},
-  "AP":{nome:"Amapá",          aliq:18,   fcp:2},
-  "BA":{nome:"Bahia",          aliq:20.5, fcp:2},
-  "CE":{nome:"Ceará",          aliq:20,   fcp:2},
-  "DF":{nome:"Dist. Federal",  aliq:20,   fcp:2},
-  "ES":{nome:"Espírito Santo", aliq:17,   fcp:2},
-  "GO":{nome:"Goiás",          aliq:19,   fcp:2},
-  "MA":{nome:"Maranhão",       aliq:23,   fcp:2},
-  "MT":{nome:"Mato Grosso",    aliq:17,   fcp:2},
-  "MS":{nome:"Mato G. do Sul", aliq:17,   fcp:2},
-  "MG":{nome:"Minas Gerais",   aliq:18,   fcp:2},
-  "PA":{nome:"Pará",           aliq:19,   fcp:2},
-  "PB":{nome:"Paraíba",        aliq:20,   fcp:2},
-  "PR":{nome:"Paraná",         aliq:19.5, fcp:2},
-  "PE":{nome:"Pernambuco",     aliq:20.5, fcp:2},
-  "PI":{nome:"Piauí",          aliq:22.5, fcp:2},
-  "RN":{nome:"Rio G. do Norte",aliq:20,   fcp:2},
-  "RS":{nome:"Rio G. do Sul",  aliq:17,   fcp:2},
-  "RJ":{nome:"Rio de Janeiro", aliq:22,   fcp:2},
-  "RO":{nome:"Rondônia",       aliq:19.5, fcp:2},
-  "RR":{nome:"Roraima",        aliq:20,   fcp:2},
-  "SC":{nome:"Santa Catarina", aliq:17,   fcp:2},
-  "SP":{nome:"São Paulo",      aliq:18,   fcp:2},
-  "SE":{nome:"Sergipe",        aliq:20,   fcp:2},
-  "TO":{nome:"Tocantins",      aliq:20,   fcp:2}
+  // Alíquotas ICMS + FCP por estado — atualizadas 2025/2026
+  // beneficio.reducaoAnexoI  = Conv. ICMS 52/91 Anexo I  (máq. industriais) — carga efetiva B2C: 8,80%
+  // beneficio.reducaoAnexoII = Conv. ICMS 52/91 Anexo II (impl. agrícolas)  — carga efetiva B2C: 5,60%
+  // beneficio.coefImportado/Nacional = GO Decreto 9.104/2017 (opt-in, aplica-se a todos os NCMs)
+  "AC":{nome:"Acre",           aliq:19,   fcp:0, beneficio:null},
+  "AL":{nome:"Alagoas",        aliq:20.5, fcp:2, beneficio:null},
+  "AM":{nome:"Amazonas",       aliq:20,   fcp:2, beneficio:{
+    reducaoAnexoI:56.00, aliqEfetivaI:8.80, reducaoAnexoII:72.00, aliqEfetivaII:5.60,
+    ref:"RICMS/AM — Conv. ICMS 52/91", obs:"Máq. industriais (Anexo I) e impl. agrícolas (Anexo II). Verificar NCM.", cor:"#60c6ff"}},
+  "AP":{nome:"Amapá",          aliq:18,   fcp:0, beneficio:null},
+  "BA":{nome:"Bahia",          aliq:20.5, fcp:2, beneficio:{
+    reducaoAnexoI:20, aliqEfetivaI:16.40, reducaoAnexoII:20, aliqEfetivaII:16.40,
+    ref:"RICMS/BA art. 274 — redução 20% (Simples Nacional)", obs:"Aplica-se somente a remetente optante pelo Simples Nacional. Independe de NCM.", cor:"#a78bfa"}},
+  "CE":{nome:"Ceará",          aliq:20,   fcp:2, beneficio:null},
+  "DF":{nome:"Dist. Federal",  aliq:20,   fcp:2, beneficio:null},
+  "ES":{nome:"Espírito Santo", aliq:17,   fcp:2, beneficio:{
+    reducaoAnexoI:48.24, aliqEfetivaI:8.80, reducaoAnexoII:67.06, aliqEfetivaII:5.60,
+    ref:"RICMS/ES — Conv. ICMS 52/91", obs:"Máq. industriais (Anexo I) e impl. agrícolas (Anexo II). Verificar NCM.", cor:"#60c6ff"}},
+  "GO":{nome:"Goiás",          aliq:19,   fcp:2, beneficio:{
+    reducaoAnexoI:0, reducaoAnexoII:0, ref:"Decreto GO 9.104/2017 — coeficiente DIFAL (opt-in, todos os NCMs)",
+    obs:"Para importados (4%): coef. 7,87% do valor. Para nacionais: coef. 4,49%. Benefício FACULTATIVO — confirmar opção expressa.", cor:"#facc15",
+    coefImportado:0.0787, coefNacional:0.0449}},
+  "MA":{nome:"Maranhão",       aliq:23,   fcp:2, beneficio:null},
+  "MT":{nome:"Mato Grosso",    aliq:17,   fcp:2, beneficio:{
+    reducaoAnexoI:48.24, aliqEfetivaI:8.80, reducaoAnexoII:67.06, aliqEfetivaII:5.60,
+    ref:"RICMS/MT — Conv. ICMS 52/91", obs:"Máq. industriais e impl. agrícolas. Verificar NCM.", cor:"#60c6ff"}},
+  "MS":{nome:"Mato G. do Sul", aliq:17,   fcp:2, beneficio:{
+    reducaoAnexoI:48.24, aliqEfetivaI:8.80, reducaoAnexoII:67.06, aliqEfetivaII:5.60,
+    ref:"RICMS/MS — Conv. ICMS 52/91", obs:"Máq. industriais e impl. agrícolas. Verificar NCM.", cor:"#60c6ff"}},
+  "MG":{nome:"Minas Gerais",   aliq:18,   fcp:2, beneficio:null},
+  "PA":{nome:"Pará",           aliq:19,   fcp:0, beneficio:null},
+  "PB":{nome:"Paraíba",        aliq:20,   fcp:2, beneficio:null},
+  "PR":{nome:"Paraná",         aliq:19.5, fcp:2, beneficio:{
+    reducaoAnexoI:54.87, aliqEfetivaI:8.80, reducaoAnexoII:71.28, aliqEfetivaII:5.60,
+    ref:"RICMS/PR Anexo VI — Conv. ICMS 52/91", obs:"Máq. industriais e impl. agrícolas. Verificar NCM.", cor:"#60c6ff"}},
+  "PE":{nome:"Pernambuco",     aliq:20.5, fcp:2, beneficio:null},
+  "PI":{nome:"Piauí",          aliq:22.5, fcp:2, beneficio:null},
+  "RN":{nome:"Rio G. do Norte",aliq:20,   fcp:2, beneficio:null},
+  "RS":{nome:"Rio G. do Sul",  aliq:17,   fcp:2, beneficio:{
+    reducaoAnexoI:48.24, aliqEfetivaI:8.80, reducaoAnexoII:67.06, aliqEfetivaII:5.60,
+    ref:"RICMS/RS — Conv. ICMS 52/91", obs:"Máq. industriais e impl. agrícolas. Verificar NCM.", cor:"#60c6ff"}},
+  "RJ":{nome:"Rio de Janeiro", aliq:20,   fcp:2, beneficio:null},
+  "RO":{nome:"Rondônia",       aliq:19.5, fcp:2, beneficio:null},
+  "RR":{nome:"Roraima",        aliq:20,   fcp:2, beneficio:null},
+  "SC":{nome:"Santa Catarina", aliq:17,   fcp:0, beneficio:{
+    reducaoAnexoI:48.24, aliqEfetivaI:8.80, reducaoAnexoII:67.06, aliqEfetivaII:5.60,
+    ref:"RICMS/SC — Conv. ICMS 52/91", obs:"Máq. industriais e impl. agrícolas. Verificar NCM.", cor:"#60c6ff"}},
+  "SP":{nome:"São Paulo",      aliq:18,   fcp:2, beneficio:{
+    reducaoAnexoI:51.11, aliqEfetivaI:8.80, reducaoAnexoII:68.89, aliqEfetivaII:5.60,
+    ref:"RICMS/SP Anexo II Art. 12 — Conv. ICMS 52/91 (vigência até 31/12/2026)",
+    obs:"Máq. industriais (Anexo I): carga 8,80% · Impl. agrícolas (Anexo II): carga 5,60% · Verificar NCM.", cor:"#60c6ff"}},
+  "SE":{nome:"Sergipe",        aliq:20,   fcp:2, beneficio:null},
+  "TO":{nome:"Tocantins",      aliq:20,   fcp:2, beneficio:null}
 };
 
-// Matriz interestadual completa baseada na tabela oficial
+// ── BANCO DE NCMs — BENEFÍCIOS FISCAIS (Conv. ICMS 52/91) ─────────
+// Tipo: "anexoI"       = Anexo I Conv. 52/91 (máq. e equip. industriais) — carga B2C 8,80%
+//       "anexoII"      = Anexo II Conv. 52/91 (implementos agrícolas)     — carga B2C 5,60%
+//       "nao_qualifica"= não consta nos Anexos do Conv. 52/91
+// Chave = 4 dígitos da posição tarifária NCM (ex: "8443" para impressoras)
+const ncmDb = {
+  // ── Capítulo 84 — Máquinas e equipamentos ─────────
+  "8401":{desc:"Reatores nucleares, elementos combustíveis",                       tipo:"anexoI"},
+  "8402":{desc:"Caldeiras de vapor d'água, exceto caldeiras para aquecimento",     tipo:"anexoI"},
+  "8403":{desc:"Caldeiras para aquecimento central",                               tipo:"anexoI"},
+  "8404":{desc:"Aparelhos auxiliares p/ caldeiras (economizadores, superaquecedores)", tipo:"anexoI"},
+  "8405":{desc:"Geradores de gás de ar, de gás de água",                          tipo:"anexoI"},
+  "8406":{desc:"Turbinas a vapor d'água e outras turbinas a vapor",                tipo:"anexoI"},
+  "8407":{desc:"Motores de pistão alternativo (gasolina)",                         tipo:"anexoI"},
+  "8408":{desc:"Motores de êmbolo (diesel/semidiesel)",                            tipo:"anexoI"},
+  "8409":{desc:"Partes para motores das posições 84.07 e 84.08",                   tipo:"nao_qualifica"},
+  "8410":{desc:"Turbinas e rodas hidráulicas",                                     tipo:"anexoI"},
+  "8411":{desc:"Turborreatores, turbopropulsores e outras turbinas a gás",         tipo:"anexoI"},
+  "8412":{desc:"Outros motores e máquinas motrizes (hidráulicos, pneumáticos)",    tipo:"anexoI"},
+  "8413":{desc:"Bombas para líquidos (centrífugas, volumétricas)",                 tipo:"anexoI"},
+  "8414":{desc:"Bombas de ar ou vácuo, compressores de ar",                        tipo:"anexoI"},
+  "8415":{desc:"Máquinas e aparelhos de ar condicionado (industrial)",             tipo:"anexoI"},
+  "8416":{desc:"Maçaricos para queimadores, fornalhas, grelhas",                   tipo:"anexoI"},
+  "8417":{desc:"Fornos industriais e de laboratório (não elétricos)",              tipo:"anexoI"},
+  "8418":{desc:"Refrigeradores, congeladores, máquinas de sorvete industriais",    tipo:"anexoI"},
+  "8419":{desc:"Aparelhos p/ tratamento por variação de temperatura (pasteurizadores, fornos industriais, câmaras de secagem)", tipo:"anexoI"},
+  "8420":{desc:"Calandras e laminadores (exceto para metais ou vidro)",            tipo:"anexoI"},
+  "8421":{desc:"Centrifugadoras, aparelhos para filtragem e depuração",            tipo:"anexoI"},
+  "8422":{desc:"Máquinas de lavar louça industrial, de encher, selar, rotular embalagens", tipo:"anexoI"},
+  "8423":{desc:"Aparelhos e instrumentos de pesagem industrial",                   tipo:"anexoI"},
+  "8424":{desc:"Aparelhos mecânicos de projeção, dispersão ou pulverização de líquidos", tipo:"anexoI"},
+  "8425":{desc:"Talhas, cadernais, guinchos e cabrestantes; macacos",              tipo:"anexoI"},
+  "8426":{desc:"Cábreas, guindastes, pontes rolantes, portais, pórticos",         tipo:"anexoI"},
+  "8427":{desc:"Empilhadeiras; outros veículos de movimentação industrial",        tipo:"anexoI"},
+  "8428":{desc:"Outras máquinas de elevação, carga, descarga (elevadores, escadas)", tipo:"anexoI"},
+  "8429":{desc:"Bulldozers, niveladoras, pás mecânicas, tratores (terraplanagem)", tipo:"nao_qualifica"},
+  "8430":{desc:"Outras máquinas para movimentação de terra, perfuração, sondagem", tipo:"anexoI"},
+  "8431":{desc:"Partes para máquinas das posições 84.25 a 84.30",                 tipo:"nao_qualifica"},
+  "8432":{desc:"Máquinas e aparelhos para preparação do solo (grades, arados)",    tipo:"anexoII"},
+  "8433":{desc:"Máquinas para colheita, debulha, ceifadeiras, colheitadeiras",     tipo:"anexoII"},
+  "8434":{desc:"Máquinas de ordenha e máquinas para laticínios",                  tipo:"anexoII"},
+  "8435":{desc:"Prensas p/ fabricação de vinho, cidra, sucos de frutas",          tipo:"anexoI"},
+  "8436":{desc:"Máquinas p/ avicultura, apicultura, piscicultura, silvicultura",   tipo:"anexoII"},
+  "8437":{desc:"Máquinas para limpeza, seleção e classificação de sementes e grãos", tipo:"anexoI"},
+  "8438":{desc:"Máquinas para indústria alimentar (padaria, massas, confeitaria, laticínios)", tipo:"anexoI"},
+  "8439":{desc:"Máquinas para fabricação de pasta de papel (celulose) e papel",   tipo:"anexoI"},
+  "8440":{desc:"Máquinas para brochagem, encadernação, livros",                   tipo:"anexoI"},
+  "8441":{desc:"Máquinas para fabricação de caixas, trabalhar papel e cartão",    tipo:"anexoI"},
+  "8442":{desc:"Máquinas de composição tipográfica, gravura, impressão de chapas", tipo:"anexoI"},
+  "8443":{desc:"Máquinas de impressão: offset, flexografia, jato de tinta (plotters UV, impressoras laser/inkjet industriais)", tipo:"anexoI"},
+  "8444":{desc:"Máquinas para extrusão, estiragem de filamentos têxteis sintéticos", tipo:"anexoI"},
+  "8445":{desc:"Máquinas para preparação de fibras têxteis (abertura, cardação)",  tipo:"anexoI"},
+  "8446":{desc:"Teares para tecidos",                                              tipo:"anexoI"},
+  "8447":{desc:"Máquinas de tricotar, fazer laços, tule, rendas, bordados (bordadeiras industriais)", tipo:"anexoI"},
+  "8448":{desc:"Máquinas auxiliares para teares, máquinas de fiação/tricotar",    tipo:"anexoI"},
+  "8449":{desc:"Máquinas para fabricação de feltro, nãotecido",                   tipo:"anexoI"},
+  "8450":{desc:"Máquinas de lavar roupa domésticas ou lavanderia (até 10kg)",     tipo:"nao_qualifica"},
+  "8451":{desc:"Máquinas industriais de lavagem, secagem, tingimento de têxteis",  tipo:"anexoI"},
+  "8452":{desc:"Máquinas de costura e bordar (industriais e domésticas)",          tipo:"anexoI"},
+  "8453":{desc:"Máquinas para curtimento, preparação, fabricação de couro/peles",  tipo:"anexoI"},
+  "8454":{desc:"Conversores, colheres de fundição, lingoteiras (metalurgia)",      tipo:"anexoI"},
+  "8455":{desc:"Laminadores para metais e seus cilindros",                         tipo:"anexoI"},
+  "8456":{desc:"Máquinas-ferramentas por laser, jato de água, ultrassom, erosão (cortadoras a laser/vinil)", tipo:"anexoI"},
+  "8457":{desc:"Centros de usinagem, transferência para trabalhar metais",         tipo:"anexoI"},
+  "8458":{desc:"Tornos para trabalhar metais",                                     tipo:"anexoI"},
+  "8459":{desc:"Máquinas para furar, fresar, rosquear, alargar metais",            tipo:"anexoI"},
+  "8460":{desc:"Máquinas para rebarbação, afiação, retificação de metais",         tipo:"anexoI"},
+  "8461":{desc:"Máquinas para aplainamento, fresagem, molduragem de metais",       tipo:"anexoI"},
+  "8462":{desc:"Máquinas para forjar, estampar, dobrar, cortar, puncionamento de metais", tipo:"anexoI"},
+  "8463":{desc:"Outras máquinas para trabalhar metais (trefilar, extrudar, estirar)", tipo:"anexoI"},
+  "8464":{desc:"Máquinas para trabalhar pedra, cerâmica, concreto, amianto-cimento", tipo:"anexoI"},
+  "8465":{desc:"Máquinas para trabalhar madeira, cortiça, osso, plástico duro",    tipo:"anexoI"},
+  "8466":{desc:"Partes e acessórios para máquinas das posições 84.56 a 84.65",    tipo:"nao_qualifica"},
+  "8467":{desc:"Ferramentas pneumáticas, hidráulicas ou com motor incorporado",    tipo:"nao_qualifica"},
+  "8468":{desc:"Máquinas e aparelhos para brasagem, soldagem (não elétricos)",     tipo:"anexoI"},
+  "8469":{desc:"Máquinas de escrever",                                             tipo:"nao_qualifica"},
+  "8470":{desc:"Calculadoras, máquinas de calcular, caixas registradoras",         tipo:"nao_qualifica"},
+  "8471":{desc:"Computadores, servidores, processadores, equipamentos de informática", tipo:"nao_qualifica"},
+  "8472":{desc:"Máquinas e aparelhos de escritório (fotocopiadoras, duplicadores)", tipo:"nao_qualifica"},
+  "8473":{desc:"Partes e acessórios de máquinas de escritório e computadores",     tipo:"nao_qualifica"},
+  "8474":{desc:"Máquinas para classificar, peneirar, misturar minérios e materiais minerais", tipo:"anexoI"},
+  "8475":{desc:"Máquinas para fabricação de lâmpadas, tubos elétricos, de vidro", tipo:"anexoI"},
+  "8476":{desc:"Máquinas automáticas de venda (alimentos, bebidas, cigarros)",     tipo:"nao_qualifica"},
+  "8477":{desc:"Máquinas para trabalhar borracha ou plástico (injetoras, extrusoras, sopradoras)", tipo:"anexoI"},
+  "8478":{desc:"Máquinas para preparação ou fabricação do tabaco",                 tipo:"nao_qualifica"},
+  "8479":{desc:"Máquinas e aparelhos de uso geral n.e. (lavadoras jato de pressão, etc.)", tipo:"anexoI"},
+  "8480":{desc:"Caixas de fundição; moldes para metais, vidro, borracha, plástico",tipo:"anexoI"},
+  "8481":{desc:"Torneiras, válvulas, registros (industrial)",                      tipo:"nao_qualifica"},
+  "8482":{desc:"Rolamentos de esferas, de rolos, de agulhas",                     tipo:"nao_qualifica"},
+  "8483":{desc:"Veios de transmissão, mancais, engrenagens (peças industriais)",   tipo:"nao_qualifica"},
+  "8484":{desc:"Juntas e gaxetas metálicas, vedações mecânicas",                   tipo:"nao_qualifica"},
+  "8486":{desc:"Máquinas p/ fabricação de semicondutores, dispositivos eletrônicos", tipo:"anexoI"},
+  "8487":{desc:"Partes de máquinas n.e. (sem conexões elétricas)",                 tipo:"nao_qualifica"},
+  // ── Capítulo 85 — Máquinas e aparelhos elétricos ─
+  "8501":{desc:"Motores e geradores elétricos",                                    tipo:"nao_qualifica"},
+  "8502":{desc:"Grupos eletrogêneos e conversores rotativos elétricos",            tipo:"nao_qualifica"},
+  "8504":{desc:"Transformadores elétricos, conversores estáticos, indutores",      tipo:"nao_qualifica"},
+  "8514":{desc:"Fornos elétricos industriais e de laboratório, aparelhos de indução", tipo:"anexoI"},
+  "8515":{desc:"Máquinas e aparelhos para soldar elétrica ou a laser (industrial)",tipo:"anexoI"},
+  "8516":{desc:"Aquecedores elétricos, fornos de micro-ondas domésticos",         tipo:"nao_qualifica"},
+  "8517":{desc:"Aparelhos telefônicos, smartphones, roteadores",                   tipo:"nao_qualifica"},
+  "8525":{desc:"Câmeras fotográficas e de vídeo, transmissores para TV",           tipo:"nao_qualifica"},
+  "8528":{desc:"Televisores, monitores de vídeo, projetores",                      tipo:"nao_qualifica"},
+  "8543":{desc:"Máquinas e aparelhos elétricos especializados n.e. (laser estético)", tipo:"nao_qualifica"},
+  // ── Capítulo 90 — Instrumentos de precisão ──────
+  "9010":{desc:"Aparelhos e material para laboratórios fotográficos",              tipo:"nao_qualifica"},
+  "9011":{desc:"Microscópios ópticos",                                             tipo:"nao_qualifica"},
+  "9015":{desc:"Instrumentos de geodesia, topografia, nivelamento",               tipo:"nao_qualifica"},
+  "9018":{desc:"Instrumentos e aparelhos para medicina, cirurgia, odontologia",    tipo:"nao_qualifica"},
+  "9019":{desc:"Aparelhos de mecanoterapia, massagem, eletroterapia (estética)",   tipo:"nao_qualifica"},
+  "9022":{desc:"Aparelhos de raios X, raios alfa, beta, gama (médico/industrial)", tipo:"nao_qualifica"},
+  // ── Capítulo 95 — Brinquedos, esportes e fitness
+  "9503":{desc:"Brinquedos, jogos, artigos para diversão",                         tipo:"nao_qualifica"},
+  "9506":{desc:"Equipamentos para esportes, fitness, academia, musculação",        tipo:"nao_qualifica"},
+  "9507":{desc:"Equipamentos para pesca, caça",                                    tipo:"nao_qualifica"},
+  // ── Capítulo 87 — Veículos (Anexo II Conv. 52/91)
+  "8701":{desc:"Tratores (exceto motocultores)",                                   tipo:"anexoII"},
+  "8708":{desc:"Partes e acessórios para veículos automóveis",                     tipo:"nao_qualifica"},
+  "8716":{desc:"Reboques e semirreboques; outras embarcações agrícolas",           tipo:"anexoII"},
+};
+
+// Lookup NCM → benefício no estado de destino
+// ncm: string com 4 a 10 dígitos (somente números)
+// retorna {tipo, desc, reducao, aliqEfetiva, ref, obs} ou null
+function ncmLookup(ncm, ufDest) {
+  if (!ncm || !ufDest) return null;
+  const digits = ncm.replace(/\D/g,'');
+  if (digits.length < 4) return null;
+  const pos4 = digits.slice(0,4); // posição tarifária de 4 dígitos
+  const entry = ncmDb[pos4];
+  if (!entry) return { tipo:'desconhecido', desc: null, reducao: 0, aliqEfetiva: null };
+  if (entry.tipo === 'nao_qualifica') return { tipo:'nao_qualifica', desc: entry.desc, reducao: 0, aliqEfetiva: null };
+  const st = fcEstados[ufDest];
+  if (!st || !st.beneficio) return { tipo: entry.tipo, desc: entry.desc, reducao: 0, aliqEfetiva: null };
+  const b = st.beneficio;
+  // GO: coeficiente direto — não é base reduzida; sinalizamos como "goias"
+  if (b.coefImportado !== undefined) {
+    return { tipo:'goias', desc: entry.desc, reducao: 0, aliqEfetiva: null, ref: b.ref, obs: b.obs };
+  }
+  // BA: benefício independente de NCM (Simples Nacional), retorna para todos exceto nao_qualifica
+  if (b.reducaoAnexoI === b.reducaoAnexoII) {
+    return { tipo: entry.tipo, desc: entry.desc, reducao: b.reducaoAnexoI, aliqEfetiva: b.aliqEfetivaI, ref: b.ref, obs: b.obs };
+  }
+  // States with Conv. 52/91
+  if (entry.tipo === 'anexoI') {
+    return { tipo:'anexoI', desc: entry.desc, reducao: b.reducaoAnexoI, aliqEfetiva: b.aliqEfetivaI, ref: b.ref, obs: b.obs };
+  }
+  if (entry.tipo === 'anexoII') {
+    return { tipo:'anexoII', desc: entry.desc, reducao: b.reducaoAnexoII, aliqEfetiva: b.aliqEfetivaII, ref: b.ref, obs: b.obs };
+  }
+  return null;
+}
+
+// ── Matriz interestadual completa baseada na tabela oficial
 // Colunas na ordem: AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RN RS RJ RO RR SC SP SE TO
 const fcUFs = ["AC","AL","AM","AP","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RN","RS","RJ","RO","RR","SC","SP","SE","TO"];
 const fcMatrix = {
@@ -2452,16 +2692,66 @@ function fcAliqInter(ufOrigem, ufDestino, tipo) {
   return row[colIdx];
 }
 
-function calcularDifal({ valorNota, aliquotaInterna, aliquotaInterestadual, fcp = 0 }) {
-  const icmsOrigem     = valorNota * (aliquotaInterestadual / 100);
-  const base1          = valorNota - icmsOrigem;
-  const basePorDentro  = base1 / (1 - (aliquotaInterna / 100));
-  const icmsInterno    = basePorDentro * (aliquotaInterna / 100);
-  const difal          = icmsInterno - icmsOrigem;
-  const valorFcp       = basePorDentro * (fcp / 100);
-  const total          = difal + valorFcp;
-  return { basePorDentro, icmsOrigem, icmsInterno, difal, valorFcp, total };
+// Cálculo conforme LC 190/2022 + Conv. ICMS 236/2021 (cláusula 2ª, §1°) + LC 87/96 art. 13 §1° I
+// Base de cálculo é ÚNICA para origem e destino = valor da operação (NF já inclui ICMS "por dentro")
+// DIFAL = BC_efetiva × alíq_interna − BC × alíq_inter   |  BC_efetiva = BC × (1 − redução%)
+// FCP   = BC_efetiva × alíq. FCP
+// Ref. NF-e XML: vICMSUFDest = vBC × (pICMSUFDest − pICMSInter)  |  quando há base reduzida usar vBC efetiva
+// reducaoBase: percentual de redução da base de cálculo do estado destino (ex: Conv. ICMS 52/91)
+function calcularDifal({ valorNota, aliquotaInterna, aliquotaInterestadual, fcp = 0, reducaoBase = 0, coefGoias = null }) {
+  const base         = valorNota;                                      // base original = valor da NF
+  // Coeficiente GO (Decreto 9.104/2017) é aplicado direto sobre o valor — não é "base reduzida" padrão
+  if (coefGoias !== null) {
+    const difal      = base * coefGoias;                              // DIFAL = Voper × coef
+    const icmsOrigem = base * (aliquotaInterestadual / 100);
+    const icmsInterno= icmsOrigem + difal;                            // retrocomputado para exibição
+    const valorFcp   = base * (fcp / 100);
+    const total      = difal + valorFcp;
+    return { base, baseEfetiva: base, reducaoBase: 0, icmsOrigem, icmsInterno, difal, valorFcp, total, aliqEfetivaDIFAL: coefGoias * 100, isGoias: true };
+  }
+  const fatorReducao = reducaoBase > 0 ? (1 - reducaoBase / 100) : 1;
+  const baseEfetiva  = base * fatorReducao;                           // base após redução fiscal
+  const icmsOrigem   = base * (aliquotaInterestadual / 100);         // ICMS origem sobre base original (NF)
+  const icmsInterno  = baseEfetiva * (aliquotaInterna / 100);        // ICMS destino sobre base efetiva
+  const difal        = icmsInterno - icmsOrigem;                     // diferencial
+  const valorFcp     = baseEfetiva * (fcp / 100);                    // FCP sobre base efetiva
+  const total        = difal + valorFcp;
+  const aliqEfetivaDIFAL = base > 0 ? (difal / base * 100) : 0;    // carga efetiva sobre valor da NF
+  return { base, baseEfetiva, reducaoBase, icmsOrigem, icmsInterno, difal, valorFcp, total, aliqEfetivaDIFAL, isGoias: false };
 }
+
+// Popula tabela de benefícios fiscais
+(function populateBeneficiosTable(){
+  const tbody = document.getElementById('fc-beneficios-tbody');
+  if (!tbody) return;
+  const estados = Object.entries(fcEstados)
+    .filter(([uf, st]) => st.beneficio)
+    .sort((a,b) => a[1].nome.localeCompare(b[1].nome));
+  estados.forEach(([uf, st]) => {
+    const b = st.beneficio;
+    const cor = b.cor || '#60c6ff';
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid rgba(255,255,255,0.04)';
+    const isGoias = b.coefImportado !== undefined;
+    const aiTxt  = isGoias ? '7,87% / 4,49%' : b.reducaoAnexoI  > 0 ? `${b.reducaoAnexoI.toFixed(2)}%`  : '—';
+    const aiiTxt = isGoias ? '(todos NCMs)' : b.reducaoAnexoII > 0 ? `${b.reducaoAnexoII.toFixed(2)}%` : '—';
+    tr.innerHTML = `
+      <td style="padding:8px 14px;font-weight:500;color:var(--text)">${st.nome} (${uf})</td>
+      <td style="padding:8px 8px;text-align:center;font-family:var(--mono);color:var(--text-muted)">${st.aliq}%</td>
+      <td style="padding:8px 8px;text-align:center;font-family:var(--mono);color:#60c6ff;font-weight:500">${aiTxt}</td>
+      <td style="padding:8px 8px;text-align:center;font-family:var(--mono);color:#a3e635;font-weight:500">${aiiTxt}</td>
+      <td style="padding:8px 14px;font-size:10px;color:var(--text-dim);line-height:1.4">${b.ref}</td>
+    `;
+    // Tooltip expandível
+    tr.style.cursor = 'pointer';
+    const detailRow = document.createElement('tr');
+    detailRow.style.display = 'none';
+    detailRow.innerHTML = `<td colspan="5" style="padding:6px 14px 10px;font-size:10px;color:var(--text-muted);background:rgba(255,255,255,0.01);line-height:1.5;border-bottom:1px solid rgba(255,255,255,0.06)">${b.obs}</td>`;
+    tr.onclick = () => { detailRow.style.display = detailRow.style.display === 'none' ? 'table-row' : 'none'; };
+    tbody.appendChild(tr);
+    tbody.appendChild(detailRow);
+  });
+})();
 
 (function populateFcUFs(){
   const sorted = Object.entries(fcEstados).sort((a,b) => a[1].nome.localeCompare(b[1].nome));
@@ -2483,11 +2773,150 @@ function calcularDifal({ valorNota, aliquotaInterna, aliquotaInterestadual, fcp 
 
 function fcUpdateSubtitle() {
   const ufOrig = document.getElementById('fc-uf-origem');
+  const ufDest = document.getElementById('fc-uf');
   const sub    = document.getElementById('fc-subtitle');
   if (!ufOrig || !sub) return;
-  const uf = ufOrig.value;
-  const st = fcEstados[uf];
-  sub.innerHTML = `Origem <strong style="color:var(--text)">${st ? st.nome : uf}</strong> · Selecione destino e tipo de produto · Base dupla (por dentro) · LC 190/2022`;
+  const uf  = ufOrig.value;
+  const st  = fcEstados[uf];
+  const dst = ufDest ? fcEstados[ufDest.value] : null;
+  sub.innerHTML = `Origem <strong style="color:var(--text)">${st ? st.nome : uf}</strong> · Selecione destino e tipo de produto · Base única · LC 190/2022`;
+  // Auto-preenche beneficio quando destino selecionado
+  if (ufDest) fcAtualizaBeneficio(ufDest.value);
+}
+
+function fcAtualizaBeneficio(ufDest) {
+  const badge = document.getElementById('fc-beneficio-badge');
+  const hint  = document.getElementById('fc-reducao-hint');
+  const input = document.getElementById('fc-reducao');
+  if (!badge || !hint || !input) return;
+  const st = fcEstados[ufDest];
+  if (!st || !st.beneficio) {
+    badge.textContent = 'Sem redução';
+    badge.style.background = 'rgba(255,255,255,0.04)';
+    badge.style.color = 'var(--text-dim)';
+    badge.style.borderColor = 'var(--border)';
+    hint.style.display = 'none';
+    // Só zera se ainda estava em 0 (não apaga entrada manual)
+    if (parseFloat(input.value) === 0) input.value = '0';
+    return;
+  }
+  const b = st.beneficio;
+  const cor = b.cor || '#60c6ff';
+  if (b.coefImportado !== undefined) {
+    // Goiás — coeficiente direto (não base reduzida)
+    badge.textContent = 'Benefício GO';
+    badge.style.background = 'rgba(250,204,21,0.1)';
+    badge.style.color = '#facc15';
+    badge.style.borderColor = 'rgba(250,204,21,0.25)';
+    input.value = '0';  // campo não usável para GO (usa coeficiente)
+    hint.style.display = 'block';
+    hint.style.borderColor = 'rgba(250,204,21,0.2)';
+    hint.innerHTML = `<strong style="color:#facc15">⚠ Goiás — ${b.ref}</strong><br>${b.obs}<br><em style="color:var(--text-dim)">Coeficientes: importado 7,87% · nacional 4,49% do valor da NF. Aplicado automaticamente ao calcular.</em>`;
+  } else if (b.reducaoBase > 0) {
+    badge.textContent = `Redução ${b.reducaoBase.toFixed(2)}%`;
+    badge.style.background = 'rgba(96,198,255,0.08)';
+    badge.style.color = cor;
+    badge.style.borderColor = 'rgba(96,198,255,0.2)';
+    input.value = b.reducaoBase.toFixed(2);
+    hint.style.display = 'block';
+    hint.style.borderColor = 'rgba(96,198,255,0.15)';
+    hint.innerHTML = `<strong style="color:${cor}">${b.ref}</strong><br>${b.obs}<br><em style="color:var(--text-dim)">Carga efetiva ≈ ${b.aliqEfetiva}% · Altere o campo acima se necessário.</em>`;
+  } else if (b.reducaoBase === 0 && b.ref) {
+    badge.textContent = 'Benefício disponível';
+    badge.style.background = 'rgba(250,204,21,0.08)';
+    badge.style.color = cor;
+    badge.style.borderColor = 'rgba(250,204,21,0.2)';
+    input.value = '0';
+    hint.style.display = 'block';
+    hint.innerHTML = `<strong style="color:${cor}">${b.ref}</strong><br>${b.obs}`;
+  }
+}
+
+function fcNcmBuscar() {
+  const ncmInput  = document.getElementById('fc-ncm');
+  const badge     = document.getElementById('fc-ncm-badge');
+  const descEl    = document.getElementById('fc-ncm-desc');
+  const ufDest    = document.getElementById('fc-uf')?.value;
+  if (!ncmInput || !badge) return;
+  const ncmRaw = ncmInput.value.trim();
+  const digits = ncmRaw.replace(/\D/g,'');
+  // Formata com pontos conforme usuário digita
+  if (digits.length >= 4) {
+    let formatted = digits.slice(0,4);
+    if (digits.length > 4) formatted += '.' + digits.slice(4,6);
+    if (digits.length > 6) formatted += '.' + digits.slice(6,8);
+    ncmInput.value = formatted;
+  }
+  if (digits.length < 4) {
+    badge.textContent = 'Informe o NCM';
+    badge.style.background = 'rgba(255,255,255,0.04)';
+    badge.style.color = 'var(--text-dim)';
+    badge.style.borderColor = 'var(--border)';
+    if (descEl) descEl.style.display = 'none';
+    return;
+  }
+  const result = ncmLookup(digits, ufDest);
+  const reducaoInput = document.getElementById('fc-reducao');
+  const hint = document.getElementById('fc-reducao-hint');
+  const bBadge = document.getElementById('fc-beneficio-badge');
+  if (!result || result.tipo === 'desconhecido') {
+    badge.textContent = 'NCM não mapeado';
+    badge.style.background = 'rgba(255,255,255,0.04)';
+    badge.style.color = 'var(--text-dim)';
+    badge.style.borderColor = 'var(--border)';
+    if (descEl) { descEl.style.display = 'block'; descEl.innerHTML = `<span style="color:#facc15">⚠</span> NCM ${digits.slice(0,4)} não está na base de dados — verifique manualmente se há benefício.`; }
+    return;
+  }
+  const pos4 = digits.slice(0,4);
+  // Mostra descrição do NCM
+  if (descEl && result.desc) {
+    descEl.style.display = 'block';
+    const tipoLabel = result.tipo === 'anexoI' ? '<span style="color:#60c6ff">Conv. 52/91 Anexo I (industrial)</span>'
+                    : result.tipo === 'anexoII'? '<span style="color:#a3e635">Conv. 52/91 Anexo II (agrícola)</span>'
+                    : result.tipo === 'goias'  ? '<span style="color:#facc15">GO — Decreto 9.104/2017</span>'
+                    : '<span style="color:var(--text-dim)">Não qualifica para Conv. 52/91</span>';
+    descEl.innerHTML = `<strong style="color:var(--text)">${pos4}</strong> — ${result.desc} · ${tipoLabel}`;
+  }
+  if (result.tipo === 'nao_qualifica') {
+    badge.textContent = '❌ Sem benefício (Conv. 52/91)';
+    badge.style.background = 'rgba(242,108,108,0.07)';
+    badge.style.color = 'var(--red)';
+    badge.style.borderColor = 'rgba(242,108,108,0.2)';
+    if (reducaoInput) reducaoInput.value = '0';
+    if (bBadge) { bBadge.textContent = 'Sem redução'; bBadge.style.background = 'rgba(255,255,255,0.04)'; bBadge.style.color = 'var(--text-dim)'; bBadge.style.borderColor = 'var(--border)'; }
+    if (hint) hint.style.display = 'none';
+    return;
+  }
+  if (result.tipo === 'goias') {
+    badge.textContent = '✓ GO — coef. Decreto 9.104/2017';
+    badge.style.background = 'rgba(250,204,21,0.08)';
+    badge.style.color = '#facc15';
+    badge.style.borderColor = 'rgba(250,204,21,0.25)';
+    // GO usa coeficiente — mantém reducao=0, o fcCalc trata
+    if (reducaoInput) reducaoInput.value = '0';
+    return;
+  }
+  if (result.reducao > 0) {
+    badge.textContent = `✓ Benefício − ${result.reducao.toFixed(2)}%`;
+    badge.style.background = 'rgba(96,198,255,0.08)';
+    badge.style.color = '#60c6ff';
+    badge.style.borderColor = 'rgba(96,198,255,0.2)';
+    if (reducaoInput) reducaoInput.value = result.reducao.toFixed(2);
+    if (bBadge) { bBadge.textContent = `Redução ${result.reducao.toFixed(2)}%`; bBadge.style.background = 'rgba(96,198,255,0.08)'; bBadge.style.color = '#60c6ff'; bBadge.style.borderColor = 'rgba(96,198,255,0.2)'; }
+    if (hint && result.ref) {
+      hint.style.display = 'block';
+      hint.style.borderColor = 'rgba(96,198,255,0.15)';
+      hint.innerHTML = `<strong style="color:#60c6ff">${result.ref}</strong><br>${result.obs || ''}<br><em style="color:var(--text-dim)">Carga efetiva ≈ ${result.aliqEfetiva}% do valor da NF.</em>`;
+    }
+  } else {
+    badge.textContent = '⚠ Sem benefício neste estado';
+    badge.style.background = 'rgba(255,255,255,0.04)';
+    badge.style.color = 'var(--text-dim)';
+    badge.style.borderColor = 'var(--border)';
+    if (reducaoInput) reducaoInput.value = '0';
+    if (hint) hint.style.display = 'none';
+    if (bBadge) { bBadge.textContent = 'Sem redução'; bBadge.style.background = 'rgba(255,255,255,0.04)'; bBadge.style.color = 'var(--text-dim)'; bBadge.style.borderColor = 'var(--border)'; }
+  }
 }
 
 function fcMoeda(v) {
@@ -2527,11 +2956,22 @@ function fcCalc() {
   const aliqInterna     = estadoDest.aliq;
   const fcp             = estadoDest.fcp;
 
+  // Redução de base / benefício fiscal
+  const reducaoInput    = parseFloat(document.getElementById('fc-reducao').value) || 0;
+  const benef           = estadoDest.beneficio;
+  // Goiás tem coeficiente direto (opt-in, não é base reduzida)
+  const coefGoias       = (ufDest === 'GO' && benef && benef.coefImportado !== undefined)
+                          ? (tipo === 'importado' ? benef.coefImportado : benef.coefNacional)
+                          : null;
+  const reducaoBase     = coefGoias !== null ? 0 : reducaoInput;
+
   const r = calcularDifal({
     valorNota: valorRaw,
     aliquotaInterna: aliqInterna,
     aliquotaInterestadual: aliqInter,
-    fcp
+    fcp,
+    reducaoBase,
+    coefGoias
   });
 
   const semDifal = r.difal <= 0;
@@ -2548,20 +2988,40 @@ function fcCalc() {
       <span style="font-size:11px;color:var(--text-muted);margin-left:auto">Inter: ${aliqInter}% · Interna: ${pct(aliqInterna)} · FCP: ${fcp}%</span>
     </div>
 
-    <!-- KPIs: Valor NF e Base por dentro -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+    <!-- KPIs: Valor NF e Base efetiva -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:${r.reducaoBase > 0 ? 8 : 14}px">
       <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 12px">
         <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Valor da NF</div>
         <div style="font-size:15px;font-weight:500;font-family:var(--mono);color:#f2f2f3">${m(valorRaw)}</div>
       </div>
-      <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:10px 12px">
-        <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Base por Dentro</div>
-        <div style="font-size:15px;font-weight:500;font-family:var(--mono);color:#f2f2f3">${m(r.basePorDentro)}</div>
+      <div style="background:var(--bg);border:1px solid ${r.reducaoBase > 0 ? 'rgba(96,198,255,0.2)' : 'rgba(255,255,255,0.07)'};border-radius:8px;padding:10px 12px">
+        <div style="font-size:10px;color:${r.reducaoBase > 0 ? '#60c6ff' : 'var(--text-muted)'};text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Base${r.reducaoBase > 0 ? ' Efetiva (−'+r.reducaoBase.toFixed(2)+'%)' : ' de Cálculo (única)'}</div>
+        <div style="font-size:15px;font-weight:500;font-family:var(--mono);color:#f2f2f3">${m(r.baseEfetiva)}</div>
+        <div style="font-size:10px;color:var(--text-dim);margin-top:2px">${r.reducaoBase > 0 ? m(valorRaw)+' × '+(100-r.reducaoBase).toFixed(2)+'%' : '= Valor da NF · LC 190/2022'}</div>
       </div>
     </div>
+    ${r.reducaoBase > 0 ? `
+    <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(96,198,255,0.05);border:1px solid rgba(96,198,255,0.15);border-radius:7px;margin-bottom:14px">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#60c6ff" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3M8 10.5v.5"/></svg>
+      <div style="font-size:10px;color:var(--text-muted);line-height:1.4">
+        Benefício fiscal aplicado · Redução de base: <strong style="color:#60c6ff">${r.reducaoBase.toFixed(2)}%</strong>
+        · Carga efetiva de DIFAL: <strong style="color:#60c6ff">${r.aliqEfetivaDIFAL >= 0 ? r.aliqEfetivaDIFAL.toFixed(2) : '0,00'}%</strong> do valor da NF
+        · Economia: <strong style="color:#60c6ff">${m(Math.max(0, valorRaw*(aliqInterna/100 - aliqInter/100) - r.difal))}</strong> vs sem redução
+      </div>
+    </div>` : ''}
+    ${r.isGoias ? `
+    <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(250,204,21,0.05);border:1px solid rgba(250,204,21,0.2);border-radius:7px;margin-bottom:14px">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#facc15" stroke-width="1.5"><path d="M8 2L1 14h14L8 2z"/><path d="M8 6v4M8 11.5v.5"/></svg>
+      <div style="font-size:10px;color:var(--text-muted);line-height:1.4">
+        Goiás · <strong style="color:#facc15">Decreto 9.104/2017</strong> (opt-in) — coeficiente ${tipo === 'importado' ? '7,87%' : '4,49%'} × valor NF
+        · Carga efetiva: <strong style="color:#facc15">${r.aliqEfetivaDIFAL.toFixed(2)}%</strong>
+        · Economia vs nominal: <strong style="color:#facc15">${m(Math.max(0, valorRaw*(aliqInterna/100 - aliqInter/100) - r.difal))}</strong>
+        <br><em style="color:var(--text-dim)">Confirme opção fiscal da empresa antes de utilizar este coeficiente.</em>
+      </div>
+    </div>` : ''}
 
     <!-- Memória de cálculo com fórmula -->
-    <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Memória de cálculo</div>
+    <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Memória de cálculo · ${r.reducaoBase > 0 ? 'base reduzida — Conv. ICMS' : 'base única = valor da NF (LC 190/2022)'}</div>
     <div style="background:var(--bg);border:1px solid rgba(255,255,255,0.07);border-radius:8px;margin-bottom:14px;overflow:hidden">
       <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,0.06)">
         <div>
@@ -2570,24 +3030,10 @@ function fcCalc() {
         </div>
         <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(r.icmsOrigem)}</span>
       </div>
-      <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div>
-          <span style="font-size:11px;color:var(--text-muted)">② Base Líquida</span>
-          <span style="font-size:10px;color:var(--text-dim);margin-left:6px;font-family:var(--mono)">${m(valorRaw)} − ${m(r.icmsOrigem)}</span>
-        </div>
-        <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(valorRaw - r.icmsOrigem)}</span>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div>
-          <span style="font-size:11px;color:var(--text-muted)">③ Base por Dentro</span>
-          <span style="font-size:10px;color:var(--text-dim);margin-left:6px;font-family:var(--mono)">÷ (1 − ${pct(aliqInterna)})</span>
-        </div>
-        <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(r.basePorDentro)}</span>
-      </div>
       <div style="display:grid;grid-template-columns:1fr auto;align-items:center;padding:7px 12px">
         <div>
-          <span style="font-size:11px;color:var(--text-muted)">④ ICMS Interno (${ufDest})</span>
-          <span style="font-size:10px;color:var(--text-dim);margin-left:6px;font-family:var(--mono)">${m(r.basePorDentro)} × ${pct(aliqInterna)}</span>
+          <span style="font-size:11px;color:var(--text-muted)">② ICMS Interno (${ufDest})</span>
+          <span style="font-size:10px;color:var(--text-dim);margin-left:6px;font-family:var(--mono)">${m(r.baseEfetiva)} × ${pct(aliqInterna)}</span>
         </div>
         <span style="font-size:12px;font-family:var(--mono);color:#f2f2f3">${m(r.icmsInterno)}</span>
       </div>
@@ -2607,13 +3053,21 @@ function fcCalc() {
       </div>
       <div style="font-size:18px;font-weight:500;font-family:var(--mono);color:var(--red)">${m(r.difal)}</div>
     </div>`}
+    ${fcp === 0 ? `
+    <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;margin-bottom:14px">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="var(--text-dim)" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M5 8h6"/></svg>
+      <div>
+        <span style="font-size:12px;color:var(--text-dim)">FCP — ${estadoDest.nome} (${ufDest}) — <strong style="color:var(--text-muted)">Não aplicável</strong></span>
+        <div style="font-size:10px;color:var(--text-dim);margin-top:1px">${ufDest} não instituiu o Fundo de Combate à Pobreza</div>
+      </div>
+    </div>` : `
     <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:rgba(245,194,0,0.07);border:1px solid rgba(245,194,0,0.2);border-radius:8px;margin-bottom:14px">
       <div>
         <div style="font-size:10px;color:#F5C200;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">⑥ FCP — ${ufDest}</div>
-        <div style="font-size:10px;color:var(--text-dim);font-family:var(--mono)">${m(r.basePorDentro)} × ${fcp}%</div>
+        <div style="font-size:10px;color:var(--text-dim);font-family:var(--mono)">${m(valorRaw)} × ${fcp}%</div>
       </div>
       <div style="font-size:18px;font-weight:500;font-family:var(--mono);color:#F5C200">${m(r.valorFcp)}</div>
-    </div>
+    </div>`}
 
     <!-- Total -->
     <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px">
