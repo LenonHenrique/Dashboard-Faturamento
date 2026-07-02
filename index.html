@@ -466,72 +466,144 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .ft-result .fc-tag-red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
 .ft-result .fc-tag-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
 
-/* ── INDICADORES ─────────────────────────────────────────────── */
-.ind-topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
-.ind-topbar-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.ind-month-select{display:flex;align-items:center;gap:8px}
-.ind-month-select select{padding:8px 12px;background:var(--bg-card);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:var(--font);outline:none;cursor:pointer}
-.ind-month-select select:focus{border-color:var(--brand-bd)}
-.ind-btn{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid;cursor:pointer;font-family:var(--font);transition:.15s}
-.ind-btn-primary{background:var(--brand);color:#111;border-color:var(--brand)}
-.ind-btn-primary:hover{background:#ffd633}
-.ind-btn-ghost{background:transparent;color:var(--text-muted);border-color:var(--border)}
-.ind-btn-ghost:hover{background:var(--bg-hover);color:var(--text)}
-.ind-btn-danger{background:var(--red-bg);color:var(--red);border-color:var(--red-bd)}
-.ind-btn-danger:hover{background:rgba(242,108,108,.15)}
-.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
-.ind-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:0;transition:border-color .15s;position:relative;overflow:hidden}
-.ind-card:hover{border-color:var(--border-bright)}
-.ind-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
-.ind-card-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.ind-card-icon svg{width:16px;height:16px}
-.ind-card-badges{display:flex;align-items:center;gap:6px}
-.ind-badge-status{font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;border:1px solid}
-.ind-badge-ativa{background:var(--brand-bg);color:var(--brand);border-color:var(--brand-bd)}
-.ind-badge-pausa{background:var(--red-bg);color:var(--red);border-color:var(--red-bd)}
-.ind-menu-btn{background:none;border:none;color:var(--text-dim);cursor:pointer;padding:4px;border-radius:4px;font-size:16px;line-height:1;transition:.15s}
-.ind-menu-btn:hover{color:var(--text);background:var(--bg-hover)}
-.ind-card-name{font-size:14px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:4px}
-.ind-card-desc{font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:14px}
-.ind-card-value{font-size:32px;font-weight:700;letter-spacing:-.03em;color:var(--text);line-height:1;margin-bottom:4px}
-.ind-card-meta{font-size:12px;color:var(--text-muted);margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.ind-delta{font-size:12px;font-weight:600}
-.ind-delta-up{color:var(--red)}
-.ind-delta-down{color:var(--green)}
-.ind-delta-neutral{color:var(--text-muted)}
-.ind-progress-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;font-size:12px;color:var(--text-muted)}
-.ind-progress-pct{font-size:12px;font-weight:600;color:var(--text)}
-.ind-bar{height:6px;background:var(--bg-card2);border-radius:99px;overflow:hidden;margin-bottom:14px}
-.ind-bar-fill{height:100%;border-radius:99px;transition:width .5s ease}
-.ind-bar-green{background:var(--green)}
-.ind-bar-red{background:var(--red)}
-.ind-bar-brand{background:var(--brand)}
-.ind-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px;border-top:1px solid var(--border)}
-.ind-avatar{width:26px;height:26px;border-radius:50%;background:var(--brand);color:#111;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.ind-owner{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:6px}
-.ind-date{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:4px}
-/* Modal */
-.ind-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
-.ind-modal-backdrop.open{display:flex}
-.ind-modal{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;width:100%;max-width:480px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.ind-modal-title{font-size:15px;font-weight:500;margin-bottom:16px;color:var(--text)}
-.ind-field{margin-bottom:14px}
-.ind-field label{display:block;font-size:10px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
-.ind-field input,.ind-field select,.ind-field textarea{width:100%;padding:10px 12px;background:var(--bg-card2);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:var(--font);outline:none;box-sizing:border-box;transition:.15s}
-.ind-field input:focus,.ind-field select:focus,.ind-field textarea:focus{border-color:var(--brand-bd);box-shadow:0 0 0 3px rgba(245,194,0,.06)}
-.ind-field textarea{resize:vertical;min-height:64px}
-.ind-modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+/* ── INDICADORES — Dashboard KPI */
+#page-indicadores {
+  --primary: var(--brand);
+  --primary-fg: #000;
+  --surface: var(--bg-card2);
+  --card: var(--bg-card);
+  --border: rgba(255,255,255,.09);
+  --border2: rgba(255,255,255,.13);
+  --fg: var(--text);
+  --fg2: var(--text-muted);
+  --fg3: var(--text-dim);
+  --green: #4ade80;
+  --red: #f87171;
+  --radius: var(--r);
+  overflow-y: auto;
+}
+/* Header */
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;gap:16px}
+.page-header-left{display:flex;flex-direction:column;gap:3px}
+.breadcrumb{font-size:12px;color:var(--fg3);display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.breadcrumb span{color:var(--primary);font-weight:600}
+.page-title{font-size:20px;font-weight:700}
+.page-sub{font-size:13px;color:var(--fg2)}
+.btn-primary{display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:var(--primary-fg);font-weight:700;font-size:13px;padding:9px 18px;border-radius:var(--radius);border:none;cursor:pointer;transition:opacity .15s;white-space:nowrap}
+.btn-primary:hover{opacity:.85}
+.btn-primary svg{width:14px;height:14px}
+
+/* Controls bar */
+.controls-bar{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.control-label{font-size:11px;font-weight:600;color:var(--fg3);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.period-select{background:var(--card);border:1px solid var(--border2);color:var(--fg);border-radius:7px;padding:6px 12px;font-size:13px;font-family:var(--font);cursor:pointer}
+.period-select:focus{outline:none;border-color:var(--primary)}
+.divider-v{width:1px;height:20px;background:var(--border2)}
+
+/* TOP filter chips */
+.top-filters{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.top-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:100px;border:1px solid var(--border2);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;background:transparent;color:var(--fg2);white-space:nowrap}
+.top-chip:hover{border-color:rgba(255,255,255,.3)}
+.top-chip.active{color:var(--primary-fg) !important;border-color:transparent !important}
+.top-chip .dot{width:7px;height:7px;border-radius:50%}
+
+/* SQL info */
+.sql-info{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:11px;color:var(--fg2);margin-bottom:20px;line-height:1.6}
+.sql-info strong{color:var(--primary);font-weight:600}
+.sql-info code{background:rgba(255,255,255,.07);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:10px;color:#a5f3fc}
+
+/* KPI grid */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:22px}
+@media(max-width:600px){.kpi-grid{grid-template-columns:1fr}}
+.badge-static{font-size:10px;font-weight:600;color:#fb923c;background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.2);padding:2px 6px;border-radius:100px}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;transition:border-color .15s}
+.kpi-card:hover{border-color:var(--border2)}
+.kpi-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.kpi-card-top-left{display:flex;align-items:center;gap:7px}
+.kpi-icon{width:28px;height:28px;background:var(--primary);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.kpi-icon svg{width:13px;height:13px;fill:none;stroke:#000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.badge-ativa{font-size:11px;font-weight:600;color:var(--primary);background:rgba(252,186,40,.12);border:1px solid rgba(252,186,40,.3);padding:3px 9px;border-radius:100px}
+.badge-bq{display:none}
+.kpi-menu{display:none}
+.kpi-title{font-size:13px;font-weight:500;color:var(--fg2);margin-bottom:2px}
+.kpi-desc{display:none}
+.kpi-value{font-size:32px;font-weight:700;font-family:var(--mono);color:var(--fg);margin-bottom:4px;font-variant-numeric:tabular-nums;line-height:1;letter-spacing:-.03em}
+.kpi-value small{font-size:14px;font-weight:600;margin-left:3px;color:var(--fg2)}
+.kpi-meta-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--fg2);margin-bottom:10px;flex-wrap:wrap}
+.kpi-delta{display:inline-flex;align-items:center;gap:2px;font-weight:700;font-size:11px;padding:2px 6px;border-radius:4px}
+.delta-warn{background:rgba(248,113,113,.15);color:var(--red)}
+.delta-good{background:rgba(74,222,128,.15);color:var(--green)}
+.kpi-prog-header{display:none}
+.kpi-pct{text-align:right;font-size:11px;color:var(--fg3);margin-top:5px;margin-bottom:4px}
+.prog-track{height:6px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin-bottom:0}
+.prog-fill{height:100%;border-radius:99px;transition:width .5s ease}
+.prog-green{background:var(--green)}.prog-yellow{background:var(--primary)}.prog-red{background:var(--red)}
+.kpi-footer{display:none}
+.kpi-footer-left{display:none}
+.avatar{display:none}
+/* SQL info + controls labels hidden */
+.sql-info{display:none}
+.control-label{display:none}
+.divider-v{display:none}
+
+/* SLA breakdown mini-table */
+.sla-breakdown{background:var(--surface);border-radius:7px;padding:10px 12px;margin-bottom:13px;display:none}
+.sla-breakdown.visible{display:block}
+.sla-row{display:flex;align-items:center;justify-content:space-between;padding:3px 0;font-size:12px;border-bottom:1px solid var(--border)}
+.sla-row:last-child{border-bottom:none}
+.sla-top-label{display:flex;align-items:center;gap:6px;color:var(--fg2)}
+.sla-top-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.sla-top-val{font-family:var(--mono);font-size:12px;font-weight:600}
+
+/* Spinner */
+.spin{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,.1);border-top-color:var(--primary);border-radius:50%;animation:spin .65s linear infinite;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Chart */
+.chart-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:22px}
+.chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.chart-header-left{display:flex;flex-direction:column;gap:2px}
+.chart-title{font-size:14px;font-weight:600}
+.chart-sub{font-size:12px;color:var(--fg2)}
+.chart-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--fg2);align-items:center}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;padding:2px 4px;border-radius:4px;transition:opacity .15s}
+.legend-item:hover{opacity:.8}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.chart-wrap{height:220px;position:relative}
+
 /* History */
-.ind-history{margin-bottom:24px}
-.ind-history-title{font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
-.ind-hist-table{width:100%;border-collapse:collapse;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden}
-.ind-hist-table th{padding:8px 14px;font-size:10px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;background:var(--bg-card2);border-bottom:1px solid var(--border);border-right:1px solid var(--border);text-align:left}
-.ind-hist-table th:last-child{border-right:none}
-.ind-hist-table td{padding:9px 14px;font-size:12px;color:var(--text-muted);border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
-.ind-hist-table td:last-child{border-right:none}
-.ind-hist-table tr:last-child td{border-bottom:none}
-.ind-hist-table tr:hover td{background:rgba(255,255,255,.01)}
-.ind-empty{text-align:center;padding:40px 20px;color:var(--text-dim);font-size:13px}
+.history-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:20px}
+.history-title{font-size:14px;font-weight:600;margin-bottom:14px}
+.htable{width:100%;border-collapse:collapse;font-size:13px}
+.htable th{text-align:left;font-size:11px;font-weight:600;color:var(--fg3);text-transform:uppercase;letter-spacing:.4px;padding:0 10px 9px 0;border-bottom:1px solid var(--border);white-space:nowrap}
+.htable td{padding:9px 10px 9px 0;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:12px}
+.htable tr:last-child td{border-bottom:none}
+.chip-good{color:var(--green)}.chip-warn{color:var(--red)}.chip-neutral{color:var(--fg2)}
+.no-data{text-align:center;padding:36px;color:var(--fg3);font-size:13px}
+
+/* Status */
+.status-bar{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--fg3);margin-top:6px}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.status-dot.warn{background:var(--primary)}.status-dot.err{background:var(--red)}
+
+/* Modal */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:200;align-items:center;justify-content:center}
+.overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius);padding:28px;width:500px;max-width:95vw;max-height:90vh;overflow-y:auto}
+.modal-title{font-size:16px;font-weight:700;margin-bottom:20px}
+.modal-sec{margin-bottom:18px}
+.modal-sec-hd{font-size:11px;font-weight:700;color:var(--fg3);text-transform:uppercase;letter-spacing:.5px;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:13px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:11px;font-weight:700;color:var(--fg3);text-transform:uppercase;letter-spacing:.4px}
+.form-group input{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;color:var(--fg);padding:9px 12px;font-size:14px;font-family:var(--font);transition:border-color .15s}
+.form-group input:focus{outline:none;border-color:var(--primary)}
+.form-group input[disabled]{opacity:.5;cursor:not-allowed}
+.form-note{font-size:11px;color:var(--fg3);margin-top:4px;font-style:italic;line-height:1.4}
+.modal-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;padding-top:14px;border-top:1px solid var(--border)}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--fg);font-size:13px;font-weight:600;padding:8px 18px;border-radius:var(--radius);cursor:pointer;transition:border-color .15s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3)}
+
 
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media(max-width:960px){
@@ -551,6 +623,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   .pill{font-size:9.5px;padding:2px 5px}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="layout">
@@ -2207,96 +2280,163 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 
     <!-- ════════ PAGE: INDICADORES ════════ -->
     <div id="page-indicadores" class="page">
+<!-- Header -->
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="page-title">Indicadores de Faturamento</div>
+    <div class="page-sub" id="ind-page-sub">Faturamento · carregando…</div>
+  </div>
+  <button class="btn-primary" onclick="openModal()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="17" cy1="12" r="3" cx="17" cy="12"/></svg>
+    Ajustar metas
+  </button>
+</div>
 
-      <div class="ind-topbar">
-        <div>
-          <div style="font-size:14px;font-weight:500;color:var(--text)">Indicadores de Desempenho</div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Acompanhamento mensal · histórico gravado por período</div>
-        </div>
-        <div class="ind-topbar-actions">
-          <div class="ind-month-select">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--text-muted)" stroke-width="1.4"><rect x="1" y="2" width="12" height="11" rx="1"/><path d="M1 6h12M4 1v2M10 1v2"/></svg>
-            <select id="ind-period-select" onchange="indLoadPeriod(this.value)"></select>
-          </div>
-          <button class="ind-btn ind-btn-ghost" onclick="indExportJSON()" title="Exportar histórico em JSON">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" style="margin-right:4px;vertical-align:middle"><path d="M6 1v7M3 5l3 3 3-3"/><path d="M1 9v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9"/></svg>
-            Exportar
-          </button>
-          <label class="ind-btn ind-btn-ghost" style="cursor:pointer" title="Importar histórico de JSON">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" style="margin-right:4px;vertical-align:middle"><path d="M6 8V1M3 4l3-3 3 3"/><path d="M1 9v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9"/></svg>
-            Importar
-            <input type="file" accept=".json" style="display:none" onchange="indImportJSON(event)">
-          </label>
-          <button class="ind-btn ind-btn-primary" onclick="indOpenModal()">+ Registrar mês</button>
-        </div>
+<!-- Controls: period + TOP filter -->
+<div class="controls-bar">
+  <select class="period-select" id="periodSelect" onchange="onPeriodChange()"></select>
+  <div class="top-filters" id="topFilters"></div>
+</div>
+
+<!-- SQL info -->
+<div class="sql-info">
+  <strong>Dados de 01/07/2026 às 08h00 BRT</strong> — horas úteis: Seg–Qui 08h–18h · Sex 08h–17h · somente a <strong>primeira NF de cada contrato</strong> (retornos, trocas e manutenções excluídos) · histórico a partir de jan/2026.
+  <strong>SLA:</strong> <code>SLA_START</code> = <code>Faturamento → Status de transporte</code> (novo fluxo, a partir de abr/2026) ou <code>Checklist de envio → Status de transporte</code> (fluxo antigo) · <code>SLA_END</code> = <code>DTALTER</code> da NF · contratos sem evento de plataforma excluídos.
+  <strong>% Automação:</strong> NFs confirmadas pelo usuário SUP (<code>CODUSUINC = 0</code>) / total de documentos eletrônicos (<code>STATUSNFE IS NOT NULL</code>).
+</div>
+
+<!-- KPI Cards -->
+<div class="kpi-grid">
+
+  <!-- SLA Máquinas -->
+  <div class="kpi-card">
+    <div class="kpi-card-top">
+      <div class="kpi-card-top-left">
+        <div class="kpi-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
       </div>
-
-      <!-- Cards de indicadores -->
-      <div class="ind-grid" id="ind-cards-container">
-        <div class="ind-empty" style="grid-column:1/-1">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--text-dim)" stroke-width="1.5" style="margin:0 auto 12px;display:block"><path d="M4 30V18l8-10 8 8 6-8 8 10v12"/><path d="M4 30h32"/><path d="M20 30v-8"/></svg>
-          <div>Nenhum dado registrado para este período.</div>
-          <div style="margin-top:6px;font-size:11px">Clique em <strong style="color:var(--brand)">+ Registrar mês</strong> para adicionar os indicadores.</div>
-        </div>
-      </div>
-
-      <!-- Histórico -->
-      <div class="ind-history">
-        <div class="ind-history-title">Histórico de períodos registrados</div>
-        <div id="ind-history-container">
-          <div class="ind-empty">Nenhum histórico disponível ainda.</div>
-        </div>
-      </div>
-
+      <span class="badge-ativa">Ao vivo</span>
     </div>
+    <div class="kpi-value" id="val-sla"><span class="spin"></span></div>
+    <div class="kpi-title">Tempo méd. de faturamento</div>
+    <div class="kpi-meta-row">
+      <span id="sub-sla" style="font-size:11px;color:var(--fg3)"></span>
+    </div>
+    <div class="kpi-meta-row">
+      <span id="goal-sla" style="font-size:12px;color:var(--fg2)">Meta: —</span>
+      <span class="kpi-delta" id="delta-sla"></span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="bar-sla" style="width:0%"></div></div>
+    <div class="kpi-pct"><span id="pct-sla">—</span></div>
+  </div>
 
-    <!-- Modal: Registrar/Editar mês -->
-    <div class="ind-modal-backdrop" id="ind-modal">
-      <div class="ind-modal">
-        <div class="ind-modal-title" id="ind-modal-title">Registrar indicadores do mês</div>
+  <!-- % Automação -->
+  <div class="kpi-card">
+    <div class="kpi-card-top">
+      <div class="kpi-card-top-left">
+        <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      </div>
+      <span class="badge-ativa">Ao vivo</span>
+    </div>
+    <div class="kpi-value" id="val-auto"><span class="spin"></span></div>
+    <div class="kpi-title">Automação no faturamento</div>
+    <div class="kpi-meta-row">
+      <span id="auto-sub" style="font-size:11px;color:var(--fg3)"></span>
+    </div>
+    <div class="kpi-meta-row">
+      <span id="goal-auto" style="font-size:12px;color:var(--fg2)">Meta: —</span>
+      <span class="kpi-delta" id="delta-auto"></span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="bar-auto" style="width:0%"></div></div>
+    <div class="kpi-pct"><span id="pct-auto">—</span></div>
+  </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div class="ind-field">
-            <label>Mês/Ano</label>
-            <input type="month" id="ind-f-period">
-          </div>
-          <div class="ind-field">
-            <label>Responsável</label>
-            <input type="text" id="ind-f-owner" placeholder="Nome do analista">
-          </div>
-        </div>
+  <!-- % Taxa de Cancelamento -->
+  <div class="kpi-card">
+    <div class="kpi-card-top">
+      <div class="kpi-card-top-left">
+        <div class="kpi-icon" style="background:#f87171"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></div>
+      </div>
+      <span class="badge-ativa">Ao vivo</span>
+    </div>
+    <div class="kpi-value" id="val-cancel"><span class="spin"></span></div>
+    <div class="kpi-title">Taxa de cancelamento</div>
+    <div class="kpi-meta-row">
+      <span id="cancel-sub" style="font-size:11px;color:var(--fg3)"></span>
+    </div>
+    <div class="kpi-meta-row">
+      <span id="goal-cancel" style="font-size:12px;color:var(--fg2)">Meta: —</span>
+      <span class="kpi-delta" id="delta-cancel"></span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="bar-cancel" style="width:0%"></div></div>
+    <div class="kpi-pct"><span id="pct-cancel">—</span></div>
+  </div>
+</div>
 
-        <div style="border-top:1px solid var(--border);margin:6px 0 14px;padding-top:14px">
-          <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Taxa de Erro de Faturamento</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <div class="ind-field"><label>Valor atual (%)</label><input type="number" id="ind-f-erro-val" step="0.01" placeholder="ex: 3.13"></div>
-            <div class="ind-field"><label>Meta (%)</label><input type="number" id="ind-f-erro-meta" step="0.01" placeholder="ex: 3"></div>
-          </div>
-        </div>
+<!-- Chart -->
+<div class="chart-section">
+  <div class="chart-header">
+    <div class="chart-header-left">
+      <div class="chart-title">Evolução SLA por TOP</div>
+      <div class="chart-sub" id="chartSub">Carregando dados do BigQuery…</div>
+    </div>
+    <div class="chart-legend" id="chartLegend"></div>
+  </div>
+  <div class="chart-wrap"><canvas id="slaChart"></canvas></div>
+</div>
 
-        <div style="border-top:1px solid var(--border);margin:6px 0 14px;padding-top:14px">
-          <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">Tempo Méd. Faturamento Máquinas (hr)</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <div class="ind-field"><label>Valor atual (hr)</label><input type="number" id="ind-f-maq-val" step="0.1" placeholder="ex: 4.2"></div>
-            <div class="ind-field"><label>Meta (hr)</label><input type="number" id="ind-f-maq-meta" step="0.1" placeholder="ex: 4"></div>
-          </div>
-        </div>
+<!-- History table -->
+<div class="history-section">
+  <div class="history-title">Histórico Mensal</div>
+  <div id="historyBody"></div>
+</div>
 
-        <div style="border-top:1px solid var(--border);margin:6px 0 14px;padding-top:14px">
-          <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px">% de Automação no Faturamento</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <div class="ind-field"><label>Valor atual (%)</label><input type="number" id="ind-f-tmf-val" step="0.1" placeholder="ex: 72"></div>
-            <div class="ind-field"><label>Meta (%)</label><input type="number" id="ind-f-tmf-meta" step="0.1" placeholder="ex: 80"></div>
-          </div>
-        </div>
+<div class="status-bar">
+  <div class="status-dot" id="statusDot"></div>
+  <span id="statusText">Carregando…</span>
+</div>
 
-        <div class="ind-modal-actions">
-          <button class="ind-btn ind-btn-ghost" onclick="indCloseModal()">Cancelar</button>
-          <button class="ind-btn ind-btn-primary" onclick="indSave()">Salvar</button>
-        </div>
+<!-- Modal -->
+
+<div class="overlay" id="overlay" onclick="closeModalIfBg(event)">
+  <div class="modal">
+    <div class="modal-title">Ajustar metas do mês</div>
+    <div class="modal-sec">
+      <div class="form-row">
+        <div class="form-group"><label>Mês / Ano</label><input type="month" id="f-mes"/></div>
+        <div class="form-group"><label>Responsável</label><input type="text" id="f-resp" value="Lenon Henrique da Silva"/></div>
       </div>
     </div>
-
+    <div class="modal-sec">
+      <div class="modal-sec-hd">Tempo Méd. Faturamento Máquinas <span class="badge-bq" style="vertical-align:middle">BigQuery</span></div>
+      <div class="form-group" style="margin-bottom:0">
+        <label>Meta (hr)</label>
+        <input type="number" id="f-sla-meta" step="0.1" placeholder="ex: 4"/>
+      </div>
+    </div>
+    <div class="modal-sec">
+      <div class="modal-sec-hd">% de Automação no Faturamento <span class="badge-bq" style="vertical-align:middle">BigQuery</span></div>
+      <div class="form-group" style="margin-bottom:0">
+        <label>Meta (%)</label>
+        <input type="number" id="f-auto-meta" step="0.1" placeholder="ex: 80"/>
+      </div>
+    </div>
+    <div class="modal-sec">
+      <div class="modal-sec-hd">% Taxa de Cancelamento <span class="badge-bq" style="vertical-align:middle">BigQuery</span></div>
+      <div class="form-group" style="margin-bottom:0">
+        <label>Meta (%)</label>
+        <input type="number" id="f-cancel-meta" step="0.01" placeholder="ex: 3"/>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn-primary" onclick="saveRecord()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Salvar metas
+      </button>
+    </div>
+  </div>
+</div><!-- /overlay -->
+</div><!-- /page-indicadores -->
 
 
 <!-- PAGE: AUDITORIA -->
@@ -2391,6 +2531,10 @@ const titles={
 };
 
 function gp(id, el) {
+  if (id === 'indicadores') {
+    if (!window._indInit) { window._indInit = true; initIndicadores(); }
+    else if (typeof renderChart === 'function') setTimeout(renderChart, 50);
+  }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
   document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
   const pg = document.getElementById('page-' + id);
@@ -3193,324 +3337,790 @@ function ccRenderStep(num, title, desc){
     </tr>`;
   }).join('');
 })();
-// ── INDICADORES ───────────────────────────────────────────────
-const IND_STORAGE_KEY = 'blips_indicadores_v1';
-
-const indKpis = [
-  {
-    id: 'erro',
-    nome: 'Taxa de Erro Faturamento',
-    unidade: '%',
-    desc: 'Reduzir erros de faturamento, mitigando cancelamento de notas e cartas de correção.',
-    owner: 'Lenon Henrique da Silva',
-    prazo: '31/12/2026',
-    // menor é melhor (meta é teto)
-    menorMelhor: true
+// ── INDICADORES (BigQuery live) ─────────────────────────────────────
+// ── BAKED_DATA — atualizado automaticamente às 08h. NÃO EDITAR MANUALMENTE ──
+// ── BAKED_DATA
+const BAKED_DATA = {
+  "updated_at": "2026-07-02T08:00:00-03:00",
+  "sla": {
+    "jobComplete": true,
+    "rows": [
+      {"f":[{"v":"07/2026"},{"v":"2026-07"},{"v":"270"},{"v":"9"},{"v":"1.94"}]},
+      {"f":[{"v":"07/2026"},{"v":"2026-07"},{"v":"271"},{"v":"11"},{"v":"0.23"}]},
+      {"f":[{"v":"07/2026"},{"v":"2026-07"},{"v":"40"},{"v":"13"},{"v":"0.6"}]},
+      {"f":[{"v":"06/2026"},{"v":"2026-06"},{"v":"146"},{"v":"7"},{"v":"109.82"}]},
+      {"f":[{"v":"06/2026"},{"v":"2026-06"},{"v":"191"},{"v":"15"},{"v":"51.84"}]},
+      {"f":[{"v":"06/2026"},{"v":"2026-06"},{"v":"270"},{"v":"89"},{"v":"4.26"}]},
+      {"f":[{"v":"06/2026"},{"v":"2026-06"},{"v":"271"},{"v":"169"},{"v":"26.39"}]},
+      {"f":[{"v":"06/2026"},{"v":"2026-06"},{"v":"40"},{"v":"187"},{"v":"36.43"}]},
+      {"f":[{"v":"05/2026"},{"v":"2026-05"},{"v":"146"},{"v":"37"},{"v":"45.59"}]},
+      {"f":[{"v":"05/2026"},{"v":"2026-05"},{"v":"191"},{"v":"57"},{"v":"39.71"}]},
+      {"f":[{"v":"05/2026"},{"v":"2026-05"},{"v":"270"},{"v":"114"},{"v":"19.74"}]},
+      {"f":[{"v":"05/2026"},{"v":"2026-05"},{"v":"271"},{"v":"148"},{"v":"18.28"}]},
+      {"f":[{"v":"05/2026"},{"v":"2026-05"},{"v":"40"},{"v":"231"},{"v":"18.51"}]},
+      {"f":[{"v":"04/2026"},{"v":"2026-04"},{"v":"146"},{"v":"99"},{"v":"20.84"}]},
+      {"f":[{"v":"04/2026"},{"v":"2026-04"},{"v":"191"},{"v":"102"},{"v":"20.73"}]},
+      {"f":[{"v":"04/2026"},{"v":"2026-04"},{"v":"270"},{"v":"51"},{"v":"15.88"}]},
+      {"f":[{"v":"04/2026"},{"v":"2026-04"},{"v":"271"},{"v":"36"},{"v":"31.38"}]},
+      {"f":[{"v":"04/2026"},{"v":"2026-04"},{"v":"40"},{"v":"187"},{"v":"25.12"}]},
+      {"f":[{"v":"03/2026"},{"v":"2026-03"},{"v":"146"},{"v":"82"},{"v":"13.67"}]},
+      {"f":[{"v":"03/2026"},{"v":"2026-03"},{"v":"191"},{"v":"147"},{"v":"18.3"}]},
+      {"f":[{"v":"03/2026"},{"v":"2026-03"},{"v":"40"},{"v":"264"},{"v":"16.87"}]},
+      {"f":[{"v":"02/2026"},{"v":"2026-02"},{"v":"146"},{"v":"61"},{"v":"10.67"}]},
+      {"f":[{"v":"02/2026"},{"v":"2026-02"},{"v":"191"},{"v":"55"},{"v":"5.99"}]},
+      {"f":[{"v":"02/2026"},{"v":"2026-02"},{"v":"40"},{"v":"176"},{"v":"11.12"}]},
+      {"f":[{"v":"01/2026"},{"v":"2026-01"},{"v":"146"},{"v":"97"},{"v":"20.38"}]},
+      {"f":[{"v":"01/2026"},{"v":"2026-01"},{"v":"191"},{"v":"57"},{"v":"13.26"}]},
+      {"f":[{"v":"01/2026"},{"v":"2026-01"},{"v":"40"},{"v":"286"},{"v":"28.52"}]}
+    ]
   },
-  {
-    id: 'maq',
-    nome: 'Tempo Méd. Faturamento Máquinas',
-    unidade: 'hr',
-    desc: 'Medir o tempo médio de faturamento a fim de manter um SLA aceitável à operação.',
-    owner: 'Lenon Henrique da Silva',
-    prazo: '31/12/2026',
-    menorMelhor: true
+  "auto": {
+    "jobComplete": true,
+    "rows": [
+      {"f":[{"v":"2026-07"},{"v":"108"},{"v":"6"},{"v":"5.56"}]},
+      {"f":[{"v":"2026-06"},{"v":"2008"},{"v":"264"},{"v":"13.15"}]},
+      {"f":[{"v":"2026-05"},{"v":"1959"},{"v":"71"},{"v":"3.62"}]},
+      {"f":[{"v":"2026-04"},{"v":"1858"},{"v":"93"},{"v":"5.01"}]},
+      {"f":[{"v":"2026-03"},{"v":"2378"},{"v":"528"},{"v":"22.2"}]},
+      {"f":[{"v":"2026-02"},{"v":"1369"},{"v":"232"},{"v":"16.95"}]},
+      {"f":[{"v":"2026-01"},{"v":"1839"},{"v":"212"},{"v":"11.53"}]}
+    ]
   },
-  {
-    id: 'tmf',
-    nome: '% de Automação no Faturamento',
-    unidade: '%',
-    desc: 'Percentual de documentos faturados de forma automatizada, sem intervenção manual.',
-    owner: 'Lenon Henrique da Silva',
-    prazo: '31/12/2026',
-    // maior é melhor (meta é piso)
-    menorMelhor: false
+  "cancel": {
+    "jobComplete": true,
+    "rows": [
+      {"f":[{"v":"2026-07"},{"v":"108"},{"v":"1"},{"v":"0.93"}]},
+      {"f":[{"v":"2026-06"},{"v":"2008"},{"v":"87"},{"v":"4.33"}]},
+      {"f":[{"v":"2026-05"},{"v":"1959"},{"v":"144"},{"v":"7.35"}]},
+      {"f":[{"v":"2026-04"},{"v":"1858"},{"v":"134"},{"v":"7.21"}]},
+      {"f":[{"v":"2026-03"},{"v":"2378"},{"v":"139"},{"v":"5.85"}]},
+      {"f":[{"v":"2026-02"},{"v":"1369"},{"v":"61"},{"v":"4.46"}]},
+      {"f":[{"v":"2026-01"},{"v":"1839"},{"v":"113"},{"v":"6.14"}]}
+    ]
   }
+};
+// ── FIM BAKED_DATA ──
+
+async function callBQ(query) {
+  let key;
+  if (query.includes('CODUSUINC')) key = 'auto';
+  else if (query.includes('DTCANC') || query.includes('NotasCanceladas')) key = 'cancel';
+  else key = 'sla';
+  return { structuredContent: BAKED_DATA[key] };
+}
+
+
+// ── Formata horas decimais → "Xhr Ymin" ──────────────────────────
+function fmtHours(h) {
+  if (h == null || isNaN(h)) return '—';
+  const totalMin = Math.round(h * 60);
+  const hrs = Math.floor(totalMin / 60);
+  const min = totalMin % 60;
+  return min === 0 ? hrs + 'h' : hrs + 'h ' + min + 'min';
+}
+// ── Config: TOP definitions ──────────────────────────────
+const TOP_DEFS = [
+  { id: '40',  label: 'TOP 40',  desc: 'Remessa Comodato',          color: '#fcba28' },
+  { id: '146', label: 'TOP 146', desc: 'Remessa Vda Ent. Futura',   color: '#60a5fa' },
+  { id: '191', label: 'TOP 191', desc: 'Remessa Vda Fut. Fin.',      color: '#a78bfa' },
+  { id: '270', label: 'TOP 270', desc: 'Venda C/FIN C/EST',          color: '#34d399' },
+  { id: '271', label: 'TOP 271', desc: 'Venda C/FIN Financiada',     color: '#fb7185' },
 ];
+const TOP_MAP = Object.fromEntries(TOP_DEFS.map(t => [t.id, t]));
 
-// Carregar dados do localStorage
-function indLoad() {
-  try { return JSON.parse(localStorage.getItem(IND_STORAGE_KEY) || '{}'); }
-  catch { return {}; }
+// ── Taxa de Cancelamento — BigQuery ao vivo ──────────────────────────────
+// Fonte: bronze_sankhya.NotasTgfcab (ativas) + NotasCanceladasTgfCan (TGFCAN)
+// Total = todos os tipos de documento emitidos no período (DTNEG)
+let cancelData = {}; // { '2026-06': { total, canceladas, pct }, ... }
+
+const CANCEL_QUERY = `
+WITH
+TOTAL AS (
+  -- NFs emitidas no mês (DTNEG), somente documentos eletrônicos (STATUSNFE IS NOT NULL)
+  -- Equivalente: TGFCAB WHERE DTNEG no mês AND STATUSNFE IS NOT NULL
+  SELECT
+    FORMAT_DATE('%Y-%m', DATE(SAFE.PARSE_TIMESTAMP('%d%m%Y %H:%M:%S', DTNEG, 'America/Sao_Paulo'), 'America/Sao_Paulo')) AS mes_sort,
+    COUNT(*) AS total_nfs
+  FROM \`blips-bigdata.bronze_sankhya.NotasTgfcab\`
+  WHERE DTNEG IS NOT NULL
+    AND STATUSNFE IS NOT NULL
+    AND DATE(SAFE.PARSE_TIMESTAMP('%d%m%Y %H:%M:%S', DTNEG, 'America/Sao_Paulo'), 'America/Sao_Paulo')
+        BETWEEN '2026-01-01' AND CURRENT_DATE('America/Sao_Paulo')
+  GROUP BY mes_sort
+),
+CANCELADAS AS (
+  -- Cancelamentos no mês (DTCANC), join TGFCAN × TGFCAB_EXC via NUNOTA
+  -- Filtro TIPMOV IN ('V','T','C','D') — Venda, Transferência, Consignação, Devolução
+  SELECT
+    FORMAT_DATE('%Y-%m', DATE(SAFE.PARSE_TIMESTAMP('%d%m%Y %H:%M:%S', CAN.DTCANC, 'America/Sao_Paulo'), 'America/Sao_Paulo')) AS mes_sort,
+    COUNT(*) AS nfs_canceladas
+  FROM \`blips-bigdata.bronze_sankhya.NotasCanceladasTgfCan\` CAN
+  INNER JOIN \`blips-bigdata.bronze_sankhya.NotasExcluidasTgfCabExc\` EXC
+    ON CAST(EXC.NUNOTA AS FLOAT64) = CAST(CAN.NUNOTA AS FLOAT64)
+  WHERE CAN.DTCANC IS NOT NULL
+    AND EXC.TIPMOV IN ('V', 'T', 'C', 'D')
+    AND DATE(SAFE.PARSE_TIMESTAMP('%d%m%Y %H:%M:%S', CAN.DTCANC, 'America/Sao_Paulo'), 'America/Sao_Paulo')
+        BETWEEN '2026-01-01' AND CURRENT_DATE('America/Sao_Paulo')
+  GROUP BY mes_sort
+)
+SELECT
+  T.mes_sort,
+  T.total_nfs,
+  COALESCE(C.nfs_canceladas, 0) AS nfs_canceladas,
+  ROUND(100.0 * COALESCE(C.nfs_canceladas, 0) / T.total_nfs, 2) AS pct_cancelamento
+FROM TOTAL T
+LEFT JOIN CANCELADAS C ON C.mes_sort = T.mes_sort
+ORDER BY T.mes_sort DESC
+LIMIT 24
+`;
+
+// ── Storage ──────────────────────────────────────────────
+const STORE_KEY = 'blips_fat_v11';
+function loadStore() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || { registros: [], slaCache: [] }; }
+  catch { return { registros: [], slaCache: [] }; }
 }
+function saveStore(d) { localStorage.setItem(STORE_KEY, JSON.stringify(d)); }
 
-function indSaveData(data) {
-  localStorage.setItem(IND_STORAGE_KEY, JSON.stringify(data));
-}
-
-function indFmtPeriod(p) {
-  if (!p) return '';
-  const [y, m] = p.split('-');
-  const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-  return `${meses[parseInt(m)-1]}/${y}`;
-}
-
-function indCurrentPeriod() {
-  const now = new Date();
-  const m = String(now.getMonth()+1).padStart(2,'0');
-  return `${now.getFullYear()}-${m}`;
-}
-
-function indProgressColor(pct, menorMelhor) {
-  if (menorMelhor) {
-    // meta é teto: atingir 100% = atingiu a meta. Menor que meta = bom
-    if (pct >= 100) return 'ind-bar-green';
-    if (pct >= 80)  return 'ind-bar-brand';
-    return 'ind-bar-red';
-  } else {
-    if (pct >= 100) return 'ind-bar-green';
-    if (pct >= 70)  return 'ind-bar-brand';
-    return 'ind-bar-red';
-  }
-}
-
-function indCalcProgress(val, meta, menorMelhor) {
-  if (!meta || meta === 0) return 0;
-  if (menorMelhor) {
-    // ex: val=3.13, meta=3. progresso = meta/val * 100. se val < meta = acima de 100%
-    return Math.min(150, (meta / val) * 100);
-  }
-  return Math.min(150, (val / meta) * 100);
-}
-
-function indDelta(val, meta, menorMelhor, unidade) {
-  if (!meta) return '';
-  const diff = val - meta;
-  const pct  = Math.abs(Math.round((diff/meta)*100));
-  if (diff === 0) return '';
-  if (menorMelhor) {
-    // val > meta = ruim (acima do teto)
-    if (diff > 0) return `<span class="ind-delta ind-delta-up">↑ +${pct}%</span>`;
-    return `<span class="ind-delta ind-delta-down">↓ ${pct}%</span>`;
-  } else {
-    if (diff > 0) return `<span class="ind-delta ind-delta-down">↑ +${pct}%</span>`;
-    return `<span class="ind-delta ind-delta-up">↓ ${pct}%</span>`;
-  }
-}
-
-function indRenderCards(period) {
-  const data   = indLoad();
-  const entry  = data[period];
-  const cont   = document.getElementById('ind-cards-container');
-  if (!cont) return;
-
-  if (!entry) {
-    cont.innerHTML = `<div class="ind-empty" style="grid-column:1/-1">
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--text-dim)" stroke-width="1.5" style="margin:0 auto 12px;display:block"><path d="M4 30V18l8-10 8 8 6-8 8 10v12"/><path d="M4 30h32"/></svg>
-      <div>Nenhum dado para <strong style="color:var(--brand)">${indFmtPeriod(period)}</strong>.</div>
-      <div style="margin-top:6px;font-size:11px">Clique em <strong style="color:var(--brand)">+ Registrar mês</strong> para adicionar.</div>
-    </div>`;
-    return;
-  }
-
-  cont.innerHTML = indKpis.map(kpi => {
-    const val  = parseFloat(entry[kpi.id+'_val']  || 0);
-    const meta = parseFloat(entry[kpi.id+'_meta'] || 0);
-    const pct  = indCalcProgress(val, meta, kpi.menorMelhor);
-    const pctDisplay = Math.min(100, pct);
-    const barClass = indProgressColor(pct, kpi.menorMelhor);
-    const deltaHtml = indDelta(val, meta, kpi.menorMelhor, kpi.unidade);
-    const owner = entry.owner || kpi.owner;
-    const initials = owner.split(' ').filter(w=>w).slice(0,2).map(w=>w[0]).join('').toUpperCase();
-    const metaLabel = meta ? `Meta ${indFmtPeriod(period)}: ${meta}${kpi.unidade}` : '';
-
-    return `<div class="ind-card">
-      <div class="ind-card-top">
-        <div style="display:flex;align-items:center;gap:8px">
-          <div class="ind-card-icon" style="background:var(--brand-bg);border:1px solid var(--brand-bd)">
-            <svg viewBox="0 0 16 16" fill="none" stroke="var(--brand)" stroke-width="1.5"><path d="M2 12V8l3-4 3 3 2-3 3 4v4"/><path d="M2 12h12"/></svg>
-          </div>
-          <span class="ind-badge-status ind-badge-ativa">Ativa</span>
-        </div>
-        <button class="ind-menu-btn" onclick="indEditPeriod('${period}')" title="Editar">···</button>
-      </div>
-      <div class="ind-card-name">${kpi.nome} (${kpi.unidade})</div>
-      <div class="ind-card-desc">${kpi.desc}</div>
-      <div class="ind-card-value">${val}${kpi.unidade === '%' ? '%' : ' '+kpi.unidade}</div>
-      <div class="ind-card-meta">${metaLabel} ${deltaHtml}</div>
-      <div class="ind-progress-label">
-        <span>Progresso Mensal</span>
-        <span class="ind-progress-pct">${Math.round(pctDisplay)}%</span>
-      </div>
-      <div class="ind-bar"><div class="ind-bar-fill ${barClass}" style="width:${pctDisplay}%"></div></div>
-      <div class="ind-card-footer">
-        <div class="ind-owner"><div class="ind-avatar">${initials}</div>${owner}</div>
-        <div class="ind-date">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="2" width="10" height="9" rx="1"/><path d="M1 5h10M4 1v2M8 1v2"/></svg>
-          ${kpi.prazo}
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function indRenderHistory() {
-  const data = indLoad();
-  const periods = Object.keys(data).sort().reverse();
-  const cont = document.getElementById('ind-history-container');
-  if (!cont) return;
-
-  if (!periods.length) {
-    cont.innerHTML = '<div class="ind-empty">Nenhum histórico disponível ainda.</div>';
-    return;
-  }
-
-  const rows = periods.map(p => {
-    const e = data[p];
-    return `<tr>
-      <td><strong style="color:var(--text)">${indFmtPeriod(p)}</strong></td>
-      ${indKpis.map(k => `<td style="font-family:var(--mono);font-size:12px">${e[k.id+'_val'] || '—'}${k.unidade === '%' ? '%' : ' '+k.unidade} <span style="color:var(--text-dim);font-size:10px">(meta: ${e[k.id+'_meta'] || '—'}${k.unidade === '%' ? '%' : ''})</span></td>`).join('')}
-      <td style="font-size:11px">${e.owner || '—'}</td>
-      <td>
-        <button class="ind-btn ind-btn-ghost" style="padding:4px 10px;font-size:11px" onclick="indEditPeriod('${p}')">Editar</button>
-        <button class="ind-btn ind-btn-danger" style="padding:4px 10px;font-size:11px;margin-left:4px" onclick="indDeletePeriod('${p}')">Excluir</button>
-      </td>
-    </tr>`;
-  }).join('');
-
-  cont.innerHTML = `<table class="ind-hist-table">
-    <thead><tr>
-      <th>Período</th>
-      ${indKpis.map(k=>`<th>${k.nome}</th>`).join('')}
-      <th>Responsável</th>
-      <th>Ações</th>
-    </tr></thead>
-    <tbody>${rows}</tbody>
-  </table>`;
-}
-
-function indPopulatePeriodSelect() {
-  const sel = document.getElementById('ind-period-select');
-  if (!sel) return;
-  const data    = indLoad();
-  const saved   = Object.keys(data).sort().reverse();
-  const current = indCurrentPeriod();
-  const periods = [...new Set([current, ...saved])].sort().reverse();
-
-  sel.innerHTML = periods.map(p =>
-    `<option value="${p}">${indFmtPeriod(p)}</option>`
-  ).join('');
-  sel.value = current;
-}
-
-function indLoadPeriod(period) {
-  indRenderCards(period);
-}
-
-function indOpenModal(period) {
-  const p = period || indCurrentPeriod();
-  const data  = indLoad();
-  const entry = data[p] || {};
-
-  document.getElementById('ind-f-period').value   = p;
-  document.getElementById('ind-f-owner').value    = entry.owner || 'Lenon Henrique da Silva';
-  document.getElementById('ind-f-erro-val').value  = entry.erro_val  || '';
-  document.getElementById('ind-f-erro-meta').value = entry.erro_meta || '';
-  document.getElementById('ind-f-maq-val').value   = entry.maq_val   || '';
-  document.getElementById('ind-f-maq-meta').value  = entry.maq_meta  || '';
-  document.getElementById('ind-f-tmf-val').value   = entry.tmf_val   || '';
-  document.getElementById('ind-f-tmf-meta').value  = entry.tmf_meta  || '';
-
-  document.getElementById('ind-modal-title').textContent =
-    period ? `Editar — ${indFmtPeriod(period)}` : 'Registrar indicadores do mês';
-  document.getElementById('ind-modal').classList.add('open');
-}
-
-function indEditPeriod(period) { indOpenModal(period); }
-
-function indCloseModal() {
-  document.getElementById('ind-modal').classList.remove('open');
-}
-
-function indSave() {
-  const period = document.getElementById('ind-f-period').value;
-  if (!period) { alert('Selecione o mês/ano.'); return; }
-
-  const data = indLoad();
-  data[period] = {
-    owner:     document.getElementById('ind-f-owner').value,
-    erro_val:  document.getElementById('ind-f-erro-val').value,
-    erro_meta: document.getElementById('ind-f-erro-meta').value,
-    maq_val:   document.getElementById('ind-f-maq-val').value,
-    maq_meta:  document.getElementById('ind-f-maq-meta').value,
-    tmf_val:   document.getElementById('ind-f-tmf-val').value,
-    tmf_meta:  document.getElementById('ind-f-tmf-meta').value,
-  };
-  indSaveData(data);
-  indCloseModal();
-  indPopulatePeriodSelect();
-  const sel = document.getElementById('ind-period-select');
-  if (sel) sel.value = period;
-  indRenderCards(period);
-  indRenderHistory();
-}
-
-function indDeletePeriod(period) {
-  if (!confirm(`Excluir os dados de ${indFmtPeriod(period)}?`)) return;
-  const data = indLoad();
-  delete data[period];
-  indSaveData(data);
-  indPopulatePeriodSelect();
-  const sel = document.getElementById('ind-period-select');
-  const current = indCurrentPeriod();
-  if (sel) { indPopulatePeriodSelect(); sel.value = current; }
-  indRenderCards(current);
-  indRenderHistory();
-}
-
-// Fechar modal ao clicar fora
-document.getElementById('ind-modal')?.addEventListener('click', function(e) {
-  if (e.target === this) indCloseModal();
-});
-
-function indExportJSON() {
-  const data = indLoad();
-  const json = JSON.stringify({ blips_indicadores: true, version: 1, data }, null, 2);
-  const blob = new Blob([json], { type: 'application/json' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href = url;
-  const now = new Date();
-  a.download = `indicadores_blips_${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-function indImportJSON(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      const parsed = JSON.parse(e.target.result);
-      const importData = parsed.blips_indicadores ? parsed.data : parsed;
-      if (typeof importData !== 'object' || Array.isArray(importData)) {
-        alert('Arquivo inválido. O JSON precisa ter o formato exportado pelo dashboard.');
-        return;
-      }
-      const existing = indLoad();
-      const merged = { ...existing, ...importData };
-      const count = Object.keys(importData).length;
-      indSaveData(merged);
-      indPopulatePeriodSelect();
-      const sel = document.getElementById('ind-period-select');
-      if (sel && sel.options.length) indRenderCards(sel.value);
-      indRenderHistory();
-      alert(`✓ ${count} período(s) importado(s) com sucesso!`);
-    } catch(err) {
-      alert('Erro ao ler o arquivo JSON. Verifique o formato e tente novamente.');
-    }
-    event.target.value = '';
-  };
-  reader.readAsText(file);
-}
-
-// Init indicadores ao carregar a página
-(function initIndicadores() {
-  indPopulatePeriodSelect();
-  indRenderCards(indCurrentPeriod());
-  indRenderHistory();
+// ── State ────────────────────────────────────────────────
+// slaData: { '2026-06': { '40': {sla, qtd}, '270': {...}, ... }, ... }
+let slaData = {};
+// autoData: { '2026-06': { total, sup, pct }, ... }
+let autoData = {};
+let selectedTops = new Set(TOP_DEFS.map(t => t.id));
+let currentPeriod = (() => {
+  const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
 })();
+let chartInstance = null;
+
+// ── BigQuery query ───────────────────────────────────────
+const SLA_QUERY = `
+WITH
+FASE_EVENTS AS (
+  -- SLA_START: captura tanto a ENTRADA na fase Faturamento quanto a SAÍDA para Status de transporte
+  --
+  -- Machine TOPs (40/146/191): equipe avança manualmente "Faturamento -> Status de transporte"
+  --   ANTES de emitir a NF. MAX pega o "-> Status de transporte" (mais recente antes da NF).
+  --
+  -- Venda TOPs (270/271): equipe emite a NF e o webhook dispara "Faturamento -> Status de transporte"
+  --   DEPOIS da NF. MAX ignora esse evento (posterior à NF) e usa a ENTRADA na fase
+  --   "-> Faturamento" (anterior à NF) como SLA_START.
+  --
+  -- Fluxos cobertos:
+  --   Faturamento -> Status de transporte (SYSTEM, abr/2026+)
+  --   Checklist de envio -> Status de transporte (SYSTEM, pré abr/2026)
+  --   Validações -> Status de transporte (VALIDATION, bypass)
+  --   Checklist de envio -> Faturamento / Validações -> Faturamento (entrada na fase)
+  SELECT
+    n.contract_number,
+    SAFE.PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%E*SZ', h.date) AS fase_dt
+  FROM \`blips-bigdata.PLATAFORMA.negotiation\` n,
+  UNNEST(n.historical_status) AS h
+  WHERE LOWER(h.description) LIKE '%-> status de transporte%'
+     OR LOWER(h.description) LIKE '%-> faturamento%'
+),
+NFS_BASE AS (
+  -- DTALTER do Sankhya está em horário de Brasília (BRT = UTC-3)
+  -- Usamos PARSE_TIMESTAMP com timezone para alinhar com os timestamps UTC da plataforma
+  SELECT
+    NF.NUMNOTA, NF.CODTIPOPER, NF.NUMCONTRATO,
+    SAFE.PARSE_TIMESTAMP('%d%m%Y %H:%M:%S', NF.DTALTER, 'America/Sao_Paulo') AS NF_TS
+  FROM \`blips-bigdata.bronze_sankhya.NotasTgfcab\` NF
+  WHERE NF.CODTIPOPER IN (40,146,191,270,271)
+    AND NF.NUMCONTRATO IS NOT NULL
+    AND NF.DTALTER IS NOT NULL
+    -- Sem filtro de data aqui: ROW_NUMBER precisa ver todo o histórico
+    -- para identificar a primeira NF real de cada contrato
+),
+NFS AS (
+  -- Identifica a primeira NF de cada contrato no histórico completo
+  -- Só então filtra a partir de jan/2026 — contratos com 1ª NF antes disso ficam fora por completo
+  -- (trocas/retornos de contratos antigos não entram como se fossem novos faturamentos)
+  SELECT NUMNOTA, CODTIPOPER, NUMCONTRATO, NF_TS
+  FROM (
+    SELECT *,
+      ROW_NUMBER() OVER (PARTITION BY NUMCONTRATO ORDER BY NF_TS) AS rn
+    FROM NFS_BASE
+  )
+  WHERE rn = 1
+    AND DATE(NF_TS, 'America/Sao_Paulo') >= '2026-01-01'
+),
+JOINED AS (
+  SELECT
+    NFS.NUMNOTA, NFS.CODTIPOPER, NFS.NF_TS,
+    -- Pega o evento MAIS RECENTE que ocorreu ANTES (ou igual) à NF.
+    -- Para machine TOPs: será o "-> Status de transporte" (último evento antes da NF).
+    -- Para venda TOPs (270/271): será o "-> Faturamento" (o "-> Status de transporte"
+    --   dispara após a NF via webhook e fica excluído pelo filtro <= NF_TS).
+    MAX(CASE WHEN FE.fase_dt <= NFS.NF_TS THEN FE.fase_dt END) AS SLA_START_TS
+  FROM NFS
+  LEFT JOIN FASE_EVENTS FE ON FE.contract_number = NFS.NUMCONTRATO
+  GROUP BY NFS.NUMNOTA, NFS.CODTIPOPER, NFS.NF_TS, NFS.NUMCONTRATO
+)
+SELECT
+  FORMAT_DATE('%m/%Y', DATE(NF_TS, 'America/Sao_Paulo')) AS mes_ref,
+  FORMAT_DATE('%Y-%m', DATE(NF_TS, 'America/Sao_Paulo')) AS mes_sort,
+  CAST(CODTIPOPER AS STRING) AS top_nf,
+  COUNT(*) AS qtd_nfs,
+  ROUND(AVG(
+    -- Se o evento disparou DEPOIS da NF (webhook delay), SLA = 0
+    CASE WHEN SLA_START_TS > NF_TS THEN 0.0
+    ELSE (SELECT IFNULL(SUM(GREATEST(0, DATETIME_DIFF(
+      LEAST(CASE WHEN EXTRACT(DAYOFWEEK FROM d)=6 THEN DATETIME(d,TIME(17,0,0)) ELSE DATETIME(d,TIME(18,0,0)) END, DATETIME(NF_TS, 'America/Sao_Paulo')),
+      GREATEST(DATETIME(d, TIME(8,0,0)), DATETIME(SLA_START_TS, 'America/Sao_Paulo')),
+      MINUTE
+    ))),0)
+    FROM UNNEST(GENERATE_DATE_ARRAY(DATE(SLA_START_TS, 'America/Sao_Paulo'), DATE(NF_TS, 'America/Sao_Paulo'))) AS d
+    WHERE EXTRACT(DAYOFWEEK FROM d) BETWEEN 2 AND 6)
+    END
+  ) / 60.0, 2) AS sla_medio_horas
+FROM JOINED
+WHERE SLA_START_TS IS NOT NULL
+  AND NF_TS IS NOT NULL
+GROUP BY mes_ref, mes_sort, top_nf
+ORDER BY mes_sort DESC, top_nf
+LIMIT 120
+`;
+
+// ── BigQuery query — % Automação ─────────────────────────
+// NFs confirmadas pelo usuário SUP (CODUSUINC = 0) / total NFs eletrônicas
+// Sem restrição de TOP — todos os documentos com STATUSNFE preenchido
+const AUTO_QUERY = `
+SELECT
+  FORMAT_DATE('%Y-%m', SAFE.PARSE_DATE('%d%m%Y', SUBSTR(DTNEG, 1, 8))) AS mes_sort,
+  COUNT(*)                                                               AS total_nfs,
+  COUNTIF(CODUSUINC = 0)                                                AS nfs_usuario_sup,
+  ROUND(100.0 * COUNTIF(CODUSUINC = 0) / NULLIF(COUNT(*), 0), 2)       AS pct_automacao
+FROM \`blips-bigdata.bronze_sankhya.NotasTgfcab\`
+WHERE STATUSNFE IS NOT NULL
+  AND DTNEG IS NOT NULL
+  AND SAFE.PARSE_DATE('%d%m%Y', SUBSTR(DTNEG, 1, 8)) >= '2026-01-01'
+GROUP BY mes_sort
+ORDER BY mes_sort DESC
+LIMIT 24
+`;
+
+async function fetchAuto() {
+  try {
+    const r = await callBQ(AUTO_QUERY);
+    let json;
+    try { json = r.structuredContent ?? JSON.parse(r.content[0].text); }
+    catch { throw new Error('parse'); }
+    if (!json.rows?.length) return;
+    autoData = {};
+    json.rows.forEach(row => {
+      const mes   = row.f[0].v;
+      const total = parseInt(row.f[1].v)    || 0;
+      const sup   = parseInt(row.f[2].v)    || 0;
+      const pct   = parseFloat(row.f[3].v)  || 0;
+      autoData[mes] = { total, sup, pct };
+    });
+    const store = loadStore();
+    store.autoCache = json.rows.map(r => ({
+      mes: r.f[0].v, total: parseInt(r.f[1].v)||0, sup: parseInt(r.f[2].v)||0, pct: parseFloat(r.f[3].v)||0
+    }));
+    saveStore(store);
+  } catch(e) {
+    const store = loadStore();
+    if (store.autoCache?.length) {
+      store.autoCache.forEach(r => { autoData[r.mes] = { total: r.total, sup: r.sup ?? r.platform, pct: r.pct }; });
+    }
+  }
+}
+
+async function fetchCancel() {
+  try {
+    const r = await callBQ(CANCEL_QUERY);
+    let json;
+    try { json = r.structuredContent ?? JSON.parse(r.content[0].text); }
+    catch { throw new Error('parse'); }
+    if (!json.rows?.length) return;
+    cancelData = {};
+    json.rows.forEach(row => {
+      const mes       = row.f[0].v;
+      const total     = parseInt(row.f[1].v)   || 0;
+      const canceladas= parseInt(row.f[2].v)   || 0;
+      const pct       = parseFloat(row.f[3].v) || 0;
+      cancelData[mes] = { total, canceladas, pct };
+    });
+    const store = loadStore();
+    store.cancelCache = json.rows.map(r => ({
+      mes: r.f[0].v, total: parseInt(r.f[1].v)||0, canceladas: parseInt(r.f[2].v)||0, pct: parseFloat(r.f[3].v)||0
+    }));
+    saveStore(store);
+  } catch(e) {
+    const store = loadStore();
+    if (store.cancelCache?.length) {
+      store.cancelCache.forEach(r => { cancelData[r.mes] = { total: r.total, canceladas: r.canceladas, pct: r.pct }; });
+    }
+  }
+}
+
+async function fetchSLA() {
+  try {
+    const r = await callBQ(SLA_QUERY);
+    let json;
+    try { json = r.structuredContent ?? JSON.parse(r.content[0].text); }
+    catch { throw new Error('parse'); }
+
+    if (!json.rows?.length) { setStatus('warn','Nenhum dado retornado pelo BigQuery'); return; }
+
+    slaData = {};
+    json.rows.forEach(row => {
+      const mesSort = row.f[1].v;
+      const top = row.f[2].v;
+      const qtd = parseInt(row.f[3].v) || 0;
+      const sla = parseFloat(row.f[4].v) || 0;
+      if (!slaData[mesSort]) slaData[mesSort] = {};
+      slaData[mesSort][top] = { sla, qtd };
+    });
+
+    // Cache
+    const store = loadStore();
+    store.slaCache = json.rows.map(r => ({
+      mes_sort: r.f[1].v, top: r.f[2].v, qtd: parseInt(r.f[3].v)||0, sla: parseFloat(r.f[4].v)||0
+    }));
+    saveStore(store);
+
+    setStatus('ok', `BigQuery atualizado — ${json.rows.length} registros carregados`);
+  } catch(e) {
+    const store = loadStore();
+    if (store.slaCache?.length) {
+      store.slaCache.forEach(r => {
+        if (!slaData[r.mes_sort]) slaData[r.mes_sort] = {};
+        slaData[r.mes_sort][r.top] = { sla: r.sla, qtd: r.qtd };
+      });
+      setStatus('warn','Usando cache local — BigQuery indisponível');
+    } else {
+      setStatus('err','Erro ao carregar SLA do BigQuery');
+    }
+  }
+}
+
+// ── SLA helpers ──────────────────────────────────────────
+function getSLAForPeriod(period, tops) {
+  const m = slaData[period];
+  if (!m) return null;
+  let sumWeighted = 0, totalQtd = 0;
+  tops.forEach(t => {
+    const d = m[t];
+    if (d && d.qtd > 0) { sumWeighted += d.sla * d.qtd; totalQtd += d.qtd; }
+  });
+  return totalQtd > 0 ? sumWeighted / totalQtd : null;
+}
+
+// ── Render KPI card ──────────────────────────────────────
+function renderKPI({ idVal, idGoal, idDelta, idBar, idPct, value, goal, unit, higherBetter, label }) {
+  const v = document.getElementById(idVal);
+  const g = document.getElementById(idGoal);
+  const d = document.getElementById(idDelta);
+  const b = document.getElementById(idBar);
+  const p = document.getElementById(idPct);
+
+  if (value == null || isNaN(value)) {
+    v.textContent = '—'; g.textContent = `Meta ${label}: ${goal ?? '—'}${goal != null ? unit : ''}`;
+    d.textContent = ''; b.style.width = '0%'; p.textContent = '—'; return;
+  }
+  const fmtVal = unit === ' hr' ? fmtHours(value) : value.toFixed(2);
+  v.innerHTML = unit === ' hr' ? fmtVal + '<small> hr</small>' : fmtVal + `<small>${unit}</small>`;
+  g.textContent = goal != null ? `Meta ${label}: ${unit === ' hr' ? fmtHours(goal) : goal + unit}` : `Meta ${label}: —`;
+
+  if (goal != null) {
+    const diffPct = (value - goal) / goal * 100;
+    const bad = higherBetter ? value < goal : value > goal;
+    d.textContent = `${diffPct > 0 ? '↑' : '↓'} ${diffPct > 0 ? '+' : ''}${diffPct.toFixed(0)}%`;
+    d.className = `kpi-delta ${bad ? 'delta-warn' : 'delta-good'}`;
+
+    const prog = higherBetter
+      ? Math.min(100, (value / goal) * 100)
+      : value <= goal ? 100 : Math.max(0, Math.min(100, (goal / value) * 100));
+    const pi = Math.round(prog);
+    b.className = `prog-fill ${pi >= 95 ? 'prog-green' : pi >= 60 ? 'prog-yellow' : 'prog-red'}`;
+    b.style.width = pi + '%';
+    p.textContent = pi + '%';
+  }
+}
+
+// ── Render period ────────────────────────────────────────
+function renderPeriod(period) {
+  const store = loadStore();
+  const rec = store.registros.find(r => r.mes === period) || {};
+  const label = monthLabel(period);
+  const activeTops = [...selectedTops];
+
+  // Card 1 — SLA
+  const slaVal = getSLAForPeriod(period, activeTops);
+  renderKPI({ idVal:'val-sla', idGoal:'goal-sla', idDelta:'delta-sla', idBar:'bar-sla', idPct:'pct-sla',
+    value: slaVal, goal: rec.sla_meta ?? null, unit:' hr', higherBetter:false, label });
+  // SLA subtitle: total NFs + mais lento TOP
+  const slaSubEl = document.getElementById('sub-sla');
+  if (slaSubEl) {
+    const md = slaData[period];
+    if (md && slaVal !== null) {
+      let totalNfs = 0; let slowestTop = null; let slowestVal = -1;
+      TOP_DEFS.forEach(t => {
+        if (md[t.id]) {
+          if (selectedTops.has(t.id)) totalNfs += md[t.id].qtd;
+          if (md[t.id].sla > slowestVal) { slowestVal = md[t.id].sla; slowestTop = t; }
+        }
+      });
+      let txt = totalNfs > 0 ? `${totalNfs} NFs` : '';
+      if (slowestTop) txt += ` · mais lento ${slowestTop.label} (${fmtHours(slowestVal)})`;
+      slaSubEl.textContent = txt;
+    } else { slaSubEl.textContent = ''; }
+  }
+
+  // Card 3 — % Automação (proxy via plataforma)
+  const autoVal = autoData[period]?.pct ?? null;
+  renderKPI({ idVal:'val-auto', idGoal:'goal-auto', idDelta:'delta-auto', idBar:'bar-auto', idPct:'pct-auto',
+    value: autoVal, goal: rec.pct_automacao_meta ?? null, unit:'%', higherBetter:true, label });
+  const autoSubEl = document.getElementById('auto-sub');
+  if (autoSubEl) {
+    const ad = autoData[period];
+    autoSubEl.textContent = ad ? `${ad.sup} de ${ad.total} NFs emitidas pelo usuário SUP` : '';
+  }
+  if (autoVal == null && Object.keys(autoData).length === 0) {
+    document.getElementById('val-auto').innerHTML = '<span class="spin"></span>';
+  }
+
+  // Card 4 — % Taxa de Cancelamento (BigQuery ao vivo)
+  const cancelVal = cancelData[period]?.pct ?? null;
+  renderKPI({ idVal:'val-cancel', idGoal:'goal-cancel', idDelta:'delta-cancel', idBar:'bar-cancel', idPct:'pct-cancel',
+    value: cancelVal, goal: rec.cancel_meta ?? null, unit:'%', higherBetter:false, label });
+  const cancelSubEl = document.getElementById('cancel-sub');
+  if (cancelSubEl) {
+    const cd = cancelData[period];
+    cancelSubEl.textContent = cd ? `${cd.canceladas} cancel. / ${cd.total} emitidas` : '';
+  }
+  if (cancelVal == null && Object.keys(cancelData).length === 0) {
+    document.getElementById('val-cancel').innerHTML = '<span class="spin"></span>';
+  }
+  // If SLA still loading (null but BigQuery fetching)
+  if (slaVal == null && Object.keys(slaData).length === 0) {
+    document.getElementById('val-sla').innerHTML = '<span class="spin"></span>';
+  }
+
+  renderChart();
+  renderHistory();
+}
+
+function renderSLABreakdown(period) {
+  const bd = document.getElementById('sla-breakdown');
+  const monthData = slaData[period];
+  if (!monthData) { bd.classList.remove('visible'); return; }
+  const rows = TOP_DEFS.filter(t => monthData[t.id]);
+  if (!rows.length) { bd.classList.remove('visible'); return; }
+  bd.classList.add('visible');
+  bd.innerHTML = rows.map(t => {
+    const d = monthData[t.id];
+    const active = selectedTops.has(t.id);
+    return `<div class="sla-row" style="opacity:${active ? 1 : .35}">
+      <div class="sla-top-label">
+        <div class="sla-top-dot" style="background:${t.color}"></div>
+        <span>${t.label} · ${t.desc}</span>
+        <span style="color:var(--fg3);font-size:11px">(${d.qtd} NFs)</span>
+      </div>
+      <div class="sla-top-val" style="color:${t.color}">${fmtHours(d.sla)}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderCancelBreakdown(period) {
+  const bd = document.getElementById('cancel-breakdown');
+  const monthData = CANCEL_DATA[period];
+  if (!monthData) { bd.classList.remove('visible'); return; }
+  bd.classList.add('visible');
+  bd.innerHTML = TOP_DEFS.map(t => {
+    const d = monthData.tops[t.id];
+    if (!d) return '';
+    const active = selectedTops.has(t.id);
+    const valColor = d.pct > 5 ? 'var(--red)' : d.pct > 2 ? 'var(--primary)' : 'var(--green)';
+    return `<div class="sla-row" style="opacity:${active ? 1 : .4}">
+      <div class="sla-top-label">
+        <div class="sla-top-dot" style="background:${t.color}"></div>
+        <span>${t.label}</span>
+        <span style="color:var(--fg3);font-size:11px">(${d.qtd_canceladas}/${d.qtd_total})</span>
+      </div>
+      <div class="sla-top-val" style="color:${valColor}">${d.pct.toFixed(2)}%</div>
+    </div>`;
+  }).filter(Boolean).join('');
+}
+
+// ── Chart ────────────────────────────────────────────────
+function renderChart() {
+  const store = loadStore();
+  const allMonths = new Set([
+    ...Object.keys(slaData),
+    ...store.registros.map(r => r.mes)
+  ]);
+  const sorted = [...allMonths].sort();
+  const last12 = sorted.slice(-12);
+  const labels = last12.map(m => monthLabel(m));
+
+  const datasets = [];
+  const activeTops = [...selectedTops];
+
+  // One line per active TOP
+  TOP_DEFS.forEach(t => {
+    if (!selectedTops.has(t.id)) return;
+    datasets.push({
+      label: `${t.label} – ${t.desc}`,
+      data: last12.map(m => slaData[m]?.[t.id]?.sla ?? null),
+      borderColor: t.color,
+      backgroundColor: t.color + '18',
+      pointBackgroundColor: t.color,
+      pointRadius: 3.5, pointHoverRadius: 5.5,
+      borderWidth: 2, tension: 0.3, fill: false, spanGaps: true
+    });
+  });
+
+  // Meta line (from selected period's stored record, extended flat)
+  const metas = last12.map(m => store.registros.find(r => r.mes === m)?.sla_meta ?? null);
+  if (metas.some(v => v !== null)) {
+    datasets.push({
+      label: 'Meta (hr)', data: metas,
+      borderColor: '#4ade80', borderDash: [5,4],
+      pointRadius: 0, borderWidth: 1.5,
+      tension: 0, fill: false, spanGaps: true
+    });
+  }
+
+  const ctx = document.getElementById('slaChart').getContext('2d');
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(ctx, {
+    type: 'line', data: { labels, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: { duration: 350 },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#282828', borderColor: 'rgba(255,255,255,.1)', borderWidth: 1,
+          titleColor: '#f4f4f5', bodyColor: '#a1a1aa', padding: 10,
+          callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y != null ? fmtHours(c.parsed.y) : '—'}` }
+        }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,.05)' }, ticks: { color: '#71717a', font: { size: 11 } } },
+        y: { grid: { color: 'rgba(255,255,255,.05)' }, ticks: { color: '#71717a', font: { size: 11 }, callback: v => fmtHours(v) }, beginAtZero: false }
+      }
+    }
+  });
+
+  // Build legend
+  const legEl = document.getElementById('chartLegend');
+  legEl.innerHTML = datasets.map(ds => {
+    const color = Array.isArray(ds.borderDash) ? '#4ade80' : ds.borderColor;
+    return `<span class="legend-item"><span class="legend-dot" style="background:${color}"></span>${ds.label}</span>`;
+  }).join('');
+
+  const totalSelected = activeTops.reduce((acc, t) => {
+    const cnt = last12.reduce((s, m) => s + (slaData[m]?.[t]?.qtd || 0), 0);
+    return acc + cnt;
+  }, 0);
+  document.getElementById('chartSub').textContent =
+    `Query Sankhya · horas úteis · ${totalSelected} NFs processadas nos últimos 12 meses`;
+}
+
+// ── History table ─────────────────────────────────────────
+function renderHistory() {
+  const store = loadStore();
+  const allMonths = new Set([...Object.keys(slaData), ...store.registros.map(r => r.mes)]);
+  const sorted = [...allMonths].sort().reverse();
+  const body = document.getElementById('historyBody');
+
+  if (!sorted.length) {
+    body.innerHTML = '<div class="no-data">Nenhum dado ainda. Clique em "Registrar mês" para começar.</div>';
+    return;
+  }
+
+  const colHeads = TOP_DEFS.map(t => `<th style="color:${t.color}">${t.label}</th>`).join('');
+  let html = `<table class="htable"><thead><tr>
+    <th>Mês</th>
+    ${colHeads}
+    <th>SLA Comb.</th><th>Meta SLA</th><th>% Aut.</th><th>Meta Aut.</th><th style="color:#f87171">% Cancel.</th><th>Meta Cancel.</th>
+  </tr></thead><tbody>`;
+
+  sorted.forEach(m => {
+    const rec = store.registros.find(r => r.mes === m) || {};
+    const combined = getSLAForPeriod(m, TOP_DEFS.map(t => t.id));
+
+    const fmtAuto = (v, meta) => {
+      if (v == null) return '<span class="chip-neutral">—</span>';
+      if (meta == null) return v;
+      return `<span class="${v >= meta ? 'chip-good' : 'chip-warn'}">${v}%</span>`;
+    };
+    const fmtCancel = (v, meta) => {
+      if (v == null) return '<span class="chip-neutral">—</span>';
+      if (meta == null) return `${v}%`;
+      return `<span class="${v <= meta ? 'chip-good' : 'chip-warn'}">${v}%</span>`;
+    };
+    const fmtSLA = (top) => {
+      const d = slaData[m]?.[top.id];
+      if (!d) return '<span class="chip-neutral">—</span>';
+      const meta = rec.sla_meta;
+      const cls = meta == null ? '' : d.sla <= meta ? 'chip-good' : 'chip-warn';
+      return `<span class="${cls}" style="color:${cls ? '' : top.color}">${fmtHours(d.sla)}</span>`;
+    };
+
+    html += `<tr>
+      <td style="font-family:var(--font);color:var(--fg2)">${monthLabel(m)}</td>
+      ${TOP_DEFS.map(t => `<td>${fmtSLA(t)}</td>`).join('')}
+      <td style="color:var(--primary)">${combined != null ? fmtHours(combined) : '<span class="chip-neutral">—</span>'}</td>
+      <td class="chip-neutral">${rec.sla_meta != null ? rec.sla_meta+' hr' : '—'}</td>
+      <td>${fmtAuto(autoData[m]?.pct ?? null, rec.pct_automacao_meta)}</td>
+      <td class="chip-neutral">${rec.pct_automacao_meta != null ? rec.pct_automacao_meta+'%' : '—'}</td>
+      <td>${fmtCancel(cancelData[m]?.pct ?? null, rec.cancel_meta)}</td>
+      <td class="chip-neutral">${rec.cancel_meta != null ? rec.cancel_meta+'%' : '—'}</td>
+    </tr>`;
+  });
+
+  body.innerHTML = html + '</tbody></table>';
+}
+
+// ── TOP filter chips ──────────────────────────────────────
+function buildTopFilters() {
+  const container = document.getElementById('topFilters');
+  container.innerHTML = TOP_DEFS.map(t => `
+    <button class="top-chip active" id="chip-${t.id}"
+      style="color:${t.color};border-color:${t.color}40;background:${t.color}18"
+      onclick="toggleTop('${t.id}')">
+      <div class="dot" style="background:${t.color}"></div>${t.label}
+    </button>
+  `).join('');
+}
+
+function toggleTop(id) {
+  if (selectedTops.has(id)) {
+    if (selectedTops.size <= 1) return; // keep at least one
+    selectedTops.delete(id);
+    const chip = document.getElementById(`chip-${id}`);
+    const t = TOP_MAP[id];
+    chip.classList.remove('active');
+    chip.style.background = 'transparent';
+    chip.style.color = 'var(--fg3)';
+    chip.style.borderColor = 'var(--border2)';
+  } else {
+    selectedTops.add(id);
+    const chip = document.getElementById(`chip-${id}`);
+    const t = TOP_MAP[id];
+    chip.classList.add('active');
+    chip.style.background = t.color + '18';
+    chip.style.color = t.color;
+    chip.style.borderColor = t.color + '40';
+  }
+  renderPeriod(currentPeriod);
+}
+
+// ── Period selector ───────────────────────────────────────
+function buildPeriodOptions() {
+  const store = loadStore();
+  const allMonths = new Set([currentPeriod, ...Object.keys(slaData), ...store.registros.map(r => r.mes)]);
+  const sorted = [...allMonths].sort().reverse();
+  const sel = document.getElementById('periodSelect');
+  sel.innerHTML = '';
+  sorted.forEach(m => {
+    const opt = document.createElement('option');
+    opt.value = m; opt.textContent = monthLabel(m);
+    if (m === currentPeriod) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function onPeriodChange() {
+  currentPeriod = document.getElementById('periodSelect').value;
+  renderPeriod(currentPeriod);
+}
+
+// ── Modal ─────────────────────────────────────────────────
+function openModal() {
+  const store = loadStore();
+  const rec = store.registros.find(r => r.mes === currentPeriod) || {};
+  document.getElementById('f-mes').value = currentPeriod;
+  document.getElementById('f-resp').value = rec.responsavel || 'Lenon Henrique da Silva';
+  document.getElementById('f-sla-meta').value = rec.sla_meta ?? '';
+  document.getElementById('f-auto-meta').value = rec.pct_automacao_meta ?? '';
+  document.getElementById('f-cancel-meta').value = rec.cancel_meta ?? '';
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal() { document.getElementById('overlay').classList.remove('open'); }
+function closeModalIfBg(e) { if (e.target.id === 'overlay') closeModal(); }
+
+function saveRecord() {
+  const mes = document.getElementById('f-mes').value;
+  if (!mes) return;
+  const store = loadStore();
+  const idx = store.registros.findIndex(r => r.mes === mes);
+  const rec = {
+    mes, responsavel: document.getElementById('f-resp').value,
+    sla_meta:           parseFloat(document.getElementById('f-sla-meta').value) || null,
+    pct_automacao_meta: parseFloat(document.getElementById('f-auto-meta').value) || null,
+    cancel_meta:    parseFloat(document.getElementById('f-cancel-meta').value) || null,
+  };
+  if (idx >= 0) store.registros[idx] = rec; else store.registros.push(rec);
+  saveStore(store);
+  closeModal();
+  currentPeriod = mes;
+  buildPeriodOptions();
+  renderPeriod(currentPeriod);
+}
+
+// ── Helpers ───────────────────────────────────────────────
+function monthLabel(key) {
+  const [y, m] = key.split('-');
+  return ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][parseInt(m)-1] + '/' + y;
+}
+function setStatus(type, msg) {
+  document.getElementById('statusDot').className = 'status-dot' + (type==='warn'?' warn':type==='err'?' err':'');
+  document.getElementById('statusText').textContent = msg;
+}
+
+// ── Init ──────────────────────────────────────────────────
+async function initIndicadores() {
+  // Seed default record
+  const store = loadStore();
+  if (!store.registros.find(r => r.mes === '2026-06')) {
+    store.registros.push({ mes: '2026-06', responsavel: 'Lenon Henrique da Silva',
+      sla_meta: 4, pct_automacao_meta: 30 });
+    saveStore(store);
+  }
+
+  buildTopFilters();
+  buildPeriodOptions();
+
+  // Restore SLA cache while BigQuery loads
+  const cached = store.slaCache;
+  if (cached?.length) {
+    cached.forEach(r => {
+      if (!slaData[r.mes_sort]) slaData[r.mes_sort] = {};
+      slaData[r.mes_sort][r.top] = { sla: r.sla, qtd: r.qtd };
+    });
+  }
+  // Restore auto cache
+  if (store.autoCache?.length) {
+    store.autoCache.forEach(r => { autoData[r.mes] = { total: r.total, sup: r.sup ?? r.platform, pct: r.pct }; });
+  }
+  // Restore cancel cache
+  if (store.cancelCache?.length) {
+    store.cancelCache.forEach(r => { cancelData[r.mes] = { total: r.total, canceladas: r.canceladas, pct: r.pct }; });
+  }
+  if (cached?.length || store.autoCache?.length || store.cancelCache?.length) renderPeriod(currentPeriod);
+
+  await Promise.all([fetchSLA(), fetchAuto(), fetchCancel()]);
+  buildPeriodOptions();
+  renderPeriod(currentPeriod);
+  // Atualiza subtítulo com data dos dados
+  const pageSub = document.getElementById('ind-page-sub');
+  if (pageSub) {
+    try {
+      const upd = BAKED_DATA.updated_at; // ex: "2026-07-01T08:00:00-03:00"
+      const dt = new Date(upd);
+      const d = dt.toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'numeric'});
+      const h = dt.toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
+      pageSub.textContent = `Faturamento · dados de ${d} às ${h} BRT`;
+    } catch(e) { pageSub.textContent = 'Faturamento · dados atualizados'; }
+  }
+}
+
 </script>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -3953,3 +4563,4 @@ function audExportCSV() {
 </script>
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
